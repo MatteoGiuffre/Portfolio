@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Projets</title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="CV_Matteo.Giuffre.pdf" class="btn-cv" download>Télécharger mon CV</a>
+            <ul class="nav-links">
+                <li><a href="Portfolio.html">Accueil</a></li>
+                <li><a href="Profil.html">Profil</a></li>
+                <li><a href="Projets.html">Projets</a></li>
+                <li><a href="Competences.html">Compétences</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section projets-section">
+        <div class="container">
+            <h1 class="projets-title">Mes Projets</h1>
+            <div class="projets-grid">
+                <div class="projet-card" data-projet="SAE11">
+                    <img src="cyberhygiene.jpg" alt="Hygiène info et à la cybersécurité">
+                    <div class="projet-overlay">
+                        <span class="projet-title">Hygiène info et à la cybersécurité</span>
+                    </div>
+                </div>
+                <div class="projet-card" data-projet="SAE12">
+                    <img src="reseauxinformatiques.jpg" alt="S'initier aux réseaux informatiques">
+                    <div class="projet-overlay">
+                        <span class="projet-title">S'initier aux réseaux informatiques</span>
+                    </div>
+                </div>
+
+                <div class="projet-card" data-projet="SAE13">
+                    <img src="cablecoaxial.png" alt="Découverte d’un dispositif de transmission">
+                    <div class="projet-overlay">
+                        <span class="projet-title">Découverte d’un dispositif de transmission</span>
+                    </div>
+                </div>
+
+                <div class="projet-card" data-projet="SAE14">
+                    <img src="ereputation.png" alt="E-Réputation">
+                    <div class="projet-overlay">
+                        <span class="projet-title">E-Réputation</span>
+                    </div>
+                </div>
+
+                <div class="projet-card" data-projet="SAE21">
+                    <img src="reseauentreprise.png" alt="Réseau d'entrprise">
+                    <div class="projet-overlay">
+                        <span class="projet-title">Réseau d'entreprise</span>
+                    </div>
+                </div>
+
+                <div class="projet-card" data-projet="SAE_Siteweb">
+                    <img src="siteweb.jpg" alt="Site Web">
+                    <div class="projet-overlay">
+                        <span class="projet-title">Site Web</span>
+                    </div>
+                </div>
+                <!-- Ajoute ici d'autres projets avec data-projet="nom_unique" -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- MODALE PROJET -->
+    <div id="modal-projet" class="modal-projet" style="display:none;">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modal-body" class="modal-body">
+                <!-- Le contenu du projet sera injecté ici par JS -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script>
+// Contenus personnalisés pour chaque projet
+const projetsContent = {
+    SAE11: `
+        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;letter-spacing:-1px;">SE SENSIBILISER A L'HYGIENE INFORMATIQUE ET A LA CYBERSECURITE</h2>
+        <div style="text-align:center;">
+            <img src="cyberhygiene.jpg" alt="Hygiène info et à la cybersécurité" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
+        </div>
+        <p style="margin-top:1rem;font-size:1.2rem;">
+            <b>Objectif :</b><br>
+            Comprendre les concepts clés de la cybersécurité : vulnérabilités, menaces, attaques/intrusions.<br>
+            Identifier les principales menaces et vulnérabilités numériques, leurs conséquences et les moyens de s’en prémunir.
+        </p>
+
+        <p style="font-size:1.2rem;">
+            <b>Travail réalisé :</b>
+            <ul style="margin-top:0.5rem; margin-bottom:0.5rem;">
+                <li style="margin-left:2em;">Recherche et analyse de différents types de cyberattaques (cybercriminalité, espionnage, sabotage, etc.).</li>
+                <li style="margin-left:2em;">Présentation orale d’un panorama des menaces, vulnérabilités et attaques étudiées.</li>
+                <li style="margin-left:2em;">Réalisation d’une courte vidéo de sensibilisation vulgarisant une attaque.</li>
+            </ul>
+            <b>Méthodologie d’analyse d’attaque :</b>
+            <ul style="margin-top:0.5rem; margin-bottom:0.5rem;">
+                <li style="margin-left:2em;">Recherche d’informations sur la date, la cible, l’auteur et le contexte de l’attaque.</li>
+                <li style="margin-left:2em;">Identification de la vulnérabilité exploitée, analyse du déroulement et des dommages causés.</li>
+                <li style="margin-left:2em;">Étude des actions correctives mises en place et des bonnes pratiques à adopter.</li>
+            </ul>
+        </p>
+
+        <p style="font-size:1.2rem;">
+            <b>Compétences développées :</b>
+            <ul style="margin-top:0.5rem;">
+                <li style="margin-left:2em;">Analyse et synthèse d’incidents de cybersécurité.</li>
+                <li style="margin-left:2em;">Présentation de résultats techniques de façon claire et pédagogique.</li>
+                <li style="margin-left:2em;">Sensibilisation aux enjeux de la sécurité informatique.</li>
+            </ul>
+        </p>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="SAE11.pdf" class="btn-proof" target="_blank" download>
+                Compte rendu
+            </a>
+        </div>
+    `,
+    SAE12: `
+        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">S'INITIER AUX RESEAUX INFORMATIQUES</h2>
+        <div style="text-align:center;">
+            <img src="reseauxinformatiques.jpg" alt="S'initier aux réseaux informatiques" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
+        </div>
+        <p style="margin-top:1rem;font-size:1.2rem;">
+            <b>Objectif :</b><br>
+            Comprendre le fonctionnement d’un réseau informatique domestique et savoir analyser ses composants et leurs interactions.
+        </p>
+
+        <p style="font-size:1.2rem;">
+            <b>Travail réalisé :</b>
+        </p>
+        <ul style="margin-bottom:1.2rem; padding-left:1.5em;">
+            <li style="margin-left:2em;">Test et configuration d’un réseau domestique (hors TP).</li>
+            <li style="margin-left:2em;">Identification des différents équipements et analyse de leurs rôles.</li>
+            <li style="margin-left:2em;">Étude des interactions, des débits et de la consommation d’énergie.</li>
+            <li style="margin-left:2em;">Création de comptes-rendus et de vidéos explicatives.</li>
+        </ul>
+
+        <p style="font-size:1.2rem;">
+            <b>Compétences développées :</b>
+        </p>
+        <ul style="padding-left:1.5em;">
+            <li style="margin-left:2em;">Analyse de réseaux informatiques réels.</li>
+            <li style="margin-left:2em;">Autonomie dans la résolution de problèmes réseaux.</li>
+            <li style="margin-left:2em;">Communication technique (rédaction, vidéo).</li>
+        </ul>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="SAE12_1.pdf" class="btn-proof" target="_blank" download>
+                Rendu 1
+            </a>
+            <a href="SAE12_2" class="btn-proof" target="_blank" download style="margin-left:12px;">
+                Rendu 2
+            </a>
+        </div>
+        
+    `,
+
+    SAE13: `
+        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">DECOUVERTE D'UN DISPOSITIF DE TRANSMISSION</h2>
+        <div style="text-align:center;">
+            <img src="cablecoaxial.png" alt="Découverte d’un dispositif de transmission" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
+        </div>
+        <p style="margin-top:1rem;font-size:1.2rem;">
+            <b>Objectif :</b><br>
+            Étudier et analyser une liaison physique par câble coaxial, réaliser des mesures pour caractériser la liaison et présenter les résultats obtenus.
+        </p>
+        <ul style="margin-bottom:1.2rem; padding-left:1.5em;">
+            <li style="margin-left:2em;">Étude d’un dispositif de transmission par câble coaxial.</li>
+            <li style="margin-left:2em;">Analyse et compréhension d’une liaison physique.</li>
+            <li style="margin-left:2em;">Réalisation de mesures pour une première caractérisation technique.</li>
+            <li style="margin-left:2em;">Présentation et interprétation des résultats de mesure.</li>
+        </ul>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="SAE13.pdf" class="btn-proof" target="_blank" download>
+                Compte rendu
+            </a>
+        </div>
+    `,
+
+    SAE14: `
+        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">E-REPUTATION</h2>
+        <div style="text-align:center;">
+            <img src="ereputation.png" alt="e-reputation" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
+        </div>
+        <p style="margin-top:1rem;font-size:1.2rem;">
+            <b>Objectif :</b><br>
+            Comprendre les enjeux de l’e-réputation, c’est-à-dire la gestion de son image en ligne, les risques associés et les solutions pour la protéger efficacement.
+        </p>
+
+        <ul style="margin-bottom:1.2rem; padding-left:1.5em;">
+            <li style="margin-left:2em;">Recherche sur les risques liés à l’e-réputation (cyberharcèlement, diffusion d’informations personnelles, usurpation d’identité, etc.).</li>
+            <li style="margin-left:2em;">Analyse des moyens de surveiller et de défendre son image sur Internet (paramétrage des réseaux sociaux, droit à l’oubli, veille en ligne, etc.).</li>
+            <li style="margin-left:2em;">Préparation d’une intervention pédagogique pour des collégiens ou lycéens, visant à les sensibiliser aux bonnes pratiques de l’e-réputation.</li>
+            <li style="margin-left:2em;">Travail en deux axes : approfondissement personnel des connaissances et transmission à un jeune public.</li>
+        </ul>
+
+        <p style="font-size:1.2rem;">
+            <b>Compétences développées :</b>
+        </p>
+        <ul style="padding-left:1.5em;">
+            <li style="margin-left:2em;">Compréhension des enjeux de l’e-réputation et des risques numériques.</li>
+            <li style="margin-left:2em;">Capacité à vulgariser et transmettre des informations à un public jeune.</li>
+            <li style="margin-left:2em;">Maîtrise de la recherche documentaire et de la synthèse.</li>
+        </ul>
+    `,
+
+    SAE21: `
+        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">CONSTRUIRE UN RESEAU INFO. POUR PETITE STRUCTURE</h2>
+        <div style="text-align:center;">
+            <img src="reseauentreprise.png" alt="Réseau d'entreprise" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
+        </div>
+        <p style="margin-top:1rem;font-size:1.2rem;">
+            <b>Objectif :</b><br>
+            Concevoir et configurer le réseau informatique d’une petite entreprise, en intégrant les besoins essentiels en commutation, routage, services réseau et sécurité.
+        </p>
+
+        <p style="font-size:1.2rem;">
+            <b>Étapes du projet :</b>
+        </p>
+        <ul style="margin-bottom:1.2rem; padding-left:1.5em;">
+            <li style="margin-left:2em;">
+                <b>Construction du cœur de réseau :</b> Mise en place de switches d’accès et d’un MLS (Multi-layer Switch), configuration des VLANs, du routage inter-VLAN, du spanning-tree (STP) et vérification de la connectivité (pings, simulation Packet Tracer).
+            </li>
+            <li style="margin-left:2em;">
+                <b>Ajout de la sécurité et des services :</b> Interconnexion d’un pare-feu ASA, configuration DHCP centralisé et DNS pour la résolution interne, gestion des adresses IP et des pools DHCP partagés entre VLANs.
+            </li>
+            <li style="margin-left:2em;">
+                <b>Création d’une DMZ et connexion à Internet :</b> Mise en place d’une zone DMZ sécurisée, configuration d’un routeur fournisseur d’accès (FAI), gestion du NAT dynamique et des règles de pare-feu pour contrôler les accès externes/interne.
+            </li>
+            <li style="margin-left:2em;">
+                <b>Interconnexion avec un réseau public :</b> Construction d’un réseau externe (8.8.0.0/16), interconnexion avec le FAI via EIGRP, ajout d’un serveur DNS externe et tests complets de connectivité et de sécurité.
+            </li>
+        </ul>
+
+        <p style="font-size:1.2rem;">
+            <b>Compétences développées :</b>
+        </p>
+        <ul style="padding-left:1.5em;">
+            <li style="margin-left:2em;">Conception et configuration de réseaux d’entreprise (VLAN, MLS, routage, DMZ).</li>
+            <li style="margin-left:2em;">Mise en œuvre de services réseau (DHCP, DNS, NAT).</li>
+            <li style="margin-left:2em;">Paramétrage avancé de la sécurité (pare-feu, filtrage, segmentation, contrôle d’accès).</li>
+            <li style="margin-left:2em;">Utilisation d’outils de simulation (Packet Tracer) et résolution de problèmes réseaux.</li>
+        </ul>
+    `,
+
+    SAE_Siteweb: `
+        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">PREMIER SITE WEB</h2>
+        <div style="text-align:center;">
+            <img src="siteweb.jpg" alt="Site web" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
+        </div>
+        <p style="font-size:1.2rem;">
+            <b>Kawabikes</b> est le tout premier site web que j’ai réalisé, en binôme avec un collègue. On avait le droit uniquement au HTML et au CSS, donc pas de JavaScript ni de frameworks, juste les bases !<br>
+            Le site présente différentes motos de la marque Kawasaki, avec leurs modèles, caractéristiques, et des infos pour les passionnés.<br>
+            L’objectif du projet était avant tout d’apprendre à structurer et styliser un site, le rendre responsive et accessible, tout en respectant les bonnes pratiques.<br>
+            (On devait aussi bien commenter notre code, mais ce qui comptait vraiment, c’était de comprendre comment fonctionne un site web de A à Z.)
+        </p>
+        <div style="text-align:center; margin-top:2rem;">
+            <a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" class="btn-proof" target="_blank">
+                Site Web
+            </a>
+        </div>
+    `,
+    // Ajoute d'autres projets au besoin
+};
+
+document.querySelectorAll('.projet-card').forEach(card => {
+    card.addEventListener('click', function() {
+        const key = this.getAttribute('data-projet');
+        document.getElementById('modal-body').innerHTML = projetsContent[key] || "<p>Projet non trouvé.</p>";
+        document.getElementById('modal-projet').style.display = "flex";
+        document.body.style.overflow = "hidden";
+    });
+});
+
+document.querySelector('.modal-close').onclick = function() {
+    document.getElementById('modal-projet').style.display = "none";
+    document.body.style.overflow = "";
+};
+// Fermer en cliquant dehors la modale
+document.getElementById('modal-projet').onclick = function(e) {
+    if(e.target === this) {
+        this.style.display = "none";
+        document.body.style.overflow = "";
+    }
+};
+// Fermer avec la touche Echap
+document.addEventListener('keydown', function(e) {
+    if(e.key === "Escape") {
+        document.getElementById('modal-projet').style.display = "none";
+        document.body.style.overflow = "";
+    }
+});
+</script>
+
+
+</body>
+</html>
