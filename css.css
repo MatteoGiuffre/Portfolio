@@ -106,7 +106,7 @@ body {
 .nav-links li:not(:last-child)::after {
     content: "|";
     position: absolute;
-    right: 0;
+    right: -18px;
     color: #999;
     font-weight: 300;
 }
@@ -432,6 +432,7 @@ body {
     letter-spacing: 1px;
 
 }
+
 
 
 
