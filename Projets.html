@@ -1,288 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Projets</title>
-    <link rel="stylesheet" href="css.css">
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Projets — Matteo Giuffre</title>
+  <style>
+    :root{--muted:#516b78;--card:#fff;--accent:#0b81ff}
+    body{font-family:Inter,system-ui,Arial;margin:0;background:#f8fbff;color:#07202a}
+    .container{max-width:1100px;margin:2rem auto;padding:1rem}
+    h1{margin:0 0 0.6rem 0}
+    .intro{max-width:72ch;color:var(--muted);line-height:1.45;margin-bottom:1rem}
+    .controls{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
+    select{padding:.45rem .6rem;border-radius:8px;border:1px solid #dae8f7;background:#fff}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
+    .card{background:var(--card);padding:1rem;border-radius:10px;border:1px solid #e6f0fb;box-shadow:0 8px 20px rgba(8,20,30,0.04)}
+    .card h3{margin:.1rem 0 .5rem 0}
+    .summary{color:var(--muted);margin:0 0 .6rem 0}
+    .parts{display:grid;gap:.5rem}
+    .parts h4{margin:0;font-size:.95rem}
+    .meta{font-size:.9rem;color:#5d7789;margin-top:.6rem}
+    .semester-label{display:inline-block;padding:.25rem .5rem;border-radius:999px;background:#eef8ff;color:#035cab;font-weight:600;margin-bottom:.6rem}
+    .placeholder{color:#8b9aa6;font-style:italic}
+    a.skill-link{color:var(--accent);text-decoration:none}
+    @media (max-width:720px){.controls{flex-direction:column;align-items:stretch}}
+  </style>
 </head>
 <body>
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="CV_Matteo.Giuffre.pdf" class="btn-cv" download>Télécharger mon CV</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="Profil.html">Profil</a></li>
-                <li><a href="Projets.html">Projets</a></li>
-                <li><a href="Competences.html">Compétences</a></li>
-            </ul>
-        </div>
-    </nav>
+  <main class="container">
+    <h1>Projets</h1>
+    <p class="intro">Sélection de projets réalisés pendant mon cursus. Ci‑dessous les projets sont regroupés par semestre (S3 prévu — emplacements vides si non fournis).</p>
 
-    <section class="section projets-section">
-        <div class="container">
-            <h1 class="projets-title">Mes Projets</h1>
-            <div class="projets-grid">
-                <div class="projet-card" data-projet="SAE11">
-                    <img src="cyberhygiene.jpg" alt="Hygiène info et à la cybersécurité">
-                    <div class="projet-overlay">
-                        <span class="projet-title">Hygiène info et à la cybersécurité</span>
-                    </div>
-                </div>
-                <div class="projet-card" data-projet="SAE12">
-                    <img src="reseauxinformatiques.jpg" alt="S'initier aux réseaux informatiques">
-                    <div class="projet-overlay">
-                        <span class="projet-title">S'initier aux réseaux informatiques</span>
-                    </div>
-                </div>
+    <div class="controls" aria-hidden="false">
+      <label>Trier:
+        <select id="sort">
+          <option value="date-desc">Date (récent)</option>
+          <option value="date-asc">Date (ancien)</option>
+          <option value="alpha">A → Z</option>
+        </select>
+      </label>
 
-                <div class="projet-card" data-projet="SAE13">
-                    <img src="cablecoaxial.png" alt="Découverte d’un dispositif de transmission">
-                    <div class="projet-overlay">
-                        <span class="projet-title">Découverte d’un dispositif de transmission</span>
-                    </div>
-                </div>
-
-                <div class="projet-card" data-projet="SAE14">
-                    <img src="ereputation.png" alt="E-Réputation">
-                    <div class="projet-overlay">
-                        <span class="projet-title">E-Réputation</span>
-                    </div>
-                </div>
-
-                <div class="projet-card" data-projet="SAE21">
-                    <img src="reseauentreprise.png" alt="Réseau d'entrprise">
-                    <div class="projet-overlay">
-                        <span class="projet-title">Réseau d'entreprise</span>
-                    </div>
-                </div>
-
-                <div class="projet-card" data-projet="SAE_Siteweb">
-                    <img src="siteweb.jpg" alt="Site Web">
-                    <div class="projet-overlay">
-                        <span class="projet-title">Site Web</span>
-                    </div>
-                </div>
-                <!-- Ajoute ici d'autres projets avec data-projet="nom_unique" -->
-            </div>
-        </div>
-    </section>
-    
-    <!-- MODALE PROJET -->
-    <div id="modal-projet" class="modal-projet" style="display:none;">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div id="modal-body" class="modal-body">
-                <!-- Le contenu du projet sera injecté ici par JS -->
-            </div>
-        </div>
+      <label>Afficher:
+        <select id="filter">
+          <option value="all">Tous</option>
+          <option value="S3">S3</option>
+          <option value="S2">S2</option>
+          <option value="S1">S1</option>
+        </select>
+      </label>
     </div>
 
-
-
-
-<script>
-// Contenus personnalisés pour chaque projet
-const projetsContent = {
-    SAE11: `
-        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;letter-spacing:-1px;">SE SENSIBILISER A L'HYGIENE INFORMATIQUE ET A LA CYBERSECURITE</h2>
-        <div style="text-align:center;">
-            <img src="cyberhygiene.jpg" alt="Hygiène info et à la cybersécurité" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
+    <div id="projects" class="projects-grid" aria-live="polite">
+      <!-- Exemple projet S2 -->
+      <article class="card project" data-title="AnalyseCyber" data-date="2025-02-10" data-semester="S2">
+        <span class="semester-label">S2</span>
+        <h3>AnalyseCyber</h3>
+        <p class="summary">Étude et simulation d'attaques simples pour apprendre la cybersécurité défensive.</p>
+        <div class="parts">
+          <div>
+            <h4>Contexte</h4>
+            <p>Projet de module cybersécurité — mise en place d'un labo d'analyse.</p>
+          </div>
+          <div>
+            <h4>Mon rôle</h4>
+            <p>Configuration du labo, captures et analyses de flux, rédaction de rapport.</p>
+          </div>
+          <div>
+            <h4>Tech / Compétences</h4>
+            <p>Wireshark, Linux — Compétences: <a class="skill-link" href="Competences.html#reseaux">Réseaux</a>, <a class="skill-link" href="Competences.html#soft">Communication</a></p>
+          </div>
         </div>
-        <p style="margin-top:1rem;font-size:1.2rem;">
-            <b>Objectif :</b><br>
-            Comprendre les concepts clés de la cybersécurité pour distinguer les notions de vulnérabilités, de menaces et d’attaques. 
-            Identifier les principales menaces et faiblesses numériques, en analyser les conséquences et connaître les moyens de prévention adaptés.
-        </p>
+        <div class="meta">Plus d'infos : <a href="SAE12_1.pdf">SAE12_1.pdf</a></div>
+      </article>
 
-        <p style="font-size:1.2rem; margin-top:1rem;">
-            <b>Travail réalisé :</b>
-        <p style="font-size:1.2rem;">
-            J’ai mené des recherches et analyses sur différents types de cyberattaques, notamment la cybercriminalité, l’espionnage et le sabotage. 
-            Ce travail a donné lieu à une présentation orale proposant une plusieurs des principales menaces, vulnérabilités et attaques étudiées. 
-            Enfin, j’ai réalisé une courte vidéo de sensibilisation visant à vulgariser l’une de ces attaques pour un public non spécialisé.
-        </p>
-        
-        <p style="font-size:1.2rem; margin-top:1rem;">
-            <b>Compétences développées :</b>
-        <p style="font-size:1.2rem;">
-        Capacité à analyser et synthétiser des incidents de cybersécurité, à présenter des résultats techniques de façon claire et pédagogique, ainsi qu’à sensibiliser différents publics aux enjeux de la sécurité informatique.
-        </p>
-        <div style="text-align:center; margin-top:2rem;">
-            <a href="SAE11.pdf" class="btn-proof" target="_blank" download>
-                Compte rendu
-            </a>
+      <!-- Exemple projet S1 -->
+      <article class="card project" data-title="SiteWeb" data-date="2024-04-12" data-semester="S1">
+        <span class="semester-label">S1</span>
+        <h3>SiteWeb</h3>
+        <p class="summary">Création d'un site web statique pour présenter un sujet technique.</p>
+        <div class="parts">
+          <div>
+            <h4>Contexte</h4>
+            <p>Projet web initial pour apprendre HTML/CSS.</p>
+          </div>
+          <div>
+            <h4>Mon rôle</h4>
+            <p>Design, intégration et déploiement.</p>
+          </div>
+          <div>
+            <h4>Tech / Compétences</h4>
+            <p>HTML/CSS — Compétences: <a class="skill-link" href="Competences.html#programmation">Web</a></p>
+          </div>
         </div>
-    `,
-    SAE12: `
-        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">S'INITIER AUX RESEAUX INFORMATIQUES</h2>
-        <div style="text-align:center;">
-            <img src="reseauxinformatiques.jpg" alt="S'initier aux réseaux informatiques" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
+        <div class="meta">Image : <img src="siteweb.jpg" alt="" style="height:36px;margin-left:.4rem;vertical-align:middle"></div>
+      </article>
+
+      <!-- Placeholder S3 (vous compléterez plus tard) -->
+      <article class="card project" data-title="S3-Placeholder" data-date="2026-01-01" data-semester="S3">
+        <span class="semester-label">S3</span>
+        <h3>Projets S3 (à ajouter)</h3>
+        <p class="summary placeholder">Vous n'avez pas encore importé les projets du semestre 3. Cet emplacement est réservé — ajoutez vos fiches S3 ici quand prêtes.</p>
+        <div class="parts">
+          <div><h4>Contexte</h4><p class="placeholder">—</p></div>
+          <div><h4>Mon rôle</h4><p class="placeholder">—</p></div>
+          <div><h4>Tech / Compétences</h4><p class="placeholder">—</p></div>
         </div>
-        <p style="margin-top:1rem;font-size:1.2rem;">
-            <b>Objectif :</b><br>
-            Comprendre le fonctionnement d’un réseau informatique domestique et savoir analyser ses composants et leurs interactions.
-        </p>
+      </article>
+    </div>
+  </main>
 
-        <p style="font-size:1.2rem; margin-top:1rem;">
-            <b>Travail réalisé :</b>
-        </p>
-        <p style="font-size:1.2rem;">
-            J’ai effectué le test et la configuration d’un réseau domestique en dehors des travaux pratiques. 
-            Ce projet a impliqué l’identification des différents équipements et l’analyse de leurs rôles, ainsi qu’une étude des interactions, des débits et de la consommation d’énergie. 
-            J’ai également produit des comptes rendus détaillés et des vidéos explicatives pour présenter les résultats de manière claire et accessible.
-        </p>
+  <script>
+    (function(){
+      const container = document.getElementById('projects');
+      const selectSort = document.getElementById('sort');
+      const selectFilter = document.getElementById('filter');
 
-        <p style="font-size:1.2rem; margin-top:1rem;">
-            <b>Compétences développées :</b>
-        </p>
-        <p style="font-size:1.2rem;">
-            Capacité à analyser des réseaux informatiques réels, à travailler en autonomie pour résoudre des problèmes réseaux, et à communiquer efficacement des aspects techniques au travers de supports écrits et vidéos.
-        </p>
-        <div style="text-align:center; margin-top:2rem;">
-            <a href="SAE12_1.pdf" class="btn-proof" target="_blank" download>
-                Rendu 1
-            </a>
-            <a href="SAE12_2" class="btn-proof" target="_blank" download style="margin-left:12px;">
-                Rendu 2
-            </a>
-        </div>
-        
-    `,
+      function getList(){
+        return Array.from(container.querySelectorAll('.project'));
+      }
 
-    SAE13: `
-        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">DECOUVERTE D'UN DISPOSITIF DE TRANSMISSION</h2>
-        <div style="text-align:center;">
-            <img src="cablecoaxial.png" alt="Découverte d’un dispositif de transmission" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
-        </div>
-        <p style="margin-top:1rem;font-size:1.2rem;">
-            <b>Objectif :</b><br>
-        </p>
-        <p style="font-size:1,2rem;">
-            Étudier et analyser une liaison physique par câble coaxial, réaliser des mesures pour caractériser la liaison, étudier un dispositif de transmission par câble coaxial, analyser et comprendre la liaison physique, effectuer des mesures pour une première caractérisation technique, et présenter ainsi que interpréter les résultats obtenus.
-        </p>
-        <div style="text-align:center; margin-top:2rem;">
-            <a href="SAE13.pdf" class="btn-proof" target="_blank" download>
-                Compte rendu
-            </a>
-        </div>
-    `,
+      function render(list){
+        list.forEach(n => container.appendChild(n));
+      }
 
-    SAE14: `
-        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">E-REPUTATION</h2>
-        <div style="text-align:center;">
-            <img src="ereputation.png" alt="e-reputation" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
-        </div>
-        <p style="margin-top:1rem;font-size:1.2rem;">
-            <b>Objectif :</b><br>
-        </p>
-        <p style="font-size:1.2rem;">
-            Comprendre les enjeux de l’e-réputation, c’est-à-dire la gestion de son image en ligne, les risques associés et les solutions pour la protéger efficacement. 
-            Cela inclut la recherche sur les risques liés à l’e-réputation tels que le cyberharcèlement, la diffusion d’informations personnelles ou l’usurpation d’identité, ainsi que l’analyse des moyens de surveiller et défendre son image sur Internet, par exemple le paramétrage des réseaux sociaux, le droit à l’oubli ou la veille en ligne. 
-            Ce travail comporte également la préparation d’une intervention pédagogique destinée à des collégiens ou lycéens, visant à les sensibiliser aux bonnes pratiques de l’e-réputation, et se déroule selon deux axes : l’approfondissement personnel des connaissances et la transmission à un jeune public.
-        </p>
+      function sortList(mode,list){
+        return list.sort((a,b) => {
+          if(mode==='alpha') return a.dataset.title.localeCompare(b.dataset.title,'fr');
+          const ad=new Date(a.dataset.date), bd=new Date(b.dataset.date);
+          return mode==='date-asc' ? ad-bd : bd-ad;
+        });
+      }
 
-        <p style="font-size:1.2rem; margin-top:1rem;">
-            <b>Compétences développées :</b>
-        </p>
-        <p style="font-size:1.2rem;">
-            Compréhension des enjeux de l’e-réputation et des risques numériques, capacité à vulgariser et transmettre des informations à un public jeune, ainsi que maîtrise de la recherche documentaire et de la synthèse.
-        </p>
-    `,
+      function filterList(sem,list){
+        if(sem==='all') return list;
+        return list.filter(n => (n.dataset.semester||'').toUpperCase()===sem.toUpperCase());
+      }
 
-    SAE21: `
-        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">CONSTRUIRE UN RESEAU INFO. POUR PETITE STRUCTURE</h2>
-        <div style="text-align:center;">
-            <img src="reseauentreprise.png" alt="Réseau d'entreprise" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
-        </div>
-        <p style="margin-top:1rem;font-size:1.2rem;">
-            <b>Objectif :</b><br>
-            Concevoir et configurer le réseau informatique d’une petite entreprise, en intégrant les besoins essentiels en commutation, routage, services réseau et sécurité.
-        </p>
+      function refresh(){
+        let list = getList();
+        list = filterList(selectFilter.value, list);
+        list = sortList(selectSort.value, list);
+        render(list);
+      }
 
-        <p style="font-size:1.2rem;">
-            <b>Étapes du projet :</b>
-        </p>
-        <ul style="margin-bottom:1.2rem; padding-left:1.5em;">
-            <li style="margin-left:2em;">
-                <b>Construction du cœur de réseau :</b> Mise en place de switches d’accès et d’un MLS (Multi-layer Switch), configuration des VLANs, du routage inter-VLAN, du spanning-tree (STP) et vérification de la connectivité (pings, simulation Packet Tracer).
-            </li>
-            <li style="margin-left:2em;">
-                <b>Ajout de la sécurité et des services :</b> Interconnexion d’un pare-feu ASA, configuration DHCP centralisé et DNS pour la résolution interne, gestion des adresses IP et des pools DHCP partagés entre VLANs.
-            </li>
-            <li style="margin-left:2em;">
-                <b>Création d’une DMZ et connexion à Internet :</b> Mise en place d’une zone DMZ sécurisée, configuration d’un routeur fournisseur d’accès (FAI), gestion du NAT dynamique et des règles de pare-feu pour contrôler les accès externes/interne.
-            </li>
-            <li style="margin-left:2em;">
-                <b>Interconnexion avec un réseau public :</b> Construction d’un réseau externe (8.8.0.0/16), interconnexion avec le FAI via EIGRP, ajout d’un serveur DNS externe et tests complets de connectivité et de sécurité.
-            </li>
-        </ul>
-
-        <p style="font-size:1.2rem; margin-top:1rem;">
-            <b>Compétences développées :</b>
-        </p>
-        <p style="font-size:1.2rem;">
-            Conception et configuration de réseaux d’entreprise, incluant VLAN, MLS, routage et DMZ, ainsi que mise en œuvre de services réseau tels que DHCP, DNS et NAT. 
-            Paramétrage avancé de la sécurité (pare-feu, filtrage, segmentation, contrôle d’accès) et utilisation d’outils de simulation comme Packet Tracer pour résoudre des problèmes réseaux.
-        </p>
-    `,
-
-    SAE_Siteweb: `
-        <h2 style="text-align:center;font-size:2.4rem;font-weight:900;">PREMIER SITE WEB</h2>
-        <div style="text-align:center;">
-            <img src="siteweb.jpg" alt="Site web" style="max-width:320px;width:80%;margin:0 auto 2rem auto;display:block;">
-        </div>
-        <p style="font-size:1.2rem;">
-            <b>Kawabikes</b> est le tout premier site web que j’ai réalisé, en binôme avec un collègue. On avait le droit uniquement au HTML et au CSS, donc pas de JavaScript ni de frameworks, juste les bases !<br>
-            Le site présente différentes motos de la marque Kawasaki, avec leurs modèles, caractéristiques, et des infos pour les passionnés.<br>
-            L’objectif du projet était avant tout d’apprendre à structurer et styliser un site, le rendre responsive et accessible, tout en respectant les bonnes pratiques.<br>
-            (On devait aussi bien commenter notre code, mais ce qui comptait vraiment, c’était de comprendre comment fonctionne un site web de A à Z.)
-        </p>
-        <div style="text-align:center; margin-top:2rem;">
-            <a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" class="btn-proof" target="_blank">
-                Site Web
-            </a>
-        </div>
-    `,
-    // Ajoute d'autres projets au besoin
-};
-
-document.querySelectorAll('.projet-card').forEach(card => {
-    card.addEventListener('click', function() {
-        const key = this.getAttribute('data-projet');
-        document.getElementById('modal-body').innerHTML = projetsContent[key] || "<p>Projet non trouvé.</p>";
-        document.getElementById('modal-projet').style.display = "flex";
-        document.body.style.overflow = "hidden";
-    });
-});
-
-document.querySelector('.modal-close').onclick = function() {
-    document.getElementById('modal-projet').style.display = "none";
-    document.body.style.overflow = "";
-};
-// Fermer en cliquant dehors la modale
-document.getElementById('modal-projet').onclick = function(e) {
-    if(e.target === this) {
-        this.style.display = "none";
-        document.body.style.overflow = "";
-    }
-};
-// Fermer avec la touche Echap
-document.addEventListener('keydown', function(e) {
-    if(e.key === "Escape") {
-        document.getElementById('modal-projet').style.display = "none";
-        document.body.style.overflow = "";
-    }
-});
-</script>
-
-
+      selectSort.addEventListener('change', refresh);
+      selectFilter.addEventListener('change', refresh);
+      document.addEventListener('DOMContentLoaded', refresh);
+    })();
+  </script>
 </body>
 </html>
-
-
-
-
-
-
