@@ -3,33 +3,27 @@
 <head>
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Projets — Matteo Giuffre</title>
-  <style>
-    :root{--muted:#516b78;--card:#fff;--accent:#0b81ff}
-    body{font-family:Inter,system-ui,Arial;margin:0;background:#f8fbff;color:#07202a}
-    .container{max-width:1100px;margin:2rem auto;padding:1rem}
-    h1{margin:0 0 0.6rem 0}
-    .intro{max-width:72ch;color:var(--muted);line-height:1.45;margin-bottom:1rem}
-    .controls{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;margin-bottom:1rem}
-    select{padding:.45rem .6rem;border-radius:8px;border:1px solid #dae8f7;background:#fff}
-    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem}
-    .card{background:var(--card);padding:1rem;border-radius:10px;border:1px solid #e6f0fb;box-shadow:0 8px 20px rgba(8,20,30,0.04)}
-    .card h3{margin:.1rem 0 .5rem 0}
-    .summary{color:var(--muted);margin:0 0 .6rem 0}
-    .parts{display:grid;gap:.5rem}
-    .parts h4{margin:0;font-size:.95rem}
-    .meta{font-size:.9rem;color:#5d7789;margin-top:.6rem}
-    .semester-label{display:inline-block;padding:.25rem .5rem;border-radius:999px;background:#eef8ff;color:#035cab;font-weight:600;margin-bottom:.6rem}
-    .placeholder{color:#8b9aa6;font-style:italic}
-    a.skill-link{color:var(--accent);text-decoration:none}
-    @media (max-width:720px){.controls{flex-direction:column;align-items:stretch}}
-  </style>
+  <link rel="stylesheet" href="css.css">
 </head>
 <body>
-  <main class="container">
-    <h1>Projets</h1>
-    <p class="intro">Sélection de projets réalisés pendant mon cursus. Ci‑dessous les projets sont regroupés par semestre (S3 prévu — emplacements vides si non fournis).</p>
+  <header class="navbar" role="navigation">
+    <div class="nav-inner container">
+      <a class="btn-cv" href="CV_Matteo.Giuffre.pdf" download>Télécharger mon CV</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="Profil.html">Profil</a></li>
+        <li><a href="Projets.html">Projets</a></li>
+        <li><a href="Competences.html">Compétences</a></li>
+        <li><a href="Experience.html">Expérience</a></li>
+      </ul>
+    </div>
+  </header>
 
-    <div class="controls" aria-hidden="false">
+  <main class="container container--spaced">
+    <h1>Projets</h1>
+    <p class="lead">Sélection de projets réalisés pendant mon cursus. Les projets sont tagués par semestre (S1, S2, S3). S3 est prêt à accueillir vos nouvelles fiches.</p>
+
+    <div class="controls" role="region" aria-label="Contrôles de tri et filtre">
       <label>Trier:
         <select id="sort">
           <option value="date-desc">Date (récent)</option>
@@ -49,98 +43,129 @@
     </div>
 
     <div id="projects" class="projects-grid" aria-live="polite">
-      <!-- Exemple projet S2 -->
-      <article class="card project" data-title="AnalyseCyber" data-date="2025-02-10" data-semester="S2">
+      <!-- Example project adapted to existing PDFs in repo -->
+      <article class="project-card" data-title="AnalyseCyber" data-date="2025-02-10" data-semester="S2">
         <span class="semester-label">S2</span>
         <h3>AnalyseCyber</h3>
         <p class="summary">Étude et simulation d'attaques simples pour apprendre la cybersécurité défensive.</p>
+
         <div class="parts">
           <div>
             <h4>Contexte</h4>
-            <p>Projet de module cybersécurité — mise en place d'un labo d'analyse.</p>
+            <p class="small">Projet de module cybersécurité — mise en place d'un laboratoire d'analyse.</p>
           </div>
           <div>
             <h4>Mon rôle</h4>
-            <p>Configuration du labo, captures et analyses de flux, rédaction de rapport.</p>
+            <p class="small">Configuration du labo, captures et analyses de flux, rédaction du rapport.</p>
           </div>
           <div>
             <h4>Tech / Compétences</h4>
-            <p>Wireshark, Linux — Compétences: <a class="skill-link" href="Competences.html#reseaux">Réseaux</a>, <a class="skill-link" href="Competences.html#soft">Communication</a></p>
+            <p class="small">Wireshark, Linux — Compétences: <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#programmation">Scripting</a></p>
           </div>
         </div>
-        <div class="meta">Plus d'infos : <a href="SAE12_1.pdf">SAE12_1.pdf</a></div>
+
+        <div style="margin-top:.75rem">
+          <a class="btn-toggle" data-action="toggle">Voir plus</a>
+          <a class="small" href="SAE12_1.pdf" target="_blank" style="margin-left:.8rem">Ouvrir le rapport (PDF)</a>
+        </div>
+
+        <div class="details hidden" style="margin-top:.8rem">
+          <p class="small">Détails supplémentaires : captures, scripts d'analyse et résumé des conclusions.</p>
+        </div>
       </article>
 
-      <!-- Exemple projet S1 -->
-      <article class="card project" data-title="SiteWeb" data-date="2024-04-12" data-semester="S1">
+      <!-- Existing project linking to SAE11 / SAE12 etc. Add/duplicate cards here to reflect all your original projects. -->
+      <article class="project-card" data-title="SiteWeb" data-date="2024-04-12" data-semester="S1">
         <span class="semester-label">S1</span>
         <h3>SiteWeb</h3>
         <p class="summary">Création d'un site web statique pour présenter un sujet technique.</p>
+
         <div class="parts">
-          <div>
-            <h4>Contexte</h4>
-            <p>Projet web initial pour apprendre HTML/CSS.</p>
-          </div>
-          <div>
-            <h4>Mon rôle</h4>
-            <p>Design, intégration et déploiement.</p>
-          </div>
-          <div>
-            <h4>Tech / Compétences</h4>
-            <p>HTML/CSS — Compétences: <a class="skill-link" href="Competences.html#programmation">Web</a></p>
-          </div>
+          <div><h4>Contexte</h4><p class="small">Projet web initial pour apprendre HTML / CSS.</p></div>
+          <div><h4>Mon rôle</h4><p class="small">Design, intégration et déploiement.</p></div>
+          <div><h4>Tech / Compétences</h4><p class="small">HTML, CSS — Compétence: <a href="Competences.html#web">Web</a></p></div>
         </div>
-        <div class="meta">Image : <img src="siteweb.jpg" alt="" style="height:36px;margin-left:.4rem;vertical-align:middle"></div>
+
+        <div style="margin-top:.75rem">
+          <a class="btn-toggle" data-action="toggle">Voir plus</a>
+          <a class="small" href="SAE11.pdf" target="_blank" style="margin-left:.8rem">Ouvrir (PDF)</a>
+        </div>
+
+        <div class="details hidden" style="margin-top:.8rem">
+          <p class="small">Détails : structure des pages, responsive, optimisation images.</p>
+        </div>
       </article>
 
-      <!-- Placeholder S3 (vous compléterez plus tard) -->
-      <article class="card project" data-title="S3-Placeholder" data-date="2026-01-01" data-semester="S3">
+      <!-- Placeholder for S3 (you will fill later) -->
+      <article class="project-card" data-title="S3-Placeholder" data-date="2026-01-01" data-semester="S3">
         <span class="semester-label">S3</span>
         <h3>Projets S3 (à ajouter)</h3>
-        <p class="summary placeholder">Vous n'avez pas encore importé les projets du semestre 3. Cet emplacement est réservé — ajoutez vos fiches S3 ici quand prêtes.</p>
+        <p class="summary small">Vous n'avez pas encore importé les projets du semestre 3. Cet emplacement est réservé.</p>
+
         <div class="parts">
-          <div><h4>Contexte</h4><p class="placeholder">—</p></div>
-          <div><h4>Mon rôle</h4><p class="placeholder">—</p></div>
-          <div><h4>Tech / Compétences</h4><p class="placeholder">—</p></div>
+          <div><h4>Contexte</h4><p class="small">—</p></div>
+          <div><h4>Mon rôle</h4><p class="small">—</p></div>
+          <div><h4>Tech / Compétences</h4><p class="small">—</p></div>
+        </div>
+
+        <div style="margin-top:.75rem">
+          <a class="btn-toggle" data-action="toggle">Voir plus</a>
+        </div>
+
+        <div class="details hidden" style="margin-top:.8rem">
+          <p class="small">Espace réservé pour vos fiches S3.</p>
         </div>
       </article>
     </div>
   </main>
 
   <script>
+    // Active nav
+    (function(){
+      const links = document.querySelectorAll('.nav-links a');
+      const cur = location.pathname.split('/').pop() || 'index.html';
+      links.forEach(a=>{ if(a.getAttribute('href')===cur) a.classList.add('active'); });
+    })();
+
+    // Toggle "Voir plus"
+    (function(){
+      document.addEventListener('click', function(e){
+        const t = e.target;
+        if(t.dataset && t.dataset.action==='toggle'){
+          const card = t.closest('.project-card');
+          if(!card) return;
+          const details = card.querySelector('.details');
+          if(details) details.classList.toggle('hidden');
+          t.textContent = details && !details.classList.contains('hidden') ? 'Voir moins' : 'Voir plus';
+        }
+      });
+    })();
+
+    // Filter & sort
     (function(){
       const container = document.getElementById('projects');
       const selectSort = document.getElementById('sort');
       const selectFilter = document.getElementById('filter');
 
-      function getList(){
-        return Array.from(container.querySelectorAll('.project'));
-      }
-
-      function render(list){
-        list.forEach(n => container.appendChild(n));
-      }
-
+      function getList(){ return Array.from(container.querySelectorAll('.project-card')); }
+      function render(list){ list.forEach(n => container.appendChild(n)); }
       function sortList(mode,list){
-        return list.sort((a,b) => {
+        return list.sort((a,b)=>{
           if(mode==='alpha') return a.dataset.title.localeCompare(b.dataset.title,'fr');
-          const ad=new Date(a.dataset.date), bd=new Date(b.dataset.date);
-          return mode==='date-asc' ? ad-bd : bd-ad;
+          const ad = new Date(a.dataset.date||0), bd = new Date(b.dataset.date||0);
+          return mode==='date-asc'? ad-bd : bd-ad;
         });
       }
-
       function filterList(sem,list){
         if(sem==='all') return list;
         return list.filter(n => (n.dataset.semester||'').toUpperCase()===sem.toUpperCase());
       }
-
       function refresh(){
         let list = getList();
         list = filterList(selectFilter.value, list);
         list = sortList(selectSort.value, list);
         render(list);
       }
-
       selectSort.addEventListener('change', refresh);
       selectFilter.addEventListener('change', refresh);
       document.addEventListener('DOMContentLoaded', refresh);
