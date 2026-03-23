@@ -3,47 +3,57 @@
 <head>
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Profil — Matteo Giuffre</title>
-  <style>
-    :root{--bg:#fbfeff;--card:#fff;--text:#07202a;--muted:#516b78}
-    body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--text)}
-    .container{max-width:1000px;margin:2rem auto;padding:1rem}
-    .about{background:linear-gradient(180deg,#ffffff, #f7fbff);padding:1.25rem;border-radius:12px;box-shadow:0 8px 30px rgba(2,8,23,0.04)}
-    .grid{display:grid;grid-template-columns:230px 1fr;gap:1rem;align-items:start}
-    .portrait{width:100%;height:100%;border-radius:10px;overflow:hidden;background:#eaf6ff}
-    .portrait img{width:100%;height:100%;object-fit:cover;display:block}
-    h2{margin-top:0}
-    p{line-height:1.34;color:var(--muted);margin:0 0 .75rem 0}
-    .skills-mini{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
-    .chip{background:#eef9ff;padding:.35rem .6rem;border-radius:999px;font-size:.9rem;color:#024a7f;border:1px solid rgba(3,81,128,.06)}
-    @media (max-width:820px){.grid{grid-template-columns:1fr}.portrait{height:220px}}
-  </style>
+  <link rel="stylesheet" href="css.css">
 </head>
 <body>
-  <div class="container">
-    <section class="about">
-      <div class="grid">
-        <figure class="portrait" aria-hidden="true">
-          <img src="photo.jpg" alt="Portrait Matteo">
-        </figure>
-        <div>
-          <h2>À propos</h2>
+  <header class="navbar" role="navigation" aria-label="Navigation principale">
+    <div class="nav-inner container">
+      <a class="btn-cv" href="CV_Matteo.Giuffre.pdf" download>Télécharger mon CV</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="Profil.html">Profil</a></li>
+        <li><a href="Projets.html">Projets</a></li>
+        <li><a href="Competences.html">Compétences</a></li>
+        <li><a href="Experience.html">Expérience</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="container container--spaced">
+    <section class="about-card" aria-labelledby="about-title">
+      <div class="about-grid">
+        <!-- Photo removed per your request (B1). If you want a placeholder later, we can re-add hidden -->
+        <div></div>
+
+        <div class="about-content">
+          <h2 id="about-title">À propos</h2>
           <p>
             Je suis étudiant en Réseaux et Télécommunications et je réalise actuellement une alternance en entreprise.
             Je m'intéresse particulièrement à la mise en place d'infrastructures réseau, à l'automatisation et à la supervision.
           </p>
+
           <p>
-            J'aime aborder les problèmes par la pratique : construire des laboratoires, automatiser des tâches répétitives et documenter les solutions pour une réutilisation en équipe.
+            J'aborde les problèmes par la pratique : construire des laboratoires, automatiser les tâches répétitives et documenter les solutions pour qu'elles soient réutilisables en équipe.
           </p>
 
-          <div class="skills-mini" aria-hidden="false">
-            <span class="chip">Réseaux</span>
-            <span class="chip">Télécoms</span>
-            <span class="chip">Python</span>
-            <span class="chip">Automation</span>
+          <div style="margin-top:.6rem">
+            <span class="small" style="font-weight:700;margin-right:.6rem">Compétences clés:</span>
+            <span class="small" style="color:var(--muted)">Réseaux · Télécoms · Automatisation · Supervision</span>
           </div>
         </div>
       </div>
     </section>
-  </div>
+  </main>
+
+  <script>
+    // set active nav
+    (function(){
+      const links = document.querySelectorAll('.nav-links a');
+      const cur = location.pathname.split('/').pop() || 'index.html';
+      links.forEach(a=>{
+        if(a.getAttribute('href')===cur) a.classList.add('active');
+      });
+    })();
+  </script>
 </body>
 </html>
