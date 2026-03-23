@@ -3,70 +3,96 @@
 <head>
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Compétences — Matteo Giuffre</title>
-  <style>
-    body{font-family:Inter,system-ui,Arial;margin:0;background:#fff;color:#07202a}
-    .container{max-width:1000px;margin:2rem auto;padding:1rem}
-    h1{margin:0 0 .6rem 0}
-    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-    .card{background:#fff;border:1px solid #eef6fb;padding:1rem;border-radius:10px}
-    .card h3{margin-top:0}
-    ul{margin:0;padding-left:1.1rem}
-    .soft{background:#fff7ef;border:1px solid #ffecd8}
-    @media (max-width:720px){.grid{grid-template-columns:1fr}}
-  </style>
+  <link rel="stylesheet" href="css.css">
 </head>
 <body>
-  <main class="container">
-    <h1>Compétences</h1>
-    <p class="intro" style="color:#516b78;max-width:70ch">Compétences classées par famille. Cliquez sur une compétence depuis une fiche projet pour être redirigé vers la section correspondante.</p>
+  <header class="navbar" role="navigation">
+    <div class="nav-inner container">
+      <a class="btn-cv" href="CV_Matteo.Giuffre.pdf" download>Télécharger mon CV</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="Profil.html">Profil</a></li>
+        <li><a href="Projets.html">Projets</a></li>
+        <li><a href="Competences.html">Compétences</a></li>
+        <li><a href="Experience.html">Expérience</a></li>
+      </ul>
+    </div>
+  </header>
 
-    <div class="grid">
-      <section id="reseaux" class="card" aria-labelledby="r-title">
+  <main class="container container--spaced">
+    <h1>Compétences</h1>
+    <p class="lead">Compétences classées par famille. Les liens depuis les fiches projets renvoient vers la compétence correspondante.</p>
+
+    <div class="skills-grid" role="list">
+      <section id="reseaux" class="skill-card" aria-labelledby="r-title">
         <h3 id="r-title">Réseaux</h3>
         <ul>
-          <li><strong>Routage</strong> — OSPF, BGP (niveau intermédiaire)</li>
-          <li><strong>Switching</strong> — VLAN, STP, configuration</li>
-          <li><strong>Supervision</strong> — SNMP, collecte métriques</li>
+          <li><strong>Routage</strong> — OSPF, BGP (configuration, debugging)</li>
+          <li><strong>Switching</strong> — VLAN, STP, trunks, port security</li>
+          <li><strong>Supervision</strong> — SNMP, Prometheus basics, logs & alerting</li>
+          <li><strong>Scripting réseaux</strong> — automatisation de configurations (Python)</li>
         </ul>
       </section>
 
-      <section id="telecom" class="card" aria-labelledby="t-title">
+      <section id="telecom" class="skill-card" aria-labelledby="t-title">
         <h3 id="t-title">Télécoms</h3>
         <ul>
-          <li>Concepts 4G/5G — architecture et couches</li>
-          <li>Réseaux d'accès mobile — principes</li>
+          <li>Concepts 4G / 5G — architecture, couches, QoS</li>
+          <li>Réseaux d'accès radio — planification basique</li>
         </ul>
       </section>
 
-      <section id="programmation" class="card" aria-labelledby="p-title">
+      <section id="programmation" class="skill-card" aria-labelledby="p-title">
         <h3 id="p-title">Programmation & Scripting</h3>
         <ul>
-          <li><strong>Python</strong> — automatisation, parsing, scripts d'outillage</li>
-          <li><strong>Shell</strong> — scripts d'administration</li>
-          <li><strong>C</strong> — petits outils et compréhension bas niveau</li>
+          <li><strong>Python</strong> — scripts d'automatisation, parsing, API calls</li>
+          <li><strong>Shell</strong> — automatisation d'administration</li>
+          <li><strong>C</strong> — compréhension bas niveau et petits outils</li>
         </ul>
       </section>
 
-      <section id="soft" class="card soft" aria-labelledby="s-title">
+      <section id="web" class="skill-card" aria-labelledby="w-title">
+        <h3 id="w-title">Web</h3>
+        <ul>
+          <li>HTML / CSS — intégration, responsive, sémantique</li>
+          <li>Basique JS — interactions simples, DOM</li>
+          <li>Déploiement statique — hébergement, optimisation images</li>
+        </ul>
+      </section>
+
+      <section id="tools" class="skill-card" aria-labelledby="tools-title">
+        <h3 id="tools-title">Outils & environnements</h3>
+        <ul>
+          <li>Linux — administration, scripting</li>
+          <li>Wireshark — capture & analyse</li>
+          <li>Git — workflow basique</li>
+        </ul>
+      </section>
+
+      <section id="soft" class="skill-card soft" aria-labelledby="s-title">
         <h3 id="s-title">Soft skills</h3>
         <ul>
-          <li>Travail en équipe — communication régulière</li>
-          <li>Documentation & partage</li>
-          <li>Gestion de tâches / agile</li>
+          <li>Travail en équipe — communication et documentation</li>
+          <li>Organisation — gestion de tâches et priorisation</li>
+          <li>Autonomie et apprentissage rapide</li>
         </ul>
       </section>
     </div>
   </main>
 
   <script>
-    // Smooth scroll si provenance d'un lien interne
+    // active nav
     (function(){
-      document.querySelectorAll('a[href^="#"]').forEach(a=>{
-        a.addEventListener('click', function(e){
-          const t = document.querySelector(this.getAttribute('href'));
-          if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
-        });
-      });
+      const links = document.querySelectorAll('.nav-links a');
+      const cur = location.pathname.split('/').pop() || 'index.html';
+      links.forEach(a=>{ if(a.getAttribute('href')===cur) a.classList.add('active'); });
+    })();
+    // smooth anchor scroll if user comes from a project link
+    (function(){
+      if(location.hash){
+        const t = document.querySelector(location.hash);
+        if(t) setTimeout(()=>t.scrollIntoView({behavior:'smooth', block:'start'}),100);
+      }
     })();
   </script>
 </body>
