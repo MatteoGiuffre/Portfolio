@@ -1,83 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compétences</title>
-    <link rel="stylesheet" href="css.css">
+  <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Compétences — Matteo Giuffre</title>
+  <style>
+    body{font-family:Inter,system-ui,Arial;margin:0;background:#fff;color:#07202a}
+    .container{max-width:1000px;margin:2rem auto;padding:1rem}
+    h1{margin:0 0 .6rem 0}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+    .card{background:#fff;border:1px solid #eef6fb;padding:1rem;border-radius:10px}
+    .card h3{margin-top:0}
+    ul{margin:0;padding-left:1.1rem}
+    .soft{background:#fff7ef;border:1px solid #ffecd8}
+    @media (max-width:720px){.grid{grid-template-columns:1fr}}
+  </style>
 </head>
 <body>
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="CV_Matteo.Giuffre.pdf" class="btn-cv" download>Télécharger mon CV</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="Profil.html">Profil</a></li>
-                <li><a href="Projets.html">Projets</a></li>
-                <li><a href="Competences.html" class="active">Compétences</a></li>
-            </ul>
-        </div>
-    </nav>
+  <main class="container">
+    <h1>Compétences</h1>
+    <p class="intro" style="color:#516b78;max-width:70ch">Compétences classées par famille. Cliquez sur une compétence depuis une fiche projet pour être redirigé vers la section correspondante.</p>
 
+    <div class="grid">
+      <section id="reseaux" class="card" aria-labelledby="r-title">
+        <h3 id="r-title">Réseaux</h3>
+        <ul>
+          <li><strong>Routage</strong> — OSPF, BGP (niveau intermédiaire)</li>
+          <li><strong>Switching</strong> — VLAN, STP, configuration</li>
+          <li><strong>Supervision</strong> — SNMP, collecte métriques</li>
+        </ul>
+      </section>
 
-    <!-- CONTENU PRINCIPAL -->
-    <main>
-        <h1 class="competences-title">Mes Compétences</h1>
-        <div class="competence-cards">
-            <div class="competence-card">
-                <img src="reseaux.jpg" alt="Réseaux" class="competence-icon">
-                <h2>Réseaux</h2>
-                <p>Connaissance théorique des technologies de l'internet (VLAN, OSPF, HSRP, STP, NAT, ...).</p>
-                <div class="competence-progress">
-                    <div class="progress-bar" style="width: 45%;">45%</div>
-                </div>
-            </div>
-            <div class="competence-card">
-                <img src="simulationreseaux.png" alt="Simulation de réseaux" class="competence-icon">
-                <h2>Simulation de réseaux</h2>
-                <p>Configuration d'équipements réseaux Cisco, utilisation de Packet Tracer, GNS3, Wireshark.</p>
-                <div class="competence-progress">
-                    <div class="progress-bar" style="width: 60%;">60%</div>
-                </div>
-            </div>
-            <div class="competence-card">
-                <img src="telephonie.jpg" alt="Téléphonie d'entreprise" class="competence-icon">
-                <h2>Téléphonie d'entreprise</h2>
-                <p>Initiation aux différents types de réseaux téléphoniques (analogique, numérique, IP).</p>
-                <div class="competence-progress">
-                    <div class="progress-bar" style="width: 30%;">30%</div>
-                </div>
-            </div>
-            <div class="competence-card">
-                <img src="linux.png" alt="Linux" class="competence-icon">
-                <h2>Linux</h2>
-                <p>Utilisation du système Linux pour l’administration réseau, scripts Bash.</p>
-                <div class="competence-progress">
-                    <div class="progress-bar" style="width: 40%;">40%</div>
-                </div>
-            </div>
-            <div class="competence-card">
-                <img src="programmation.jpg" alt="Programmation" class="competence-icon">
-                <h2>Programmation</h2>
-                <p>Initiation à la programmation (Python, C), bases du développement de scripts réseaux.</p>
-                <div class="competence-progress">
-                    <div class="progress-bar" style="width: 65%;">65%</div>
-                </div>
-            </div>
+      <section id="telecom" class="card" aria-labelledby="t-title">
+        <h3 id="t-title">Télécoms</h3>
+        <ul>
+          <li>Concepts 4G/5G — architecture et couches</li>
+          <li>Réseaux d'accès mobile — principes</li>
+        </ul>
+      </section>
 
-            <div class="competence-card">
-                <img src="web.jpg" alt="Technologies Web de base" class="competence-icon">
-                <h2>Technologies Web de base</h2>
-                <p>Langages HTML5, CSS3 et JavaScript pour concevoir des interfaces web interactives, responsives et accessibles.</p>
-                <div class="competence-progress">
-                    <div class="progress-bar" style="width: 65%;">65%</div>
-                </div>
-            </div>
+      <section id="programmation" class="card" aria-labelledby="p-title">
+        <h3 id="p-title">Programmation & Scripting</h3>
+        <ul>
+          <li><strong>Python</strong> — automatisation, parsing, scripts d'outillage</li>
+          <li><strong>Shell</strong> — scripts d'administration</li>
+          <li><strong>C</strong> — petits outils et compréhension bas niveau</li>
+        </ul>
+      </section>
 
-        </div>
-    </main>
+      <section id="soft" class="card soft" aria-labelledby="s-title">
+        <h3 id="s-title">Soft skills</h3>
+        <ul>
+          <li>Travail en équipe — communication régulière</li>
+          <li>Documentation & partage</li>
+          <li>Gestion de tâches / agile</li>
+        </ul>
+      </section>
+    </div>
+  </main>
 
-
+  <script>
+    // Smooth scroll si provenance d'un lien interne
+    (function(){
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const t = document.querySelector(this.getAttribute('href'));
+          if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
