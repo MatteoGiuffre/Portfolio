@@ -6,25 +6,29 @@
   <title>Mes Projets — Matteo Giuffre</title>
   <link rel="stylesheet" href="css.css">
   <style>
-    /* Styles spécifiques à la page Projets (vignettes + overlay) */
+    /* --- Styles spécifiques à la page Projets (vignettes, espacement, modal) --- */
+    :root{
+      --muted:#6b7b85;
+    }
     .container { max-width:1100px; margin:0 auto; padding:1rem; }
     .projets-section { padding:2rem 0; }
     .projets-title { font-size:2rem; margin:0 0 0.75rem 0; }
 
     .controls { margin-bottom:1rem; color:var(--muted); }
 
-    /* grid responsive : vignette compacte */
-    .projets-grid {
+    /* grid responsive : vignette compacte + espacement augmenté */
+    .projets-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-      gap:1rem;
-      align-items:start;
+      gap:2rem;                    /* <-- espace augmenté entre vignettes */
       justify-items:center;
+      align-items:start;
+      padding:0 0.75rem;
     }
 
-    .projet-card {
-      width:320px;              /* largeur vignette desktop */
-      height:200px;             /* hauteur fixe — même ratio pour toutes */
+    .projet-card{
+      width:300px;                /* largeur vignette */
+      height:180px;               /* hauteur fixe */
       border-radius:10px;
       overflow:hidden;
       position:relative;
@@ -36,18 +40,18 @@
       align-items:center;
       justify-content:center;
     }
-    .projet-card:focus { outline:3px solid rgba(11,129,255,0.16); outline-offset:3px; }
+    .projet-card:focus { outline:3px solid rgba(11,129,255,0.12); outline-offset:3px; }
     .projet-card:hover { transform:translateY(-4px); box-shadow:0 12px 30px rgba(8,20,30,0.09); }
 
     .projet-card img {
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:cover;          /* recadrage propre sans étirer */
       display:block;
     }
 
-    /* Overlay titre — apparait au hover */
-    .projet-overlay {
+    /* Overlay titre — apparait au hover / focus */
+    .projet-overlay{
       position:absolute;
       left:0; right:0;
       bottom:0;
@@ -60,23 +64,22 @@
       font-size:1rem;
     }
     .projet-card:hover .projet-overlay,
-    .projet-card:focus .projet-overlay {
-      transform:translateY(0);
-    }
+    .projet-card:focus .projet-overlay { transform:translateY(0); }
 
-    /* Small screens */
-    @media (max-width:760px){
-      .projet-card { width:90%; height:180px; }
-    }
-
-    /* Modal styles (minimal, keep consistent with repo) */
+    /* Modal */
     .modal-backdrop{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,6,23,0.6); z-index:2000; padding:1rem; }
     .modal-card{ background:#fff; border-radius:12px; width:100%; max-width:900px; max-height:90vh; overflow:auto; padding:1.25rem; box-shadow:0 24px 60px rgba(2,6,23,0.45); }
     .modal-close{ background:transparent; border:0; font-size:1.2rem; cursor:pointer; }
+
+    /* Responsive adjustments */
+    @media (max-width:760px){
+      .projets-grid{ gap:1rem; }
+      .projet-card{ width:92%; height:160px; }
+    }
   </style>
 </head>
 <body>
-  <!-- NAV -->
+  <!-- NAVIGATION -->
   <header class="navbar" role="navigation">
     <div class="nav-inner container">
       <a class="btn-cv" href="CV_Matteo.Giuffre.pdf" download>Télécharger mon CV</a>
@@ -103,7 +106,7 @@
     </div>
 
     <div id="projets-grid" class="projets-grid" aria-live="polite">
-      <!-- 6 projets — vignettes compactes -->
+      <!-- 6 projets (exactement) — vignettes compactes -->
       <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
         <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
         <div class="projet-overlay">Hygiène info et à la cybersécurité</div>
@@ -136,7 +139,7 @@
     </div>
   </main>
 
-  <!-- MODALE (réutilisée) -->
+  <!-- MODALE -->
   <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-card" role="document" aria-labelledby="modalTitle">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
@@ -148,7 +151,7 @@
   </div>
 
   <script>
-    // contenus repris (conserver vos textes existants) — adapte si besoin
+    // Contenus repris (vos textes)
     const projetsContent = {
       SAE11: `
         <h3 style="margin-top:0">Se sensibiliser à l'hygiène informatique et à la cybersécurité</h3>
@@ -212,7 +215,7 @@
       `
     };
 
-    // ouverture modal
+    // Modal manipulation
     const modalBackdrop = document.getElementById('modalBackdrop');
     const modalContent = document.getElementById('modalContent');
     const btnClose = document.getElementById('btnClose');
@@ -240,7 +243,7 @@
     modalBackdrop.addEventListener('click', function(e){ if(e.target === modalBackdrop) closeModal(); });
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modalBackdrop.style.display === 'flex') closeModal(); });
 
-    // simple filter
+    // simple filter by semester
     document.getElementById('filter-semester').addEventListener('change', function(){
       const val = this.value;
       document.querySelectorAll('.projet-card').forEach(card => {
