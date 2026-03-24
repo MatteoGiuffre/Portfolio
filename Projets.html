@@ -1,249 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mes Projets</title>
-    <link rel="stylesheet" href="css.css">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Mes Projets — Matteo Giuffre</title>
+  <link rel="stylesheet" href="css.css">
+  <style>
+    /* Styles spécifiques à la page Projets (vignettes + overlay) */
+    .container { max-width:1100px; margin:0 auto; padding:1rem; }
+    .projets-section { padding:2rem 0; }
+    .projets-title { font-size:2rem; margin:0 0 0.75rem 0; }
+
+    .controls { margin-bottom:1rem; color:var(--muted); }
+
+    /* grid responsive : vignette compacte */
+    .projets-grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:1rem;
+      align-items:start;
+      justify-items:center;
+    }
+
+    .projet-card {
+      width:320px;              /* largeur vignette desktop */
+      height:200px;             /* hauteur fixe — même ratio pour toutes */
+      border-radius:10px;
+      overflow:hidden;
+      position:relative;
+      background:#f3f6f8;
+      box-shadow:0 6px 18px rgba(8,20,30,0.06);
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .projet-card:focus { outline:3px solid rgba(11,129,255,0.16); outline-offset:3px; }
+    .projet-card:hover { transform:translateY(-4px); box-shadow:0 12px 30px rgba(8,20,30,0.09); }
+
+    .projet-card img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Overlay titre — apparait au hover */
+    .projet-overlay {
+      position:absolute;
+      left:0; right:0;
+      bottom:0;
+      padding:.6rem .8rem;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
+      color:#fff;
+      transform:translateY(100%);
+      transition:transform .18s ease;
+      font-weight:600;
+      font-size:1rem;
+    }
+    .projet-card:hover .projet-overlay,
+    .projet-card:focus .projet-overlay {
+      transform:translateY(0);
+    }
+
+    /* Small screens */
+    @media (max-width:760px){
+      .projet-card { width:90%; height:180px; }
+    }
+
+    /* Modal styles (minimal, keep consistent with repo) */
+    .modal-backdrop{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,6,23,0.6); z-index:2000; padding:1rem; }
+    .modal-card{ background:#fff; border-radius:12px; width:100%; max-width:900px; max-height:90vh; overflow:auto; padding:1.25rem; box-shadow:0 24px 60px rgba(2,6,23,0.45); }
+    .modal-close{ background:transparent; border:0; font-size:1.2rem; cursor:pointer; }
+  </style>
 </head>
 <body>
-    <!-- NAVIGATION (identique aux autres pages) -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="CV_Matteo.Giuffre.pdf" class="btn-cv" download>Télécharger mon CV</a>
-            <ul class="nav-links">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="Profil.html">Profil</a></li>
-                <li><a href="Projets.html" class="active">Projets</a></li>
-                <li><a href="Competences.html">Compétences</a></li>
-                <li><a href="Experience.html">Expérience</a></li>
-            </ul>
-        </div>
-    </nav>
+  <!-- NAV -->
+  <header class="navbar" role="navigation">
+    <div class="nav-inner container">
+      <a class="btn-cv" href="CV_Matteo.Giuffre.pdf" download>Télécharger mon CV</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="Profil.html">Profil</a></li>
+        <li><a href="Projets.html" class="active">Projets</a></li>
+        <li><a href="Competences.html">Compétences</a></li>
+        <li><a href="Experience.html">Expérience</a></li>
+      </ul>
+    </div>
+  </header>
 
-    <section class="section projets-section">
-        <div class="container">
-            <h1 class="projets-title">Mes Projets</h1>
+  <main class="projets-section container">
+    <h1 class="projets-title">Mes Projets</h1>
 
-            <!-- Contrôles (si vous voulez filtrer/ordonner plus tard) -->
-            <div class="controls" style="margin-bottom:1rem;display:flex;gap:1rem;align-items:center;">
-              <label style="color:var(--muted)">Afficher:
-                <select id="filter-semester">
-                  <option value="all">Tous</option>
-                  <option value="S1">S1</option>
-                  <option value="S2">S2</option>
-                </select>
-              </label>
-            </div>
-
-            <div class="projets-grid" id="projets-grid">
-                <!-- 6 projets EXACTEMENT -->
-                <!-- SAE11 : Hygiène info et cybersécurité (S1) -->
-                <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
-                    <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
-                    <div class="projet-overlay">
-                        <span class="projet-title">Hygiène info et à la cybersécurité</span>
-                    </div>
-                </div>
-
-                <!-- SAE12 : S'initier aux réseaux informatiques (S1) -->
-                <div class="projet-card" data-projet="SAE12" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
-                    <img src="reseauxinformatiques.jpg" alt="S'initier aux réseaux informatiques">
-                    <div class="projet-overlay">
-                        <span class="projet-title">S'initier aux réseaux informatiques</span>
-                    </div>
-                </div>
-
-                <!-- SAE13 : Découverte d’un dispositif de transmission (S1) -->
-                <div class="projet-card" data-projet="SAE13" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
-                    <img src="cablecoaxial.png" alt="Découverte d’un dispositif de transmission">
-                    <div class="projet-overlay">
-                        <span class="projet-title">Découverte d’un dispositif de transmission</span>
-                    </div>
-                </div>
-
-                <!-- SAE14 : E-Réputation (S2) -->
-                <div class="projet-card" data-projet="SAE14" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
-                    <img src="ereputation.png" alt="E-Réputation">
-                    <div class="projet-overlay">
-                        <span class="projet-title">E‑Réputation</span>
-                    </div>
-                </div>
-
-                <!-- SAE21 : Réseau d'entreprise (S2) -->
-                <div class="projet-card" data-projet="SAE21" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
-                    <img src="reseauentreprise.png" alt="Réseau d'entreprise">
-                    <div class="projet-overlay">
-                        <span class="projet-title">Réseau d'entreprise</span>
-                    </div>
-                </div>
-
-                <!-- SAE_Siteweb : Site Web (S1) -->
-                <div class="projet-card" data-projet="SAE_Siteweb" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
-                    <img src="siteweb.jpg" alt="Site Web">
-                    <div class="projet-overlay">
-                        <span class="projet-title">Site Web</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- MODALE PROJET -->
-    <div id="modal-projet" class="modal-projet" style="display:none; position:fixed; inset:0; background:rgba(2,6,23,0.6); align-items:center; justify-content:center; z-index:2000;">
-        <div class="modal-content" style="background:#fff; border-radius:12px; max-width:900px; width:100%; padding:1.25rem; box-shadow:0 20px 40px rgba(2,6,23,0.4);">
-            <button class="modal-close" aria-label="Fermer la modale" style="float:right;background:transparent;border:0;font-size:1.25rem;cursor:pointer;">&times;</button>
-            <div id="modal-body" class="modal-body" style="clear:both;">
-                <!-- Le contenu du projet sera injecté ici par JS -->
-            </div>
-        </div>
+    <div class="controls">
+      Afficher :
+      <select id="filter-semester">
+        <option value="all">Tous</option>
+        <option value="S1">S1</option>
+        <option value="S2">S2</option>
+      </select>
     </div>
 
-<script>
-// Contenus personnalisés pour chaque projet (texte repris de votre ancien code)
-const projetsContent = {
-    SAE11: `
-        <h2 style="text-align:center;font-size:2rem;font-weight:800;margin-bottom:.5rem;">SE SENSIBILISER À L'HYGIÈNE INFORMATIQUE ET À LA CYBERSÉCURITÉ</h2>
-        <div style="text-align:center;">
-            <img src="cyberhygiene.jpg" alt="Hygiène info et cybersécurité" style="max-width:360px;width:80%;margin:0 auto 1.2rem auto;display:block;border-radius:8px;">
-        </div>
-        <p style="font-size:1rem;line-height:1.45;">
-            <strong>Objectif :</strong><br>
-            Comprendre les concepts clés de la cybersécurité : vulnérabilités, menaces et attaques. Identifier les principaux risques et proposer des moyens de prévention.
-        </p>
-        <p style="font-size:1rem;line-height:1.45;">
-            <strong>Travail réalisé :</strong><br>
-            Recherches et analyses sur différents types d'attaques (cybercriminalité, espionnage, sabotage), présentation orale et réalisation d'une courte vidéo de sensibilisation destinée à un public non spécialisé.
-        </p>
-        <p style="font-size:1rem;line-height:1.45;">
-            <strong>Compétences développées :</strong><br>
-            Analyse d'incidents, synthèse technique, vulgarisation et communication.
-        </p>
-        <div style="text-align:center; margin-top:1.2rem;">
-            <a href="SAE11.pdf" class="btn-proof" target="_blank" rel="noopener">Compte rendu (SAE11)</a>
-        </div>
-    `,
-    SAE12: `
-        <h2 style="text-align:center;font-size:2rem;font-weight:800;margin-bottom:.5rem;">S'INITIER AUX RÉSEAUX INFORMATIQUES</h2>
-        <div style="text-align:center;">
-            <img src="reseauxinformatiques.jpg" alt="S'initier aux réseaux informatiques" style="max-width:360px;width:80%;margin:0 auto 1.2rem auto;display:block;border-radius:8px;">
-        </div>
-        <p style="font-size:1rem;line-height:1.45;">
-            <strong>Objectif :</strong><br>
-            Comprendre le fonctionnement d’un réseau domestique et analyser composants et interactions.
-        </p>
-        <p style="font-size:1rem;line-height:1.45;">
-            <strong>Travail réalisé :</strong><br>
-            Tests et configuration d'un réseau domestique, identification des équipements, mesures de débits et comptes-rendus détaillés avec supports vidéo.
-        </p>
-        <p style="font-size:1rem;line-height:1.45;">
-            <strong>Compétences développées :</strong><br>
-            Analyse de réseaux réels, autonomie, communication technique.
-        </p>
-        <div style="text-align:center; margin-top:1rem;">
-            <a href="SAE12_1.pdf" class="btn-proof" target="_blank" rel="noopener">Rendu 1 (SAE12_1)</a>
-            <a href="SAE12_2.pdf" class="btn-proof" target="_blank" rel="noopener" style="margin-left:10px;">Rendu 2 (SAE12_2)</a>
-        </div>
-    `,
-    SAE13: `
-        <h2 style="text-align:center;font-size:2rem;font-weight:800;margin-bottom:.5rem;">DÉCOUVERTE D'UN DISPOSITIF DE TRANSMISSION</h2>
-        <div style="text-align:center;">
-            <img src="cablecoaxial.png" alt="Découverte d’un dispositif de transmission" style="max-width:360px;width:80%;margin:0 auto 1.2rem auto;display:block;border-radius:8px;">
-        </div>
-        <p style="font-size:1rem;line-height:1.45;">
-            <strong>Objectif :</strong><br>
-            Étudier une liaison physique par câble coaxial, réaliser des mesures et interpréter les résultats.
-        </p>
-        <div style="text-align:center; margin-top:1rem;">
-            <a href="SAE13.pdf" class="btn-proof" target="_blank" rel="noopener">Compte rendu (SAE13)</a>
-        </div>
-    `,
-    SAE14: `
-        <h2 style="text-align:center;font-size:2rem;font-weight:800;margin-bottom:.5rem;">E‑RÉPUTATION</h2>
-        <div style="text-align:center;">
-            <img src="ereputation.png" alt="E-réputation" style="max-width:360px;width:80%;margin:0 auto 1.2rem auto;display:block;border-radius:8px;">
-        </div>
-        <p style="font-size:1rem;line-height:1.45;">
-            Comprendre les enjeux de la gestion de son image en ligne, analyser les risques (cyberharcèlement, diffusion d'informations) et proposer des actions de protection et de sensibilisation.
-        </p>
-    `,
-    SAE21: `
-        <h2 style="text-align:center;font-size:2rem;font-weight:800;margin-bottom:.5rem;">CONSTRUIRE UN RÉSEAU POUR PETITE STRUCTURE</h2>
-        <div style="text-align:center;">
-            <img src="reseauentreprise.png" alt="Réseau d'entreprise" style="max-width:360px;width:80%;margin:0 auto 1.2rem auto;display:block;border-radius:8px;">
-        </div>
-        <p style="font-size:1rem;line-height:1.45;">
-            Conception et configuration d'un réseau pour une petite structure : VLAN, routage, services (DHCP, DNS) et sécurité (pare-feu, DMZ).
-        </p>
-    `,
-    SAE_Siteweb: `
-        <h2 style="text-align:center;font-size:2rem;font-weight:800;margin-bottom:.5rem;">PREMIER SITE WEB</h2>
-        <div style="text-align:center;">
-            <img src="siteweb.jpg" alt="Site web" style="max-width:360px;width:80%;margin:0 auto 1.2rem auto;display:block;border-radius:8px;">
-        </div>
-        <p style="font-size:1rem;line-height:1.45;">
-            Projet HTML/CSS initial : conception, intégration, responsive et bonnes pratiques d'accessibilité.
-        </p>
-        <div style="text-align:center; margin-top:1rem;">
-            <a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" class="btn-proof" target="_blank" rel="noopener">Voir le site</a>
-        </div>
-    `
-};
+    <div id="projets-grid" class="projets-grid" aria-live="polite">
+      <!-- 6 projets — vignettes compactes -->
+      <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
+        <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
+        <div class="projet-overlay">Hygiène info et à la cybersécurité</div>
+      </div>
 
-// Ouverture de la modale au clic sur une carte
-document.querySelectorAll('.projet-card').forEach(card => {
-    function openFromCard() {
-        const key = card.getAttribute('data-projet');
-        document.getElementById('modal-body').innerHTML = projetsContent[key] || "<p>Projet non trouvé.</p>";
-        const modal = document.getElementById('modal-projet');
-        modal.style.display = "flex";
-        document.body.style.overflow = "hidden";
-        // focus pour accessibilité
-        const closeBtn = modal.querySelector('.modal-close');
-        if(closeBtn) closeBtn.focus();
-    }
-    card.addEventListener('click', openFromCard);
-    card.addEventListener('keydown', function(e){
-        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFromCard(); }
-    });
-});
+      <div class="projet-card" data-projet="SAE12" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
+        <img src="reseauxinformatiques.jpg" alt="S'initier aux réseaux informatiques">
+        <div class="projet-overlay">S'initier aux réseaux informatiques</div>
+      </div>
 
-// Fermeture de la modale
-(function(){
-    const modal = document.getElementById('modal-projet');
-    const closeBtn = modal.querySelector('.modal-close');
+      <div class="projet-card" data-projet="SAE13" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
+        <img src="cablecoaxial.png" alt="Découverte d’un dispositif de transmission">
+        <div class="projet-overlay">Découverte d’un dispositif de transmission</div>
+      </div>
 
-    closeBtn.addEventListener('click', function(){
-        modal.style.display = "none";
-        document.body.style.overflow = "";
-    });
+      <div class="projet-card" data-projet="SAE14" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
+        <img src="ereputation.png" alt="E‑Réputation">
+        <div class="projet-overlay">E‑Réputation</div>
+      </div>
 
-    modal.addEventListener('click', function(e){
-        if(e.target === modal){
-            modal.style.display = "none";
-            document.body.style.overflow = "";
-        }
-    });
+      <div class="projet-card" data-projet="SAE21" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
+        <img src="reseauentreprise.png" alt="Réseau d'entreprise">
+        <div class="projet-overlay">Réseau d'entreprise</div>
+      </div>
 
-    document.addEventListener('keydown', function(e){
-        if(e.key === "Escape" && modal.style.display === "flex"){
-            modal.style.display = "none";
-            document.body.style.overflow = "";
-        }
-    });
-})();
+      <div class="projet-card" data-projet="SAE_Siteweb" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
+        <img src="siteweb.jpg" alt="Site Web">
+        <div class="projet-overlay">Site Web</div>
+      </div>
+    </div>
+  </main>
 
-// Filtre simple par semestre (contrôle en haut)
-document.getElementById('filter-semester').addEventListener('change', function(){
-    const val = this.value;
+  <!-- MODALE (réutilisée) -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card" role="document" aria-labelledby="modalTitle">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
+        <h2 id="modalTitle" style="margin:0;font-size:1.15rem"></h2>
+        <button id="btnClose" class="modal-close" aria-label="Fermer la fiche">✕</button>
+      </div>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    // contenus repris (conserver vos textes existants) — adapte si besoin
+    const projetsContent = {
+      SAE11: `
+        <h3 style="margin-top:0">Se sensibiliser à l'hygiène informatique et à la cybersécurité</h3>
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="cyberhygiene.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p><strong>Objectif :</strong> Comprendre les concepts clés de la cybersécurité : vulnérabilités, menaces et attaques.</p>
+            <p><strong>Travail réalisé :</strong> Recherches, analyses, présentation et vidéo de sensibilisation.</p>
+            <p><strong>Compétences :</strong> Analyse, synthèse, vulgarisation.</p>
+            <p style="margin-top:0.5rem"><a href="SAE11.pdf" target="_blank" rel="noopener">Compte rendu (SAE11)</a></p>
+          </div>
+        </div>
+      `,
+      SAE12: `
+        <h3 style="margin-top:0">S'initier aux réseaux informatiques</h3>
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="reseauxinformatiques.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p><strong>Objectif :</strong> Comprendre le fonctionnement d’un réseau domestique et analyser composants et interactions.</p>
+            <p><strong>Travail réalisé :</strong> Tests et configuration, mesures de débits, comptes-rendus et vidéos.</p>
+            <p style="margin-top:0.5rem"><a href="SAE12_1.pdf" target="_blank" rel="noopener">Rendu 1</a> <a href="SAE12_2.pdf" target="_blank" rel="noopener" style="margin-left:.6rem">Rendu 2</a></p>
+          </div>
+        </div>
+      `,
+      SAE13: `
+        <h3 style="margin-top:0">Découverte d'un dispositif de transmission</h3>
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="cablecoaxial.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p>Étude et mesures sur une liaison coaxiale. <a href="SAE13.pdf" target="_blank" rel="noopener">Compte rendu</a></p>
+          </div>
+        </div>
+      `,
+      SAE14: `
+        <h3 style="margin-top:0">E‑Réputation</h3>
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="ereputation.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p>Enjeux et bonnes pratiques pour gérer l'image en ligne ; actions pédagogiques de sensibilisation.</p>
+          </div>
+        </div>
+      `,
+      SAE21: `
+        <h3 style="margin-top:0">Réseau d'entreprise</h3>
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="reseauentreprise.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p>Conception et configuration réseau : VLAN, routage, DHCP/DNS, sécurité et DMZ.</p>
+          </div>
+        </div>
+      `,
+      SAE_Siteweb: `
+        <h3 style="margin-top:0">Site Web</h3>
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="siteweb.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p>Projet HTML/CSS initial : conception et intégration responsive.</p>
+            <p style="margin-top:0.5rem"><a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" target="_blank" rel="noopener">Voir le site</a></p>
+          </div>
+        </div>
+      `
+    };
+
+    // ouverture modal
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalContent = document.getElementById('modalContent');
+    const btnClose = document.getElementById('btnClose');
+
     document.querySelectorAll('.projet-card').forEach(card => {
-        if(val === 'all' || card.getAttribute('data-semester') === val) {
-            card.style.display = '';
-        } else {
-            card.style.display = 'none';
-        }
+      function openCard() {
+        const id = card.getAttribute('data-projet');
+        modalContent.innerHTML = projetsContent[id] || '<p>Projet non trouvé.</p>';
+        modalBackdrop.style.display = 'flex';
+        modalBackdrop.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+        btnClose.focus();
+      }
+      card.addEventListener('click', openCard);
+      card.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCard(); } });
     });
-});
-</script>
+
+    function closeModal(){
+      modalBackdrop.style.display = 'none';
+      modalBackdrop.setAttribute('aria-hidden','true');
+      modalContent.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+    btnClose.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', function(e){ if(e.target === modalBackdrop) closeModal(); });
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modalBackdrop.style.display === 'flex') closeModal(); });
+
+    // simple filter
+    document.getElementById('filter-semester').addEventListener('change', function(){
+      const val = this.value;
+      document.querySelectorAll('.projet-card').forEach(card => {
+        card.style.display = (val === 'all' || card.dataset.semester === val) ? '' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
