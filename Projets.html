@@ -6,93 +6,43 @@
   <title>Mes Projets — Matteo Giuffre</title>
   <link rel="stylesheet" href="css.css">
   <style>
-    /* --- Styles spécifiques à la page Projets (vignettes, espacement, modal, nav flèches) --- */
     :root{ --muted:#6b7b85; --accent:#0b81ff; }
     .container { max-width:1100px; margin:0 auto; padding:1rem; }
     .projets-section { padding:2rem 0; }
     .projets-title { font-size:2rem; margin:0 0 0.75rem 0; }
-
     .controls { margin-bottom:1rem; color:var(--muted); }
-
-    /* grid responsive : vignette compacte + espacement augmenté */
     .projets-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-      gap:4rem;                    /* espace entre vignettes */
+      gap:4rem;
       justify-items:center;
       align-items:start;
       padding:0 0.75rem;
     }
-
     .projet-card{
-      width:300px;                /* largeur vignette */
-      height:180px;               /* hauteur fixe */
-      border-radius:10px;
-      overflow:hidden;
-      position:relative;
-      background:#f3f6f8;
-      box-shadow:0 6px 18px rgba(8,20,30,0.06);
-      cursor:pointer;
-      transition:transform .12s ease, box-shadow .12s ease;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      width:300px;height:180px;border-radius:10px;overflow:hidden;position:relative;
+      background:#f3f6f8;box-shadow:0 6px 18px rgba(8,20,30,0.06);cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease;display:flex;align-items:center;justify-content:center;
     }
     .projet-card:focus { outline:3px solid rgba(11,129,255,0.12); outline-offset:3px; }
     .projet-card:hover { transform:translateY(-4px); box-shadow:0 12px 30px rgba(8,20,30,0.09); }
-
-    .projet-card img {
-      width:100%;
-      height:100%;
-      object-fit:cover;          /* recadrage propre sans étirer */
-      display:block;
-    }
-
-    /* Overlay titre — apparait au hover / focus */
+    .projet-card img { width:100%;height:100%;object-fit:cover;display:block; }
     .projet-overlay{
-      position:absolute;
-      left:0; right:0;
-      bottom:0;
-      padding:.6rem .8rem;
+      position:absolute;left:0;right:0;bottom:0;padding:.6rem .8rem;
       background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
-      color:#fff;
-      transform:translateY(100%);
-      transition:transform .18s ease;
-      font-weight:600;
-      font-size:1rem;
+      color:#fff;transform:translateY(100%);transition:transform .18s ease;font-weight:600;font-size:1rem;
     }
-    .projet-card:hover .projet-overlay,
-    .projet-card:focus .projet-overlay { transform:translateY(0); }
-
-    /* Modal */
+    .projet-card:hover .projet-overlay, .projet-card:focus .projet-overlay { transform:translateY(0); }
     .modal-backdrop{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,6,23,0.6); z-index:2000; padding:1rem; }
     .modal-card{ background:#fff; border-radius:12px; width:100%; max-width:900px; max-height:90vh; overflow:auto; padding:1.25rem; box-shadow:0 24px 60px rgba(2,6,23,0.45); position:relative; }
     .modal-close{ background:transparent; border:0; font-size:1.2rem; cursor:pointer; }
-
-    /* Navigation flèches */
-    .modal-nav-btn{
-      position:fixed;
-      top:50%;
-      transform:translateY(-50%);
-      width:48px;height:48px;border-radius:10px;border:0;background:rgba(255,255,255,0.95);box-shadow:0 8px 24px rgba(2,6,23,0.25);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:2100;
-    }
-    .modal-prev{ left:18px; }
-    .modal-next{ right:18px; }
-    .modal-nav-btn:focus{ outline:3px solid rgba(11,129,255,0.14); }
-
-    /* hide nav if only one item (JS gérera la classe .hidden) */
+    .modal-nav-btn{ position:fixed; top:50%; transform:translateY(-50%); width:48px;height:48px;border-radius:10px;border:0;background:rgba(255,255,255,0.95);box-shadow:0 8px 24px rgba(2,6,23,0.25);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:2100; }
+    .modal-prev{ left:18px; } .modal-next{ right:18px; } .modal-nav-btn:focus{ outline:3px solid rgba(11,129,255,0.14); }
     .modal-nav-btn.hidden{ display:none !important; }
-
-    /* Responsive adjustments */
-    @media (max-width:760px){
-      .projets-grid{ gap:1rem; }
-      .projet-card{ width:92%; height:160px; }
-      .modal-nav-btn{ display:none; } /* trop envahissant sur mobile ; navigation au swipe/gestures non implémentée */
-    }
+    @media (max-width:760px){ .projets-grid{ gap:1rem; } .projet-card{ width:92%; height:160px; } .modal-nav-btn{ display:none; } }
   </style>
 </head>
 <body>
-  <!-- NAVIGATION -->
   <header class="navbar" role="navigation">
     <div class="nav-inner container">
       <a class="btn-cv" href="CV_Matteo.Giuffre.pdf" download>Télécharger mon CV</a>
@@ -108,7 +58,6 @@
 
   <main class="projets-section container">
     <h1 class="projets-title">Mes Projets</h1>
-
     <div class="controls">
       Afficher :
       <select id="filter-semester">
@@ -119,7 +68,6 @@
     </div>
 
     <div id="projets-grid" class="projets-grid" aria-live="polite">
-      <!-- 6 projets -->
       <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
         <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
         <div class="projet-overlay">Hygiène info et à la cybersécurité</div>
@@ -152,7 +100,6 @@
     </div>
   </main>
 
-  <!-- MODALE & flèches -->
   <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-card" role="document" aria-labelledby="modalTitle">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
@@ -161,13 +108,12 @@
       </div>
       <div id="modalContent"></div>
     </div>
-    <!-- flèches positionnées autour de la fenêtre -->
     <button id="btnPrev" class="modal-nav-btn modal-prev" aria-label="Projet précédent">‹</button>
     <button id="btnNext" class="modal-nav-btn modal-next" aria-label="Projet suivant">›</button>
   </div>
 
   <script>
-    // Contenus (vos textes)
+    // contenus projet (avec liens vers Competences.html#...)
     const projetsContent = {
       SAE11: `
         <h3 style="margin-top:0">Se sensibiliser à l'hygiène informatique et à la cybersécurité</h3>
@@ -176,8 +122,8 @@
           <div style="flex:1">
             <p><strong>Objectif :</strong> Comprendre les concepts clés de la cybersécurité : vulnérabilités, menaces et attaques.</p>
             <p><strong>Travail réalisé :</strong> Recherches, analyses, présentation et vidéo de sensibilisation.</p>
-            <p><strong>Compétences :</strong> Analyse, synthèse, vulgarisation.</p>
-            <p style="margin-top:0.5rem"><a href="SAE11.pdf" target="_blank" rel="noopener">Compte rendu (SAE11)</a></p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#tools">Outils</a>, <a href="Competences.html#soft">Soft skills</a></p>
+            <p style="margin-top:0.5rem"><a href="SAE11.pdf" rel="noopener">Compte rendu (SAE11)</a></p>
           </div>
         </div>
       `,
@@ -188,7 +134,8 @@
           <div style="flex:1">
             <p><strong>Objectif :</strong> Comprendre le fonctionnement d’un réseau domestique et analyser composants et interactions.</p>
             <p><strong>Travail réalisé :</strong> Tests et configuration, mesures de débits, comptes-rendus et vidéos.</p>
-            <p style="margin-top:0.5rem"><a href="SAE12_1.pdf" target="_blank" rel="noopener">Rendu 1</a> <a href="SAE12_2.pdf" target="_blank" rel="noopener" style="margin-left:.6rem">Rendu 2</a></p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#tools">Linux & Outils</a></p>
+            <p style="margin-top:0.5rem"><a href="SAE12_1.pdf" rel="noopener">Rendu 1</a> <a href="SAE12_2.pdf" rel="noopener" style="margin-left:.6rem">Rendu 2</a></p>
           </div>
         </div>
       `,
@@ -197,7 +144,9 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="cablecoaxial.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p>Étude et mesures sur une liaison coaxiale. <a href="SAE13.pdf" target="_blank" rel="noopener">Compte rendu</a></p>
+            <p>Étude et mesures sur une liaison coaxiale.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#telecom">Télécoms</a>, <a href="Competences.html#tools">Outils</a></p>
+            <p style="margin-top:0.5rem"><a href="SAE13.pdf" rel="noopener">Compte rendu</a></p>
           </div>
         </div>
       `,
@@ -207,6 +156,7 @@
           <img src="ereputation.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
             <p>Enjeux et bonnes pratiques pour gérer l'image en ligne ; actions pédagogiques de sensibilisation.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#web">Web</a>, <a href="Competences.html#soft">Communication</a></p>
           </div>
         </div>
       `,
@@ -216,6 +166,7 @@
           <img src="reseauentreprise.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
             <p>Conception et configuration réseau : VLAN, routage, DHCP/DNS, sécurité et DMZ.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#tools">Outils</a></p>
           </div>
         </div>
       `,
@@ -225,24 +176,22 @@
           <img src="siteweb.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
             <p>Projet HTML/CSS initial : conception et intégration responsive.</p>
-            <p style="margin-top:0.5rem"><a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" target="_blank" rel="noopener">Voir le site</a></p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#web">Web</a></p>
+            <p style="margin-top:0.5rem"><a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" rel="noopener">Voir le site</a></p>
           </div>
         </div>
       `
     };
 
-    // Références DOM
+    // DOM refs & state
     const modalBackdrop = document.getElementById('modalBackdrop');
     const modalContent = document.getElementById('modalContent');
     const btnClose = document.getElementById('btnClose');
     const btnPrev = document.getElementById('btnPrev');
     const btnNext = document.getElementById('btnNext');
+    let visibleCards = [];
+    let currentIndex = -1;
 
-    // état pour navigation
-    let visibleCards = []; // array of elements currently visible (after filter)
-    let currentIndex = -1; // index into visibleCards of the project shown
-
-    // Utility : recalc visible cards (respecte display:none)
     function computeVisibleCards(){
       const all = Array.from(document.querySelectorAll('.projet-card'));
       return all.filter(el => {
@@ -254,10 +203,7 @@
     function showModalForCard(card){
       visibleCards = computeVisibleCards();
       currentIndex = visibleCards.indexOf(card);
-      if(currentIndex === -1){
-        // fallback: show first visible
-        currentIndex = 0;
-      }
+      if(currentIndex === -1){ currentIndex = 0; }
       renderModalByIndex(currentIndex);
       openBackdrop();
     }
@@ -266,16 +212,11 @@
       const card = visibleCards[idx];
       const id = card ? card.getAttribute('data-projet') : null;
       modalContent.innerHTML = id ? (projetsContent[id] || '<p>Projet non trouvé.</p>') : '<p>Projet non trouvé.</p>';
-      // update title (aria)
       const titleText = card ? (card.querySelector('.projet-overlay')?.textContent || id) : '';
       const modalTitle = document.getElementById('modalTitle');
       modalTitle.textContent = titleText || '';
-      // show/hide nav buttons if only one visible
-      if(visibleCards.length <= 1){
-        btnPrev.classList.add('hidden'); btnNext.classList.add('hidden');
-      } else {
-        btnPrev.classList.remove('hidden'); btnNext.classList.remove('hidden');
-      }
+      if(visibleCards.length <= 1){ btnPrev.classList.add('hidden'); btnNext.classList.add('hidden'); }
+      else { btnPrev.classList.remove('hidden'); btnNext.classList.remove('hidden'); }
     }
 
     function openBackdrop(){
@@ -283,7 +224,6 @@
       modalBackdrop.setAttribute('aria-hidden','false');
       document.body.style.overflow = 'hidden';
       btnClose.focus();
-      // add keyboard handlers
       document.addEventListener('keydown', onKeyDownWhileModal);
     }
 
@@ -295,64 +235,46 @@
       document.removeEventListener('keydown', onKeyDownWhileModal);
     }
 
-    // Navigation handlers
-    function showNext(){
-      if(!visibleCards.length) return;
-      currentIndex = (currentIndex + 1) % visibleCards.length;
-      renderModalByIndex(currentIndex);
-    }
-    function showPrev(){
-      if(!visibleCards.length) return;
-      currentIndex = (currentIndex - 1 + visibleCards.length) % visibleCards.length;
-      renderModalByIndex(currentIndex);
-    }
+    function showNext(){ if(!visibleCards.length) return; currentIndex = (currentIndex + 1) % visibleCards.length; renderModalByIndex(currentIndex); }
+    function showPrev(){ if(!visibleCards.length) return; currentIndex = (currentIndex - 1 + visibleCards.length) % visibleCards.length; renderModalByIndex(currentIndex); }
 
-    // Open modal when clicking vignette
     document.querySelectorAll('.projet-card').forEach(card => {
-      function openFromCard(){
-        showModalForCard(card);
-      }
+      function openFromCard(){ showModalForCard(card); }
       card.addEventListener('click', openFromCard);
       card.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFromCard(); } });
     });
 
-    // Buttons
     btnClose.addEventListener('click', closeBackdrop);
     btnPrev.addEventListener('click', function(e){ e.stopPropagation(); showPrev(); });
     btnNext.addEventListener('click', function(e){ e.stopPropagation(); showNext(); });
+    modalBackdrop.addEventListener('click', function(e){ if(e.target === modalBackdrop) closeBackdrop(); });
 
-    // backdrop click closes if clicked outside modal-card area
-    modalBackdrop.addEventListener('click', function(e){
-      if(e.target === modalBackdrop) closeBackdrop();
-    });
-
-    // keyboard while modal
     function onKeyDownWhileModal(e){
       if(e.key === 'Escape'){ closeBackdrop(); }
       else if(e.key === 'ArrowRight'){ showNext(); }
       else if(e.key === 'ArrowLeft'){ showPrev(); }
     }
 
-    // Filter updates visibleCards dynamically; ensure navigation uses current visible set
     document.getElementById('filter-semester').addEventListener('change', function(){
       const val = this.value;
       document.querySelectorAll('.projet-card').forEach(card => {
         card.style.display = (val === 'all' || card.dataset.semester === val) ? '' : 'none';
       });
-      // if modal open, recompute visible list and keep showing at nearest index
       if(modalBackdrop.style.display === 'flex'){
         const currentCard = visibleCards[currentIndex];
         visibleCards = computeVisibleCards();
-        // try to keep same project visible, else adjust index
-        if(currentCard){
-          const newIndex = visibleCards.indexOf(currentCard);
-          currentIndex = (newIndex !== -1) ? newIndex : 0;
-        } else {
-          currentIndex = 0;
-        }
+        if(currentCard){ const newIndex = visibleCards.indexOf(currentCard); currentIndex = (newIndex !== -1) ? newIndex : 0; } else { currentIndex = 0; }
         renderModalByIndex(currentIndex);
       }
     });
+
+    // Optional: intercept clicks on links inside the modal that point to Competences.html#id
+    // If user somehow is already on Competences.html (rare here), smooth-scroll; otherwise let browser navigate.
+    modalBackdrop.addEventListener('click', function(e){
+      // nothing here—links will work normally
+    });
+
+    // If you ever want to intercept anchor clicks globally inside this page, add a listener here.
   </script>
 </body>
 </html>
