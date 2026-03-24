@@ -6,10 +6,8 @@
   <title>Mes Projets — Matteo Giuffre</title>
   <link rel="stylesheet" href="css.css">
   <style>
-    /* --- Styles spécifiques à la page Projets (vignettes, espacement, modal) --- */
-    :root{
-      --muted:#6b7b85;
-    }
+    /* --- Styles spécifiques à la page Projets (vignettes, espacement, modal, nav flèches) --- */
+    :root{ --muted:#6b7b85; --accent:#0b81ff; }
     .container { max-width:1100px; margin:0 auto; padding:1rem; }
     .projets-section { padding:2rem 0; }
     .projets-title { font-size:2rem; margin:0 0 0.75rem 0; }
@@ -20,7 +18,7 @@
     .projets-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-      gap:4rem;                    /* <-- espace augmenté entre vignettes */
+      gap:2rem;                    /* espace entre vignettes */
       justify-items:center;
       align-items:start;
       padding:0 0.75rem;
@@ -68,13 +66,28 @@
 
     /* Modal */
     .modal-backdrop{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,6,23,0.6); z-index:2000; padding:1rem; }
-    .modal-card{ background:#fff; border-radius:12px; width:100%; max-width:900px; max-height:90vh; overflow:auto; padding:1.25rem; box-shadow:0 24px 60px rgba(2,6,23,0.45); }
+    .modal-card{ background:#fff; border-radius:12px; width:100%; max-width:900px; max-height:90vh; overflow:auto; padding:1.25rem; box-shadow:0 24px 60px rgba(2,6,23,0.45); position:relative; }
     .modal-close{ background:transparent; border:0; font-size:1.2rem; cursor:pointer; }
+
+    /* Navigation flèches */
+    .modal-nav-btn{
+      position:fixed;
+      top:50%;
+      transform:translateY(-50%);
+      width:48px;height:48px;border-radius:10px;border:0;background:rgba(255,255,255,0.95);box-shadow:0 8px 24px rgba(2,6,23,0.25);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:2100;
+    }
+    .modal-prev{ left:18px; }
+    .modal-next{ right:18px; }
+    .modal-nav-btn:focus{ outline:3px solid rgba(11,129,255,0.14); }
+
+    /* hide nav if only one item (JS gérera la classe .hidden) */
+    .modal-nav-btn.hidden{ display:none !important; }
 
     /* Responsive adjustments */
     @media (max-width:760px){
       .projets-grid{ gap:1rem; }
       .projet-card{ width:92%; height:160px; }
+      .modal-nav-btn{ display:none; } /* trop envahissant sur mobile ; navigation au swipe/gestures non implémentée */
     }
   </style>
 </head>
@@ -106,7 +119,7 @@
     </div>
 
     <div id="projets-grid" class="projets-grid" aria-live="polite">
-      <!-- 6 projets (exactement) — vignettes compactes -->
+      <!-- 6 projets -->
       <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
         <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
         <div class="projet-overlay">Hygiène info et à la cybersécurité</div>
@@ -139,7 +152,7 @@
     </div>
   </main>
 
-  <!-- MODALE -->
+  <!-- MODALE & flèches -->
   <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-card" role="document" aria-labelledby="modalTitle">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.6rem">
@@ -148,10 +161,13 @@
       </div>
       <div id="modalContent"></div>
     </div>
+    <!-- flèches positionnées autour de la fenêtre -->
+    <button id="btnPrev" class="modal-nav-btn modal-prev" aria-label="Projet précédent">‹</button>
+    <button id="btnNext" class="modal-nav-btn modal-next" aria-label="Projet suivant">›</button>
   </div>
 
   <script>
-    // Contenus repris (vos textes)
+    // Contenus (vos textes)
     const projetsContent = {
       SAE11: `
         <h3 style="margin-top:0">Se sensibiliser à l'hygiène informatique et à la cybersécurité</h3>
@@ -215,40 +231,127 @@
       `
     };
 
-    // Modal manipulation
+    // Références DOM
     const modalBackdrop = document.getElementById('modalBackdrop');
     const modalContent = document.getElementById('modalContent');
     const btnClose = document.getElementById('btnClose');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
 
-    document.querySelectorAll('.projet-card').forEach(card => {
-      function openCard() {
-        const id = card.getAttribute('data-projet');
-        modalContent.innerHTML = projetsContent[id] || '<p>Projet non trouvé.</p>';
-        modalBackdrop.style.display = 'flex';
-        modalBackdrop.setAttribute('aria-hidden','false');
-        document.body.style.overflow = 'hidden';
-        btnClose.focus();
+    // état pour navigation
+    let visibleCards = []; // array of elements currently visible (after filter)
+    let currentIndex = -1; // index into visibleCards of the project shown
+
+    // Utility : recalc visible cards (respecte display:none)
+    function computeVisibleCards(){
+      const all = Array.from(document.querySelectorAll('.projet-card'));
+      return all.filter(el => {
+        const style = window.getComputedStyle(el);
+        return style.display !== 'none' && style.visibility !== 'hidden';
+      });
+    }
+
+    function showModalForCard(card){
+      visibleCards = computeVisibleCards();
+      currentIndex = visibleCards.indexOf(card);
+      if(currentIndex === -1){
+        // fallback: show first visible
+        currentIndex = 0;
       }
-      card.addEventListener('click', openCard);
-      card.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCard(); } });
-    });
+      renderModalByIndex(currentIndex);
+      openBackdrop();
+    }
 
-    function closeModal(){
+    function renderModalByIndex(idx){
+      const card = visibleCards[idx];
+      const id = card ? card.getAttribute('data-projet') : null;
+      modalContent.innerHTML = id ? (projetsContent[id] || '<p>Projet non trouvé.</p>') : '<p>Projet non trouvé.</p>';
+      // update title (aria)
+      const titleText = card ? (card.querySelector('.projet-overlay')?.textContent || id) : '';
+      const modalTitle = document.getElementById('modalTitle');
+      modalTitle.textContent = titleText || '';
+      // show/hide nav buttons if only one visible
+      if(visibleCards.length <= 1){
+        btnPrev.classList.add('hidden'); btnNext.classList.add('hidden');
+      } else {
+        btnPrev.classList.remove('hidden'); btnNext.classList.remove('hidden');
+      }
+    }
+
+    function openBackdrop(){
+      modalBackdrop.style.display = 'flex';
+      modalBackdrop.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      btnClose.focus();
+      // add keyboard handlers
+      document.addEventListener('keydown', onKeyDownWhileModal);
+    }
+
+    function closeBackdrop(){
       modalBackdrop.style.display = 'none';
       modalBackdrop.setAttribute('aria-hidden','true');
       modalContent.innerHTML = '';
       document.body.style.overflow = '';
+      document.removeEventListener('keydown', onKeyDownWhileModal);
     }
-    btnClose.addEventListener('click', closeModal);
-    modalBackdrop.addEventListener('click', function(e){ if(e.target === modalBackdrop) closeModal(); });
-    document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modalBackdrop.style.display === 'flex') closeModal(); });
 
-    // simple filter by semester
+    // Navigation handlers
+    function showNext(){
+      if(!visibleCards.length) return;
+      currentIndex = (currentIndex + 1) % visibleCards.length;
+      renderModalByIndex(currentIndex);
+    }
+    function showPrev(){
+      if(!visibleCards.length) return;
+      currentIndex = (currentIndex - 1 + visibleCards.length) % visibleCards.length;
+      renderModalByIndex(currentIndex);
+    }
+
+    // Open modal when clicking vignette
+    document.querySelectorAll('.projet-card').forEach(card => {
+      function openFromCard(){
+        showModalForCard(card);
+      }
+      card.addEventListener('click', openFromCard);
+      card.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openFromCard(); } });
+    });
+
+    // Buttons
+    btnClose.addEventListener('click', closeBackdrop);
+    btnPrev.addEventListener('click', function(e){ e.stopPropagation(); showPrev(); });
+    btnNext.addEventListener('click', function(e){ e.stopPropagation(); showNext(); });
+
+    // backdrop click closes if clicked outside modal-card area
+    modalBackdrop.addEventListener('click', function(e){
+      if(e.target === modalBackdrop) closeBackdrop();
+    });
+
+    // keyboard while modal
+    function onKeyDownWhileModal(e){
+      if(e.key === 'Escape'){ closeBackdrop(); }
+      else if(e.key === 'ArrowRight'){ showNext(); }
+      else if(e.key === 'ArrowLeft'){ showPrev(); }
+    }
+
+    // Filter updates visibleCards dynamically; ensure navigation uses current visible set
     document.getElementById('filter-semester').addEventListener('change', function(){
       const val = this.value;
       document.querySelectorAll('.projet-card').forEach(card => {
         card.style.display = (val === 'all' || card.dataset.semester === val) ? '' : 'none';
       });
+      // if modal open, recompute visible list and keep showing at nearest index
+      if(modalBackdrop.style.display === 'flex'){
+        const currentCard = visibleCards[currentIndex];
+        visibleCards = computeVisibleCards();
+        // try to keep same project visible, else adjust index
+        if(currentCard){
+          const newIndex = visibleCards.indexOf(currentCard);
+          currentIndex = (newIndex !== -1) ? newIndex : 0;
+        } else {
+          currentIndex = 0;
+        }
+        renderModalByIndex(currentIndex);
+      }
     });
   </script>
 </body>
