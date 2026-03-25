@@ -156,16 +156,22 @@
         <div class="projet-overlay">Projet Système Prise Photos Banc Avionique</div>
       </div>
 
-      <!-- SAE31 (S3) - fluxmedia.png, overlay title "Système de Transmission Audio" -->
+      <!-- SAE31 (S3) -->
       <div class="projet-card" data-projet="SAE31" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
         <img src="fluxmedia.png" alt="Système de Transmission Audio">
         <div class="projet-overlay">Système de Transmission Audio</div>
       </div>
 
-      <!-- NEW: Applications Communicantes (S3) -->
+      <!-- APPCOM (S3) -->
       <div class="projet-card" data-projet="APPCOM" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
         <img src="applicationcommunicante.png" alt="Applications Communicantes">
         <div class="projet-overlay">Applications Communicantes</div>
+      </div>
+
+      <!-- SAE33 (S3) : Réseau Informatique Sécurisé Multisite -->
+      <div class="projet-card" data-projet="SAE33" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
+        <img src="SAE_33_topo.jpg" alt="Réseau Informatique Sécurisé Multisite">
+        <div class="projet-overlay">Réseau Informatique Sécurisé Multisite</div>
       </div>
     </div>
   </main>
@@ -275,16 +281,30 @@
         </div>
       `,
       APPCOM: `
-        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+        <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
           <img src="applicationcommunicante.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Réaliser un site web pour afficher et stocker des failles de sécurité détectées sur le réseau local, et développer des applications clientes qui interagissent avec ce site.</p>
+            <p><strong>Objectifs :</strong> Réaliser un site web de gestion des failles détectées sur le réseau local, stocker ces failles en base de données et proposer des clients capables de les consulter.</p>
 
-            <p><strong>Travail réalisé :</strong> Développement du site avec pages d'affichage des failles stockées en base de données, création d'un outil Java pour détecter automatiquement des failles et les insérer dans la base, et réalisation d'une application Android en Java qui récupère et affiche les failles via API JSON.</p>
+            <p><strong>Travail réalisé :</strong> Développement du site avec pages listant les failles, création d'un outil Java pour détecter et insérer les failles en base, et réalisation d'une application Android en Java qui récupère et affiche les failles via API JSON.</p>
 
             <p><strong>Compétences :</strong> Web, Java, Android, JSON, Base de données, Sécurité</p>
 
             <p style="margin-top:0.6rem">Compte rendu : à ajouter</p>
+          </div>
+        </div>
+      `,
+      SAE33: `
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="SAE_33_topo.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p><strong>Objectifs :</strong> Concevoir et justifier une infrastructure réseau multisite sécurisée répondant aux besoins d'une entreprise, en identifiant et en traitant les vulnérabilités des équipements et du système d'information.</p>
+
+            <p><strong>Travail réalisé :</strong> Conception d'une architecture multisite intégrant routage, filtrage inter-VLAN, redondance (STP, routage dynamique, VRRP), tunnels VPN, services avancés et Wi‑Fi. Configuration des équipements, tests de performance et fonctionnalités (QoS, MLS), et évaluation sécurité par tests de pénétration et actions de durcissement.</p>
+
+            <p><strong>Compétences :</strong> Administration SI, Supervision, Routage & Sécurité, VPN</p>
+
+            <p style="margin-top:0.6rem"><a href="SAE_33_CR.pdf" rel="noopener">Compte rendu (SAE_33_CR.pdf)</a></p>
           </div>
         </div>
       `
