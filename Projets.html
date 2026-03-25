@@ -109,11 +109,12 @@
         <option value="all">Tous</option>
         <option value="S1">S1</option>
         <option value="S2">S2</option>
+        <option value="S3">S3</option>
       </select>
     </div>
 
     <div id="projets-grid" class="projets-grid" aria-live="polite">
-      <!-- 6 projets + THALES09 -->
+      <!-- Projets existants -->
       <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
         <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
         <div class="projet-overlay">Hygiène info et à la cybersécurité</div>
@@ -144,10 +145,16 @@
         <div class="projet-overlay">Site Web</div>
       </div>
 
-      <!-- NOUVEAU PROJET THALES09 (S2) -->
+      <!-- THALES09 (S2) -->
       <div class="projet-card" data-projet="THALES09" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
         <img src="thales.jpg" alt="Projet Système Prise Photos Banc Avionique">
         <div class="projet-overlay">Projet Système Prise Photos Banc Avionique</div>
+      </div>
+
+      <!-- NOUVEAU S3 : SAE31 -->
+      <div class="projet-card" data-projet="SAE31" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
+        <img src="fluxmedia.jpg" alt="CodecPlayer - interface audio / notebook">
+        <div class="projet-overlay">CodecPlayer (SAE31)</div>
       </div>
     </div>
   </main>
@@ -230,18 +237,29 @@
           </div>
         </div>
       `,
-      // THALES09 : version courte et compétences abrégées
       THALES09: `
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="thales.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
             <p><strong>Objectifs :</strong> Mettre en place un système de capture photo (mode auto & manuel) pour documenter le banc avionique et améliorer la traçabilité.</p>
-
             <p><strong>Travail réalisé :</strong> Intégration Raspberry + Pico pour pilotage & LED, gestion des captures et métadonnées, stockage local et interface web de consultation/gestion.</p>
-
-            <p><strong>Compétences :</strong> Programmation, Python, Web, SQL</p>
-
+            <p><strong>Compétences :</strong> Embarqué, Python, Web, BD</p>
             <p style="margin-top:0.6rem"><a href="Thales09_SAE15_rapport.pdf" rel="noopener">Compte rendu (Thales09)</a></p>
+          </div>
+        </div>
+      `,
+      // S3 - SAE31 (CodecPlayer) résumé en français, court
+      SAE31: `
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="fluxmedia.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p><strong>Objectifs :</strong> Développer une interface intégrée dans un notebook Jupyter pour lire des fichiers audio (flac/wav/mp3), afficher spectre/pochette/métadonnées et proposer des fonctionnalités de conversion/qualité.</p>
+
+            <p><strong>Travail réalisé :</strong> Réalisation d'un notebook avec ipywidgets contrôlant des pipelines GStreamer, sélection de fichiers, affichage visuel (spectre/pochette), et outils de conversion/gestion pour les niveaux débutant → expert.</p>
+
+            <p><strong>Compétences :</strong> Python, Jupyter, ipywidgets, GStreamer, traitement audio</p>
+
+            <p style="margin-top:0.6rem"><a href="SAE31_GIUFFRE.M.ipynb" rel="noopener">Compte rendu (SAE31_GIUFFRE.M.ipynb)</a></p>
           </div>
         </div>
       `
