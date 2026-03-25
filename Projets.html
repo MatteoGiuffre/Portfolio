@@ -81,6 +81,9 @@
       .projet-card{ width:92%; height:160px; }
       .modal-nav-btn{ display:none; }
     }
+
+    /* petit style pour les liens de compte-rendu */
+    .modal-card a { color:var(--accent); text-decoration:underline; }
   </style>
 </head>
 <body>
@@ -110,7 +113,7 @@
     </div>
 
     <div id="projets-grid" class="projets-grid" aria-live="polite">
-      <!-- 6 projets + nouveau projet S2 (THALES09) -->
+      <!-- 6 projets + THALES09 -->
       <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
         <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
         <div class="projet-overlay">Hygiène info et à la cybersécurité</div>
@@ -141,7 +144,7 @@
         <div class="projet-overlay">Site Web</div>
       </div>
 
-      <!-- NOUVEAU : THALES09 (S2) -->
+      <!-- NOUVEAU PROJET THALES09 (S2) -->
       <div class="projet-card" data-projet="THALES09" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
         <img src="thales.jpg" alt="Projet Système Prise Photos Banc Avionique">
         <div class="projet-overlay">Projet Système Prise Photos Banc Avionique</div>
@@ -164,79 +167,79 @@
   <script>
     const projetsContent = {
       SAE11: `
-        <h3 style="margin-top:0">Se sensibiliser à l'hygiène informatique et à la cybersécurité</h3>
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="cyberhygiene.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectif :</strong> Comprendre les concepts clés de la cybersécurité : vulnérabilités, menaces et attaques.</p>
+            <p><strong>Objectifs :</strong> Comprendre les concepts clés de la cybersécurité et sensibiliser un public non spécialiste.</p>
             <p><strong>Travail réalisé :</strong> Recherches, analyses, présentation et vidéo de sensibilisation.</p>
-            <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#tools">Outils</a>, <a href="Competences.html#soft">Soft skills</a></p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#tools">Outils</a></p>
             <p style="margin-top:0.5rem"><a href="SAE11.pdf" rel="noopener">Compte rendu (SAE11)</a></p>
           </div>
         </div>
       `,
       SAE12: `
-        <h3 style="margin-top:0">S'initier aux réseaux informatiques</h3>
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="reseauxinformatiques.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectif :</strong> Comprendre le fonctionnement d’un réseau domestique et analyser composants et interactions.</p>
-            <p><strong>Travail réalisé :</strong> Tests et configuration, mesures de débits, comptes-rendus et vidéos.</p>
+            <p><strong>Objectifs :</strong> Comprendre et analyser un réseau domestique.</p>
+            <p><strong>Travail réalisé :</strong> Tests, configuration et mesures (débits, topologie).</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#programmation">Scripting</a></p>
             <p style="margin-top:0.5rem"><a href="SAE12_1.pdf" rel="noopener">Rendu 1</a> <a href="SAE12_2.pdf" rel="noopener" style="margin-left:.6rem">Rendu 2</a></p>
           </div>
         </div>
       `,
       SAE13: `
-        <h3 style="margin-top:0">Découverte d'un dispositif de transmission</h3>
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="cablecoaxial.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p>Étude et mesures sur une liaison coaxiale. <a href="SAE13.pdf" rel="noopener">Compte rendu</a></p>
+            <p><strong>Objectifs :</strong> Étudier une liaison physique par câble coaxial.</p>
+            <p><strong>Travail réalisé :</strong> Mesures et interprétation technique.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#telecom">Télécoms</a></p>
+            <p style="margin-top:0.5rem"><a href="SAE13.pdf" rel="noopener">Compte rendu (SAE13)</a></p>
           </div>
         </div>
       `,
       SAE14: `
-        <h3 style="margin-top:0">E‑Réputation</h3>
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="ereputation.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p>Enjeux et bonnes pratiques pour gérer l'image en ligne ; actions pédagogiques de sensibilisation.</p>
+            <p><strong>Objectifs :</strong> Comprendre les enjeux de l’e‑réputation et sensibiliser.</p>
+            <p><strong>Travail réalisé :</strong> Recherche et production d’un support pédagogique.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#web">Web</a>, <a href="Competences.html#soft">Communication</a></p>
           </div>
         </div>
       `,
       SAE21: `
-        <h3 style="margin-top:0">Réseau d'entreprise</h3>
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="reseauentreprise.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p>Conception et configuration réseau : VLAN, routage, DHCP/DNS, sécurité et DMZ.</p>
+            <p><strong>Objectifs :</strong> Concevoir un réseau pour une petite structure.</p>
+            <p><strong>Travail réalisé :</strong> VLAN, routage, DHCP/DNS, DMZ et sécurité.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a></p>
           </div>
         </div>
       `,
       SAE_Siteweb: `
-        <h3 style="margin-top:0">Site Web</h3>
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="siteweb.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p>Projet HTML/CSS initial : conception et intégration responsive.</p>
+            <p><strong>Objectifs :</strong> Apprendre HTML/CSS et créer un site responsive.</p>
+            <p><strong>Travail réalisé :</strong> Conception, intégration et optimisation.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#web">Web</a></p>
             <p style="margin-top:0.5rem"><a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" rel="noopener">Voir le site</a></p>
           </div>
         </div>
       `,
-      // NOUVEAU PROJET THALES09 (S2) - résumé en français structuré
+      // THALES09 : version courte et compétences abrégées
       THALES09: `
-        <h3 style="margin-top:0">Projet Système Prise Photos Banc Avionique</h3>
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="thales.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong><br>
-            Mettre en place un système de prise de photos (mode automatique et manuel) pour documenter le banc d'essais avionique, améliorer la traçabilité des configurations et faciliter l'analyse technique.</p>
+            <p><strong>Objectifs :</strong> Mettre en place un système de capture photo (mode auto & manuel) pour documenter le banc avionique et améliorer la traçabilité.</p>
 
-            <p><strong>Travail réalisé :</strong><br>
-            Intégration d'un Raspberry Pi et d'un microcontrôleur Pico pour piloter la capture : le Pico mesure la luminosité ambiante et commande une LED si nécessaire, le Raspberry coordonne la capture en ajoutant métadonnées (date, heure, utilisateur). Développement d'un stockage local des images et d'une interface web sécurisée pour la consultation, le renommage, la suppression et la gestion avancée par les administrateurs (création/validation/bloquage de comptes, gestion des photos : supprimer/restaurer/supprimer définitivement). Mise en place de modes automatique (avant chaque essai et toutes les 24h si aucune photo) et manuel, et tests multi‑plateformes pour assurer l'accessibilité des images depuis différents appareils.</p>
+            <p><strong>Travail réalisé :</strong> Intégration Raspberry + Pico pour pilotage & LED, gestion des captures et métadonnées, stockage local et interface web de consultation/gestion.</p>
 
-            <p><strong>Compétences développées :</strong><br>
-            Programmation embarquée (microcontrôleur), scripting et développement sur Raspberry Pi (Python), développement web (front/back), gestion de base de données pour images, authentification et gestion des droits, et tests d'intégration.</p>
+            <p><strong>Compétences :</strong> Programmation, Python, Web, SQL</p>
 
             <p style="margin-top:0.6rem"><a href="Thales09_SAE15_rapport.pdf" rel="noopener">Compte rendu (Thales09)</a></p>
           </div>
