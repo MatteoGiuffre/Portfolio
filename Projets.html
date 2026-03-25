@@ -15,7 +15,7 @@
     .projets-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-      gap:4rem;
+      gap:4rem; /* <-- espacement augmenté à 4rem */
       justify-items:center;
       align-items:start;
       padding:0 0.75rem;
@@ -82,7 +82,6 @@
       .modal-nav-btn{ display:none; }
     }
 
-    /* petit style pour les liens de compte-rendu */
     .modal-card a { color:var(--accent); text-decoration:underline; }
   </style>
 </head>
@@ -151,10 +150,10 @@
         <div class="projet-overlay">Projet Système Prise Photos Banc Avionique</div>
       </div>
 
-      <!-- NOUVEAU S3 : SAE31 -->
+      <!-- S3 - SAE31 -->
       <div class="projet-card" data-projet="SAE31" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
-        <img src="fluxmedia.png" alt="CodecPlayer - interface audio / notebook">
-        <div class="projet-overlay">Système de Transmission Audio</div>
+        <img src="fluxmedia.png" alt="CodecPlayer - interface audio">
+        <div class="projet-overlay">CodecPlayer SAE31</div>
       </div>
     </div>
   </main>
@@ -189,7 +188,7 @@
           <img src="reseauxinformatiques.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
             <p><strong>Objectifs :</strong> Comprendre et analyser un réseau domestique.</p>
-            <p><strong>Travail réalisé :</strong> Tests, configuration et mesures (débits, topologie).</p>
+            <p><strong>Travail réalisé :</strong> Tests, configuration et mesures de débits et topologie.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#programmation">Scripting</a></p>
             <p style="margin-top:0.5rem"><a href="SAE12_1.pdf" rel="noopener">Rendu 1</a> <a href="SAE12_2.pdf" rel="noopener" style="margin-left:.6rem">Rendu 2</a></p>
           </div>
@@ -221,7 +220,7 @@
           <img src="reseauentreprise.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
             <p><strong>Objectifs :</strong> Concevoir un réseau pour une petite structure.</p>
-            <p><strong>Travail réalisé :</strong> VLAN, routage, DHCP/DNS, DMZ et sécurité.</p>
+            <p><strong>Travail réalisé :</strong> VLAN, routage, DHCP, DNS, DMZ et sécurité.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a></p>
           </div>
         </div>
@@ -230,7 +229,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="siteweb.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Apprendre HTML/CSS et créer un site responsive.</p>
+            <p><strong>Objectifs :</strong> Apprendre HTML et CSS et créer un site responsive.</p>
             <p><strong>Travail réalisé :</strong> Conception, intégration et optimisation.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#web">Web</a></p>
             <p style="margin-top:0.5rem"><a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" rel="noopener">Voir le site</a></p>
@@ -241,23 +240,22 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="thales.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Mettre en place un système de capture photo (mode auto & manuel) pour documenter le banc avionique et améliorer la traçabilité.</p>
-            <p><strong>Travail réalisé :</strong> Intégration Raspberry + Pico pour pilotage & LED, gestion des captures et métadonnées, stockage local et interface web de consultation/gestion.</p>
-            <p><strong>Compétences :</strong> Embarqué, Python, Web, BD</p>
+            <p><strong>Objectifs :</strong> Mettre en place un système de capture photo en mode automatique et manuel pour documenter le banc avionique et améliorer la traçabilité.</p>
+            <p><strong>Travail réalisé :</strong> Intégration Raspberry et Pico pour le pilotage des captures et de la LED d'appoint, gestion des métadonnées et développement d'une interface web pour la consultation et la gestion des images.</p>
+            <p><strong>Compétences :</strong> Embarqué, Python, Web, Base de données</p>
             <p style="margin-top:0.6rem"><a href="Thales09_SAE15_rapport.pdf" rel="noopener">Compte rendu (Thales09)</a></p>
           </div>
         </div>
       `,
-      // S3 - SAE31 (CodecPlayer) résumé en français, court
       SAE31: `
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="fluxmedia.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Développer une interface intégrée dans un notebook Jupyter pour lire des fichiers audio (flac/wav/mp3), afficher spectre/pochette/métadonnées et proposer des fonctionnalités de conversion/qualité.</p>
+            <p><strong>Objectifs :</strong> Développer une interface dans un notebook Jupyter pour lire des fichiers audio en formats FLAC, WAV et MP3, afficher la représentation spectrale, la pochette et les métadonnées, et proposer des outils de conversion et d'amélioration de la qualité.</p>
 
-            <p><strong>Travail réalisé :</strong> Réalisation d'un notebook avec ipywidgets contrôlant des pipelines GStreamer, sélection de fichiers, affichage visuel (spectre/pochette), et outils de conversion/gestion pour les niveaux débutant → expert.</p>
+            <p><strong>Travail réalisé :</strong> Création d'un notebook utilisant ipywidgets et des pipelines GStreamer pour sélectionner et lire des fichiers, afficher des visualisations audio et fournir des fonctions de conversion et d'amélioration du flux.</p>
 
-            <p><strong>Compétences :</strong> Python, Jupyter, ipywidgets, GStreamer, traitement audio</p>
+            <p><strong>Compétences :</strong> Python, Transmission du signal, GStreamer</p>
 
             <p style="margin-top:0.6rem"><a href="SAE31_GIUFFRE.M.ipynb" rel="noopener">Compte rendu (SAE31_GIUFFRE.M.ipynb)</a></p>
           </div>
