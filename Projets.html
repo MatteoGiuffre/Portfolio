@@ -11,6 +11,7 @@
     .projets-section { padding:2rem 0; }
     .projets-title { font-size:2rem; margin:0 0 0.75rem 0; }
     .controls { margin-bottom:1rem; color:var(--muted); }
+
     .projets-grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
@@ -19,27 +20,67 @@
       align-items:start;
       padding:0 0.75rem;
     }
+
     .projet-card{
-      width:300px;height:180px;border-radius:10px;overflow:hidden;position:relative;
-      background:#f3f6f8;box-shadow:0 6px 18px rgba(8,20,30,0.06);cursor:pointer;
-      transition:transform .12s ease, box-shadow .12s ease;display:flex;align-items:center;justify-content:center;
+      width:300px;
+      height:180px;
+      border-radius:10px;
+      overflow:hidden;
+      position:relative;
+      background:#f3f6f8;
+      box-shadow:0 6px 18px rgba(8,20,30,0.06);
+      cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
     }
     .projet-card:focus { outline:3px solid rgba(11,129,255,0.12); outline-offset:3px; }
     .projet-card:hover { transform:translateY(-4px); box-shadow:0 12px 30px rgba(8,20,30,0.09); }
-    .projet-card img { width:100%;height:100%;object-fit:cover;display:block; }
-    .projet-overlay{
-      position:absolute;left:0;right:0;bottom:0;padding:.6rem .8rem;
-      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
-      color:#fff;transform:translateY(100%);transition:transform .18s ease;font-weight:600;font-size:1rem;
+
+    .projet-card img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
     }
-    .projet-card:hover .projet-overlay, .projet-card:focus .projet-overlay { transform:translateY(0); }
+
+    .projet-overlay{
+      position:absolute;
+      left:0; right:0;
+      bottom:0;
+      padding:.6rem .8rem;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
+      color:#fff;
+      transform:translateY(100%);
+      transition:transform .18s ease;
+      font-weight:600;
+      font-size:1rem;
+    }
+    .projet-card:hover .projet-overlay,
+    .projet-card:focus .projet-overlay { transform:translateY(0); }
+
     .modal-backdrop{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,6,23,0.6); z-index:2000; padding:1rem; }
     .modal-card{ background:#fff; border-radius:12px; width:100%; max-width:900px; max-height:90vh; overflow:auto; padding:1.25rem; box-shadow:0 24px 60px rgba(2,6,23,0.45); position:relative; }
     .modal-close{ background:transparent; border:0; font-size:1.2rem; cursor:pointer; }
-    .modal-nav-btn{ position:fixed; top:50%; transform:translateY(-50%); width:48px;height:48px;border-radius:10px;border:0;background:rgba(255,255,255,0.95);box-shadow:0 8px 24px rgba(2,6,23,0.25);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:2100; }
-    .modal-prev{ left:18px; } .modal-next{ right:18px; } .modal-nav-btn:focus{ outline:3px solid rgba(11,129,255,0.14); }
+
+    .modal-nav-btn{
+      position:fixed;
+      top:50%;
+      transform:translateY(-50%);
+      width:48px;height:48px;border-radius:10px;border:0;background:rgba(255,255,255,0.95);
+      box-shadow:0 8px 24px rgba(2,6,23,0.25);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;z-index:2100;
+    }
+    .modal-prev{ left:18px; }
+    .modal-next{ right:18px; }
+    .modal-nav-btn:focus{ outline:3px solid rgba(11,129,255,0.14); }
     .modal-nav-btn.hidden{ display:none !important; }
-    @media (max-width:760px){ .projets-grid{ gap:1rem; } .projet-card{ width:92%; height:160px; } .modal-nav-btn{ display:none; } }
+
+    @media (max-width:760px){
+      .projets-grid{ gap:1rem; }
+      .projet-card{ width:92%; height:160px; }
+      .modal-nav-btn{ display:none; }
+    }
   </style>
 </head>
 <body>
@@ -58,6 +99,7 @@
 
   <main class="projets-section container">
     <h1 class="projets-title">Mes Projets</h1>
+
     <div class="controls">
       Afficher :
       <select id="filter-semester">
@@ -68,6 +110,7 @@
     </div>
 
     <div id="projets-grid" class="projets-grid" aria-live="polite">
+      <!-- 6 projets + nouveau projet S2 (THALES09) -->
       <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
         <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
         <div class="projet-overlay">Hygiène info et à la cybersécurité</div>
@@ -97,6 +140,12 @@
         <img src="siteweb.jpg" alt="Site Web">
         <div class="projet-overlay">Site Web</div>
       </div>
+
+      <!-- NOUVEAU : THALES09 (S2) -->
+      <div class="projet-card" data-projet="THALES09" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
+        <img src="thales.jpg" alt="Projet Système Prise Photos Banc Avionique">
+        <div class="projet-overlay">Projet Système Prise Photos Banc Avionique</div>
+      </div>
     </div>
   </main>
 
@@ -113,7 +162,6 @@
   </div>
 
   <script>
-    // contenus projet (avec liens vers Competences.html#...)
     const projetsContent = {
       SAE11: `
         <h3 style="margin-top:0">Se sensibiliser à l'hygiène informatique et à la cybersécurité</h3>
@@ -134,7 +182,6 @@
           <div style="flex:1">
             <p><strong>Objectif :</strong> Comprendre le fonctionnement d’un réseau domestique et analyser composants et interactions.</p>
             <p><strong>Travail réalisé :</strong> Tests et configuration, mesures de débits, comptes-rendus et vidéos.</p>
-            <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#tools">Linux & Outils</a></p>
             <p style="margin-top:0.5rem"><a href="SAE12_1.pdf" rel="noopener">Rendu 1</a> <a href="SAE12_2.pdf" rel="noopener" style="margin-left:.6rem">Rendu 2</a></p>
           </div>
         </div>
@@ -144,9 +191,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="cablecoaxial.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p>Étude et mesures sur une liaison coaxiale.</p>
-            <p><strong>Compétences :</strong> <a href="Competences.html#telecom">Télécoms</a>, <a href="Competences.html#tools">Outils</a></p>
-            <p style="margin-top:0.5rem"><a href="SAE13.pdf" rel="noopener">Compte rendu</a></p>
+            <p>Étude et mesures sur une liaison coaxiale. <a href="SAE13.pdf" rel="noopener">Compte rendu</a></p>
           </div>
         </div>
       `,
@@ -156,7 +201,6 @@
           <img src="ereputation.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
             <p>Enjeux et bonnes pratiques pour gérer l'image en ligne ; actions pédagogiques de sensibilisation.</p>
-            <p><strong>Compétences :</strong> <a href="Competences.html#web">Web</a>, <a href="Competences.html#soft">Communication</a></p>
           </div>
         </div>
       `,
@@ -166,7 +210,6 @@
           <img src="reseauentreprise.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
             <p>Conception et configuration réseau : VLAN, routage, DHCP/DNS, sécurité et DMZ.</p>
-            <p><strong>Compétences :</strong> <a href="Competences.html#reseaux">Réseaux</a>, <a href="Competences.html#tools">Outils</a></p>
           </div>
         </div>
       `,
@@ -176,8 +219,26 @@
           <img src="siteweb.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
             <p>Projet HTML/CSS initial : conception et intégration responsive.</p>
-            <p><strong>Compétences :</strong> <a href="Competences.html#web">Web</a></p>
             <p style="margin-top:0.5rem"><a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" rel="noopener">Voir le site</a></p>
+          </div>
+        </div>
+      `,
+      // NOUVEAU PROJET THALES09 (S2) - résumé en français structuré
+      THALES09: `
+        <h3 style="margin-top:0">Projet Système Prise Photos Banc Avionique</h3>
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="thales.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p><strong>Objectifs :</strong><br>
+            Mettre en place un système de prise de photos (mode automatique et manuel) pour documenter le banc d'essais avionique, améliorer la traçabilité des configurations et faciliter l'analyse technique.</p>
+
+            <p><strong>Travail réalisé :</strong><br>
+            Intégration d'un Raspberry Pi et d'un microcontrôleur Pico pour piloter la capture : le Pico mesure la luminosité ambiante et commande une LED si nécessaire, le Raspberry coordonne la capture en ajoutant métadonnées (date, heure, utilisateur). Développement d'un stockage local des images et d'une interface web sécurisée pour la consultation, le renommage, la suppression et la gestion avancée par les administrateurs (création/validation/bloquage de comptes, gestion des photos : supprimer/restaurer/supprimer définitivement). Mise en place de modes automatique (avant chaque essai et toutes les 24h si aucune photo) et manuel, et tests multi‑plateformes pour assurer l'accessibilité des images depuis différents appareils.</p>
+
+            <p><strong>Compétences développées :</strong><br>
+            Programmation embarquée (microcontrôleur), scripting et développement sur Raspberry Pi (Python), développement web (front/back), gestion de base de données pour images, authentification et gestion des droits, et tests d'intégration.</p>
+
+            <p style="margin-top:0.6rem"><a href="Thales09_SAE15_rapport.pdf" rel="noopener">Compte rendu (Thales09)</a></p>
           </div>
         </div>
       `
@@ -267,14 +328,6 @@
         renderModalByIndex(currentIndex);
       }
     });
-
-    // Optional: intercept clicks on links inside the modal that point to Competences.html#id
-    // If user somehow is already on Competences.html (rare here), smooth-scroll; otherwise let browser navigate.
-    modalBackdrop.addEventListener('click', function(e){
-      // nothing here—links will work normally
-    });
-
-    // If you ever want to intercept anchor clicks globally inside this page, add a listener here.
   </script>
 </body>
 </html>
