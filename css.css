@@ -52,8 +52,37 @@ body{
 }
 .nav-inner{ display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.6rem 1rem; max-width:var(--max-width); margin:0 auto; }
 .nav-links{ list-style:none; display:flex; gap:.8rem; margin:0; padding:0; align-items:center; }
-.nav-links a{ color:#e6eef8; text-decoration:none; padding:.45rem .6rem; border-radius:8px; font-weight:700; }
-.nav-links a.active, .nav-links a:hover{ color:#fff; background:rgba(255,255,255,0.03); }
+
+.nav-links a{
+  position: relative;
+  color: #e6eef8;
+  text-decoration: none;
+  padding: .45rem .6rem;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+/* état hover / actif visuel léger (fond) */
+.nav-links a:hover,
+.nav-links a.active{
+  color: #fff;
+  background: rgba(255,255,255,0.03);
+}
+
+/* restore small white indicator under active nav item */
+.nav-links a.active::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -8px;         /* distance sous la nav */
+  width: 48px;          /* largeur du trait */
+  height: 3px;          /* épaisseur */
+  border-radius: 3px;
+  background: #ffffff;  /* couleur du trait (blanc) */
+  box-shadow: 0 4px 10px rgba(11,129,255,0.06);
+}
+
 
 /* CTA CV */
 .btn-cv{ background:transparent; border:1px solid rgba(255,255,255,0.08); color:#fff; padding:.45rem .7rem; border-radius:8px; font-weight:700; }
