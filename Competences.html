@@ -11,6 +11,8 @@
       --accent:#0b81ff;
       --radius:12px;
       --tile-gap:1rem;
+      --soft-bg: #fff8e0; /* léger jaune */
+      --soft-border: #fff1b8;
     }
     .container--spaced{ max-width:1100px;margin:0 auto;padding:1.25rem; }
     h1{ margin:0 0 .5rem 0; font-size:2rem; color:#0b2540; }
@@ -29,6 +31,12 @@
       overflow:hidden;
       display:flex;
       flex-direction:column;
+    }
+
+    /* style spécifique pour la section soft skills (fond jaune clair + bord) */
+    .category.soft{
+      background: linear-gradient(180deg, var(--soft-bg), var(--card));
+      border: 1px solid var(--soft-border);
     }
 
     .category-head{
@@ -65,6 +73,9 @@
       justify-content:flex-start;
       gap:.6rem;
     }
+    /* pour tiles dans .category.soft on garde le contraste mais pas trop différent */
+    .category.soft .tile{ background: #fffdf5; }
+
     .tile h4{ margin:0;font-size:1rem;color:#092036; font-weight:700;}
     .tile p{ margin:0;color:var(--muted);font-size:.92rem;line-height:1.25; }
 
@@ -157,23 +168,23 @@
 
           <div class="tile" tabindex="0">
             <h4>C++</h4>
-            <p>Programmation orientée performance et objets pour outils applicatifs.</p>
+            <p>Programmation orientée performance et conception objet pour outils.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Java</h4>
-            <p>Applications serveur et Android, gestion d'APIs et traitements back-end.</p>
+            <p>Applications serveur et Android, gestion d'APIs et traitement back-end.</p>
           </div>
         </div>
       </section>
 
-      <!-- DEVELOPPEMENT WEB (titre modifié) -->
+      <!-- DEVELOPPEMENT WEB (titre modifié, API remplacé par PHP) -->
       <section id="web" class="category anchor" aria-labelledby="w-title">
         <div class="category-head">
           <img src="siteweb.jpg" alt="Web" class="cat-img">
           <div class="cat-meta">
             <div id="w-title" class="cat-title">Developpement Web</div>
-            <div class="cat-desc">Intégration, UI légère et échanges API.</div>
+            <div class="cat-desc">Intégration, UI légère et échanges front/back.</div>
           </div>
         </div>
 
@@ -189,8 +200,8 @@
           </div>
 
           <div class="tile" tabindex="0">
-            <h4>APIs / JSON</h4>
-            <p>Conception d'APIs REST et échanges JSON pour applications.</p>
+            <h4>PHP</h4>
+            <p>Développement serveur, scripts côté back-end et intégration base de données.</p>
           </div>
 
           <div class="tile" tabindex="0">
@@ -200,7 +211,7 @@
         </div>
       </section>
 
-      <!-- OUTILS & SYSTEMES (inchangé) -->
+      <!-- OUTILS & SYSTEMES (ajout Bases de données (SQL)) -->
       <section id="tools" class="category anchor" aria-labelledby="tools-title">
         <div class="category-head">
           <img src="linux.png" alt="Linux" class="cat-img">
@@ -224,6 +235,11 @@
           <div class="tile" tabindex="0">
             <h4>Packet Tracer</h4>
             <p>Simulation de topologies et vérification de configurations.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Bases de données (SQL)</h4>
+            <p>Modélisation, requêtes SQL, création et interrogation de bases de données.</p>
           </div>
 
           <div class="tile" tabindex="0">
@@ -266,10 +282,10 @@
         </div>
       </section>
 
-      <!-- SOFT SKILLS (ajout Travail d'équipe) -->
-      <section id="soft" class="category anchor" aria-labelledby="s-title">
+      <!-- SOFT SKILLS (image updated, highlighted in yellow) -->
+      <section id="soft" class="category soft anchor" aria-labelledby="s-title">
         <div class="category-head">
-          <img src="ereputation.png" alt="Soft skills" class="cat-img">
+          <img src="softskills.png" alt="Soft skills" class="cat-img">
           <div class="cat-meta">
             <div id="s-title" class="cat-title">Soft skills</div>
             <div class="cat-desc">Compétences transverses pour projets et équipes.</div>
