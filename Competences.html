@@ -5,13 +5,12 @@
   <title>Compétences — Matteo Giuffre</title>
   <link rel="stylesheet" href="css.css">
   <style>
-    /* Styles spécifiques à Competences (s'ajoutent à css.css) */
     :root{
       --muted:#6b7b85;
       --card:#fbfdff;
       --accent:#0b81ff;
       --radius:12px;
-      --tile-gap:0.75rem;
+      --tile-gap:1rem;
     }
     .container--spaced{ max-width:1100px;margin:0 auto;padding:1.25rem; }
     h1{ margin:0 0 .5rem 0; font-size:2rem; color:#0b2540; }
@@ -46,9 +45,10 @@
     .cat-title{ margin:0;font-size:1.05rem;font-weight:700;color:#0b2540; }
     .cat-desc{ margin:0;color:var(--muted); font-size:.92rem; }
 
+    /* Subskills: 2 columns on desktop, tiles uniform */
     .subskills{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap:var(--tile-gap);
       padding:1rem;
       align-items:start;
@@ -57,35 +57,23 @@
     .tile{
       background:white;
       border-radius:10px;
-      padding:.7rem;
-      min-height:78px;
+      padding:1rem;
+      min-height:130px; /* tiles identiques */
       box-shadow:0 6px 14px rgba(8,20,30,0.03);
       display:flex;
       flex-direction:column;
-      justify-content:center;
-      gap:.4rem;
+      justify-content:flex-start;
+      gap:.6rem;
     }
-    .tile h4{ margin:0;font-size:.95rem;color:#092036; font-weight:700;}
-    .tile p{ margin:0;color:var(--muted);font-size:.85rem;line-height:1.18; }
+    .tile h4{ margin:0;font-size:1rem;color:#092036; font-weight:700;}
+    .tile p{ margin:0;color:var(--muted);font-size:.92rem;line-height:1.25; }
 
-    /* nested small list inside one tile (carrés dans carré) */
-    .tile .inner-grid{
-      margin-top:.45rem;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:.35rem;
-    }
-    .inner-item{
-      background:#f6fbff;border-radius:8px;padding:.35rem .5rem;font-size:.83rem;color:#123;
-      box-shadow:inset 0 1px 0 rgba(0,0,0,0.02);
-    }
-
-    /* anchor spacing for smooth scroll */
     .anchor { scroll-margin-top:96px; padding-top:6px; }
 
     @media (max-width:820px){
       .cat-img{ width:64px;height:64px; }
-      .subskills{ grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+      .subskills{ grid-template-columns: repeat(1, 1fr); }
+      .tile{ min-height:110px; }
     }
   </style>
 </head>
@@ -121,40 +109,32 @@
         <div class="subskills" role="list">
           <div class="tile" role="listitem" tabindex="0">
             <h4>Routage</h4>
-            <p>Configuration et dépannage OSPF et BGP, protocoles de routage dynamique, plan d'adressage.</p>
-            <div class="inner-grid">
-              <div class="inner-item">OSPF : area, LSAs, redistribution</div>
-              <div class="inner-item">BGP : sessions eBGP/iBGP, route policies</div>
-            </div>
+            <p>OSPF, BGP, planification d'adressage et dépannage des tables de routage.</p>
           </div>
 
           <div class="tile" role="listitem" tabindex="0">
             <h4>Switching</h4>
-            <p>VLAN, trunks, Spanning Tree (STP/RSTP), agrégation et sécurité des ports.</p>
-            <div class="inner-grid">
-              <div class="inner-item">VLAN tagging</div>
-              <div class="inner-item">STP tuning</div>
-            </div>
+            <p>VLAN, trunks, Spanning Tree et sécurité portuaire pour segmentation.</p>
           </div>
 
           <div class="tile" role="listitem" tabindex="0">
             <h4>Sécurité & segmentation</h4>
-            <p>Filtrage inter-VLAN, listes de contrôle d'accès et segmentation pour limiter les surfaces d'attaque.</p>
+            <p>ACL, filtrage inter-VLAN et principes de micro-segmentation.</p>
           </div>
 
           <div class="tile" role="listitem" tabindex="0">
             <h4>VPN & inter-sites</h4>
-            <p>Mise en place de tunnels IPsec, GRE et solutions opérateurs pour interconnexion multisite.</p>
+            <p>Tunnels IPsec, solutions opérateurs et interconnexion multisite.</p>
           </div>
 
           <div class="tile" role="listitem" tabindex="0">
-            <h4>Redondance & haute disponibilité</h4>
-            <p>STP, VRRP, protocoles de redondance et routage de secours pour résilience.</p>
+            <h4>Haute disponibilité</h4>
+            <p>STP, VRRP et stratégies de redondance et basculement.</p>
           </div>
 
           <div class="tile" role="listitem" tabindex="0">
             <h4>Supervision</h4>
-            <p>Collecte SNMP, tableaux de bord, alerting et journalisation (logs).</p>
+            <p>SNMP, collecte métriques, logging et alerting pour monitoring.</p>
           </div>
         </div>
       </section>
@@ -172,22 +152,22 @@
         <div class="subskills">
           <div class="tile" tabindex="0">
             <h4>Python</h4>
-            <p>Automatisation, scripts d'administration, parsing, utilisation d'API.</p>
+            <p>Automatisation, scripts d'administration, parsing et APIs.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Shell</h4>
-            <p>Scripts Bash pour déploiement, sauvegarde et tâches d'administration.</p>
+            <p>Scripts Bash pour déploiement et tâches d'administration.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Jupyter</h4>
-            <p>Notebooks pour démonstration, prototypage et visualisation (CodecPlayer).</p>
+            <p>Notebooks pour prototypage, visualisation et démonstrations.</p>
           </div>
 
           <div class="tile" tabindex="0">
-            <h4>Outils embarqués</h4>
-            <p>Interaction avec microcontrôleurs (Pico) et Raspberry pour intégration.</p>
+            <h4>Embarqué</h4>
+            <p>Intégration Raspberry et microcontrôleurs pour systèmes de test.</p>
           </div>
         </div>
       </section>
@@ -210,17 +190,17 @@
 
           <div class="tile" tabindex="0">
             <h4>JavaScript</h4>
-            <p>Interactions simples, DOM et widgets (ipywidgets côté notebook).</p>
+            <p>Interactions simples et widgets côté client.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>APIs / JSON</h4>
-            <p>Conception d'APIs REST et échanges JSON entre web et app Android.</p>
+            <p>Conception d'APIs REST et échanges JSON pour applications.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Déploiement</h4>
-            <p>Hébergement statique, optimisation et bonnes pratiques de déploiement.</p>
+            <p>Hébergement statique, optimisation et bonnes pratiques.</p>
           </div>
         </div>
       </section>
@@ -238,22 +218,22 @@
         <div class="subskills">
           <div class="tile" tabindex="0">
             <h4>Linux</h4>
-            <p>Administration, services, scripts et gestion des permissions.</p>
+            <p>Administration, services et scripting.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Wireshark</h4>
-            <p>Capture et décodage de paquets pour analyse fine du trafic.</p>
+            <p>Capture et analyse de paquets pour diagnostic réseau.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Packet Tracer</h4>
-            <p>Simulations de topologies et vérification de configurations réseau.</p>
+            <p>Simulation de topologies et vérification de configurations.</p>
           </div>
 
           <div class="tile" tabindex="0">
-            <h4>Gestion de version</h4>
-            <p>Git : commits, branches et workflows simples pour code et documents.</p>
+            <h4>Git</h4>
+            <p>Gestion de versions pour code et documents.</p>
           </div>
         </div>
       </section>
@@ -264,24 +244,24 @@
           <img src="cablecoaxial.png" alt="Télécoms" class="cat-img">
           <div class="cat-meta">
             <div id="t-title" class="cat-title">Télécoms</div>
-            <div class="cat-desc">Supports physiques, accès radio et règles de qualité.</div>
+            <div class="cat-desc">Supports physiques, accès radio et mesures.</div>
           </div>
         </div>
 
         <div class="subskills">
           <div class="tile" tabindex="0">
             <h4>Supports physiques</h4>
-            <p>Câbles coaxiaux, paires, caractéristiques et mesures de signal.</p>
+            <p>Câbles coaxiaux, paires et caractéristiques de transmission.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Réseaux d'accès</h4>
-            <p>Principes 4G/5G, QoS et aspects de couverture radio.</p>
+            <p>Principes 4G/5G et règles de qualité de service.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Mesures</h4>
-            <p>Tests de performance et validation des débits et latences.</p>
+            <p>Tests de performance pour valider débits et latences.</p>
           </div>
         </div>
       </section>
@@ -292,24 +272,24 @@
           <img src="ereputation.png" alt="Soft skills" class="cat-img">
           <div class="cat-meta">
             <div id="s-title" class="cat-title">Soft skills</div>
-            <div class="cat-desc">Compétences transverses pour le travail en équipe et la livraison.</div>
+            <div class="cat-desc">Compétences transverses pour projets et équipes.</div>
           </div>
         </div>
 
         <div class="subskills">
           <div class="tile" tabindex="0">
             <h4>Communication</h4>
-            <p>Rédaction de comptes rendus, présentations et vulgarisation.</p>
+            <p>Rédaction de comptes rendus et présentations claires.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Gestion de projet</h4>
-            <p>Planification, jalons et coordination d'équipe.</p>
+            <p>Planification, suivi et coordination des livrables.</p>
           </div>
 
           <div class="tile" tabindex="0">
             <h4>Autonomie</h4>
-            <p>Résolution d'incidents et apprentissage rapide sur de nouvelles technologies.</p>
+            <p>Résolution d'incidents et apprentissage rapide.</p>
           </div>
         </div>
       </section>
@@ -317,13 +297,14 @@
   </main>
 
   <script>
-    // conserve activation nav et smooth-scroll existants
+    // activation nav
     (function(){
       const links = document.querySelectorAll('.nav-links a');
       const cur = location.pathname.split('/').pop() || 'index.html';
       links.forEach(a=>{ if(a.getAttribute('href')===cur) a.classList.add('active'); });
     })();
 
+    // smooth-scroll + intercept anchors
     (function(){
       if(location.hash){
         const id = location.hash.slice(1);
@@ -331,7 +312,6 @@
         if(el) setTimeout(()=> el.scrollIntoView({behavior:'smooth', block:'start'}), 120);
       }
 
-      // Intercept clicks to anchors so navigation is smooth
       document.addEventListener('click', function(e){
         const a = e.target.closest('a');
         if(!a) return;
