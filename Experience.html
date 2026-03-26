@@ -10,10 +10,12 @@
     .exp-hero h1{ margin:0 0 .4rem 0; }
     .exp-lead{ color:var(--muted); margin-bottom:1rem; }
 
+    /* Box contenant image + texte côte à côte */
     .exp-box{
-      display:flex;
+      display:grid;
+      grid-template-columns: 220px 1fr;
       gap:1.25rem;
-      align-items:flex-start;
+      align-items:start;
       background:linear-gradient(180deg,#fff,#fbfdff);
       border-radius:14px;
       padding:1.25rem;
@@ -23,7 +25,7 @@
     }
 
     .exp-media{
-      flex:0 0 220px;
+      grid-column: 1 / 2;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -38,19 +40,41 @@
       box-shadow:0 12px 32px rgba(8,20,30,0.08);
     }
 
-    .exp-content{ flex:1; min-width:0; }
+    /* zone texte (première colonne à droite de l'image) */
+    .exp-content{
+      grid-column: 2 / 3;
+      min-width:0;
+    }
     .exp-content h2{ margin:0 0 .25rem 0; font-size:1.15rem; }
     .exp-content .dates{ color:var(--muted); font-size:.95rem; margin-bottom:.6rem; }
     .exp-content p{ color:var(--muted); line-height:1.6; margin:0 0 .8rem 0; }
 
-    /* emphasize list items if needed */
-    .exp-content ul{ margin:.6rem 0 0 1.15rem; color:var(--muted); }
-    .exp-content li{ margin:.35rem 0; }
+    /* zone qui recevra le texte excédentaire (full width under the box) */
+    .exp-below{
+      display:block;
+      margin-top:1.25rem;
+      width:100%;
+      max-width:100%;
+    }
+    .exp-below .info-card{
+      width:100%;
+      background:#fff;
+      border-radius:14px;
+      padding:1.25rem;
+      box-shadow:0 12px 34px rgba(8,20,30,0.06);
+      border:1px solid rgba(11,30,50,0.03);
+    }
+
+    /* summary list inside the exp content (kept in exp-below by JS if overflow) */
+    .exp-list{ margin:.6rem 0 0 1.15rem; color:var(--muted); }
+    .exp-list li{ margin:.35rem 0; }
 
     @media (max-width:880px){
-      .exp-box{ flex-direction:column; align-items:center; text-align:left; }
-      .exp-media{ width:80%; max-width:320px; }
-      .exp-content{ width:100%; }
+      .exp-box{ grid-template-columns: 1fr; }
+      .exp-media{ order:0; display:flex; justify-content:center; }
+      .exp-media img{ max-width:320px; }
+      .exp-content{ order:1; }
+      .exp-below{ order:2; }
     }
   </style>
 </head>
@@ -75,37 +99,26 @@
     </header>
 
     <section aria-labelledby="moravia-title">
+      <!-- exp-box contient image + portion initiale du texte -->
       <article class="exp-box" role="article" aria-labelledby="moravia-title">
         <div class="exp-media" aria-hidden="false">
           <!-- image moravia.png : remplace les anciennes images -->
-          <img src="moravia.png" alt="Moravia Yachting - logo / image">
+          <img id="moravia-img" src="moravia.png" alt="Moravia Yachting - logo / image">
         </div>
 
-        <div class="exp-content">
+        <div id="expContent" class="exp-content">
           <h2 id="moravia-title">Moravia Yachting — Alternance</h2>
           <div class="dates">Septembre 2024 — Présent</div>
 
-          <p>
-            Pendant mon alternance chez Moravia Yachting, j’ai travaillé au contact direct des clients et des équipes internes,
-            en assurant un support à la fois technique et relationnel. J’assistais les utilisateurs sur site et par téléphone,
-            diagnostiquant les problèmes et proposant des solutions efficaces pour rétablir les services rapidement.
-          </p>
+          <!-- Conserve les paragraphes séparés pour que le script puisse découper proprement -->
+          <p class="exp-par">Pendant mon alternance chez Moravia Yachting, j’ai travaillé au contact direct des clients et des équipes internes, en assurant un support à la fois technique et relationnel. J’assistais les utilisateurs sur site et par téléphone, diagnostiquant les problèmes et proposant des solutions efficaces pour rétablir les services rapidement.</p>
 
-          <p>
-            J’étais également en charge de la gestion et du suivi du parc informatique : inventaire, configuration,
-            maintenance matérielle et logique, ainsi que le déploiement d’équipements. Pour améliorer notre présence digitale,
-            j’ai participé à la création et à la maintenance de sites web simples et fonctionnels, y compris l’intégration
-            de petites API pour connecter des services et automatiser certains flux de données.
-          </p>
+          <p class="exp-par">J’étais également en charge de la gestion et du suivi du parc informatique : inventaire, configuration, maintenance matérielle et logique, ainsi que le déploiement d’équipements. Pour améliorer notre présence digitale, j’ai participé à la création et à la maintenance de sites web simples et fonctionnels, y compris l’intégration de petites API pour connecter des services et automatiser certains flux de données.</p>
 
-          <p>
-            Enfin, j’ai travaillé sur des projets de domotique pour améliorer le confort et la gestion technique des sites,
-            et j’ai pris en main la rédaction de documentation technique et de procédures : guides d’installation, fiches de
-            dépannage et rapports d’intervention destinés à l’équipe afin d’assurer la reproductibilité et la qualité des actions.
-          </p>
+          <p class="exp-par">Enfin, j’ai travaillé sur des projets de domotique pour améliorer le confort et la gestion technique des sites, et j’ai pris en main la rédaction de documentation technique et de procédures : guides d’installation, fiches de dépannage et rapports d’intervention destinés à l’équipe afin d’assurer la reproductibilité et la qualité des actions.</p>
 
-          <!-- si tu veux ajouter une liste résumée -->
-          <div style="margin-top:.8rem">
+          <!-- résumé synthétique : ce bloc pourra aussi être déplacé si nécessaire -->
+          <div id="expSummary" class="exp-list">
             <strong>Principales responsabilités :</strong>
             <ul>
               <li>Support utilisateur (présentiel & téléphonique) et résolution d’incidents</li>
@@ -117,6 +130,9 @@
           </div>
         </div>
       </article>
+
+      <!-- zone full-width en dessous : on y déplace automatiquement la partie excédentaire -->
+      <div id="expBelow" class="exp-below" aria-hidden="true"></div>
     </section>
   </main>
 
@@ -126,6 +142,118 @@
       const links = document.querySelectorAll('.nav-links a');
       const cur = location.pathname.split('/').pop() || 'index.html';
       links.forEach(a=>{ if(a.getAttribute('href')===cur) a.classList.add('active'); });
+    })();
+
+    /****************************************************************
+     * Script: déplacer dynamiquement le texte qui dépasse la hauteur
+     * de l'image vers la zone expBelow (full width) sous la box.
+     ****************************************************************/
+    (function(){
+      const img = document.getElementById('moravia-img');
+      const expContent = document.getElementById('expContent');
+      const expBelow = document.getElementById('expBelow');
+
+      // utility: wrap nodes into a card container and append to expBelow
+      function moveNodesToBelow(nodes){
+        if(!nodes.length) return;
+        // create a card wrapper similar to info-card to keep styling consistent
+        const card = document.createElement('div');
+        card.className = 'info-card';
+        // append nodes
+        nodes.forEach(n => card.appendChild(n));
+        expBelow.innerHTML = ''; // clear previous
+        expBelow.appendChild(card);
+        expBelow.setAttribute('aria-hidden', 'false');
+      }
+
+      function redistribute(){
+        // ensure image loaded
+        if(!img || !expContent) return;
+        const imgRect = img.getBoundingClientRect();
+        // If image has zero height (not loaded yet), skip
+        const imgHeight = imgRect.height || img.clientHeight;
+        if(imgHeight === 0) return;
+
+        // Reset expBelow
+        expBelow.innerHTML = '';
+        expBelow.setAttribute('aria-hidden', 'true');
+
+        // Calculate cumulative height of children inside expContent
+        const children = Array.from(expContent.children);
+        // We keep the title and dates always inside expContent
+        // Start measuring from the first paragraph (.exp-par) or the node after dates
+        let cumulative = 0;
+        const nodesToKeep = [];
+        const nodesToMove = [];
+
+        // we will iterate over the content nodes after the heading/dates
+        // skip heading and dates (we keep them)
+        let startIndex = 0;
+        for(let i=0;i<children.length;i++){
+          if(children[i].matches && children[i].matches('.exp-par, #expSummary, .exp-list, p, div')){
+            startIndex = i;
+            break;
+          }
+        }
+
+        // But to be simpler: measure height of expContent and move last nodes if needed
+        // We iterate children and add them to nodesToKeep until expContent height <= imgHeight
+        // We'll clone the children list because moving modifies DOM.
+        const allNodes = Array.from(expContent.children);
+        // Keep the first two elements (h2 + dates) always
+        let idx = 0;
+        // find index after heading and dates
+        while(idx < allNodes.length){
+          const node = allNodes[idx];
+          // always keep heading and dates
+          nodesToKeep.push(node);
+          idx++;
+          // stop if we've added heading+dates and at least one paragraph
+          if(nodesToKeep.length >= 2) break;
+        }
+
+        // Now progressively add more nodes while the visual height of expContent <= imgHeight
+        for(; idx < allNodes.length; idx++){
+          const node = allNodes[idx];
+          nodesToKeep.push(node);
+          // temporarily ensure nodesToKeep are in DOM to measure
+          // (they already are), measure height
+          const contentHeight = expContent.getBoundingClientRect().height;
+          if(contentHeight > imgHeight){
+            // current node pushes height beyond image -> move this node and following ones
+            // nodesToMove = remaining nodes from this index
+            nodesToMove.push(...allNodes.slice(idx));
+            break;
+          }
+        }
+
+        // If there are nodes to move, detach them from expContent and move to expBelow
+        if(nodesToMove.length){
+          nodesToMove.forEach(n => {
+            // remove from expContent if still present
+            if(n.parentNode === expContent) expContent.removeChild(n);
+          });
+          // create wrapper and append
+          moveNodesToBelow(nodesToMove);
+        } else {
+          // Nothing to move: clear expBelow
+          expBelow.innerHTML = '';
+          expBelow.setAttribute('aria-hidden', 'true');
+        }
+      }
+
+      // Recompute after image loaded, and on window resize
+      function onReadyOrResize(){
+        // slight delay to ensure layout stable
+        setTimeout(redistribute, 120);
+      }
+
+      if(img.complete){
+        onReadyOrResize();
+      } else {
+        img.addEventListener('load', onReadyOrResize);
+      }
+      window.addEventListener('resize', onReadyOrResize);
     })();
   </script>
 </body>
