@@ -4,6 +4,55 @@
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Expérience — Matteo Giuffre</title>
   <link rel="stylesheet" href="css.css">
+  <style>
+    /* Styles spécifiques pour la page Expérience */
+    .experience-wrap{ max-width:1100px; margin:0 auto; padding:1.25rem; }
+    .exp-hero h1{ margin:0 0 .4rem 0; }
+    .exp-lead{ color:var(--muted); margin-bottom:1rem; }
+
+    .exp-box{
+      display:flex;
+      gap:1.25rem;
+      align-items:flex-start;
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:14px;
+      padding:1.25rem;
+      box-shadow:0 14px 40px rgba(8,20,30,0.06);
+      border:1px solid rgba(11,30,50,0.03);
+      margin-top:1rem;
+    }
+
+    .exp-media{
+      flex:0 0 220px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .exp-media img{
+      width:100%;
+      max-width:220px;
+      height:auto;
+      border-radius:10px;
+      object-fit:cover;
+      display:block;
+      box-shadow:0 12px 32px rgba(8,20,30,0.08);
+    }
+
+    .exp-content{ flex:1; min-width:0; }
+    .exp-content h2{ margin:0 0 .25rem 0; font-size:1.15rem; }
+    .exp-content .dates{ color:var(--muted); font-size:.95rem; margin-bottom:.6rem; }
+    .exp-content p{ color:var(--muted); line-height:1.6; margin:0 0 .8rem 0; }
+
+    /* emphasize list items if needed */
+    .exp-content ul{ margin:.6rem 0 0 1.15rem; color:var(--muted); }
+    .exp-content li{ margin:.35rem 0; }
+
+    @media (max-width:880px){
+      .exp-box{ flex-direction:column; align-items:center; text-align:left; }
+      .exp-media{ width:80%; max-width:320px; }
+      .exp-content{ width:100%; }
+    }
+  </style>
 </head>
 <body>
   <header class="navbar" role="navigation">
@@ -19,26 +68,53 @@
     </div>
   </header>
 
-  <main class="container container--spaced">
-    <h1>Expérience</h1>
-    <p class="lead">Présentation de mon alternance et missions principales. Ajoutez vos photos / détails quand vous êtes prêt.</p>
+  <main class="experience-wrap container--spaced">
+    <header class="exp-hero">
+      <h1>Expérience</h1>
+      <p class="exp-lead">Présentation de mon alternance en entreprise et des missions que j’ai réalisées sur le terrain.</p>
+    </header>
 
-    <section>
-      <article class="exp-item">
-        <h2>[Nom de l'entreprise] — Alternance</h2>
-        <div class="small" style="color:var(--muted)">Septembre 2024 — Présent</div>
-        <p class="small">Courte présentation de l'entreprise : activité, taille et contexte.</p>
+    <section aria-labelledby="moravia-title">
+      <article class="exp-box" role="article" aria-labelledby="moravia-title">
+        <div class="exp-media" aria-hidden="false">
+          <!-- image moravia.png : remplace les anciennes images -->
+          <img src="moravia.png" alt="Moravia Yachting - logo / image">
+        </div>
 
-        <h3>Principales missions</h3>
-        <ul>
-          <li>Mise en place d'outils de supervision réseau</li>
-          <li>Participation aux déploiements d'infrastructures</li>
-          <li>Rédaction de procédures et support</li>
-        </ul>
+        <div class="exp-content">
+          <h2 id="moravia-title">Moravia Yachting — Alternance</h2>
+          <div class="dates">Septembre 2024 — Présent</div>
 
-        <div class="exp-photos" aria-hidden="true">
-          <img src="reseauentreprise.png" alt="Photo mission 1">
-          <img src="simulationreseaux.png" alt="Photo mission 2">
+          <p>
+            Pendant mon alternance chez Moravia Yachting, j’ai travaillé au contact direct des clients et des équipes internes,
+            en assurant un support à la fois technique et relationnel. J’assistais les utilisateurs sur site et par téléphone,
+            diagnostiquant les problèmes et proposant des solutions efficaces pour rétablir les services rapidement.
+          </p>
+
+          <p>
+            J’étais également en charge de la gestion et du suivi du parc informatique : inventaire, configuration,
+            maintenance matérielle et logique, ainsi que le déploiement d’équipements. Pour améliorer notre présence digitale,
+            j’ai participé à la création et à la maintenance de sites web simples et fonctionnels, y compris l’intégration
+            de petites API pour connecter des services et automatiser certains flux de données.
+          </p>
+
+          <p>
+            Enfin, j’ai travaillé sur des projets de domotique pour améliorer le confort et la gestion technique des sites,
+            et j’ai pris en main la rédaction de documentation technique et de procédures : guides d’installation, fiches de
+            dépannage et rapports d’intervention destinés à l’équipe afin d’assurer la reproductibilité et la qualité des actions.
+          </p>
+
+          <!-- si tu veux ajouter une liste résumée -->
+          <div style="margin-top:.8rem">
+            <strong>Principales responsabilités :</strong>
+            <ul>
+              <li>Support utilisateur (présentiel & téléphonique) et résolution d’incidents</li>
+              <li>Gestion du matériel informatique et déploiements</li>
+              <li>Conception et maintenance de sites web, intégration d’API</li>
+              <li>Projets domotiques et améliorations techniques</li>
+              <li>Rédaction de documentation et procédures opérationnelles</li>
+            </ul>
+          </div>
         </div>
       </article>
     </section>
