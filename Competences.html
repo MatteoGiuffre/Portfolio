@@ -70,11 +70,26 @@
       flex-direction:column;
       justify-content:flex-start;
       gap:.6rem;
+      transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
     }
     .category.soft .tile{ background: #fffdf5; }
 
     .tile h4{ margin:0;font-size:1rem;color:#092036; font-weight:700;}
     .tile p{ margin:0;color:var(--muted);font-size:.92rem;line-height:1.25; }
+
+    /* highlight animation used when navigated to a subskill */
+    @keyframes zoomPulse {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.06); }
+      100% { transform: scale(1); }
+    }
+    .tile.highlight {
+      animation: zoomPulse 900ms ease;
+      box-shadow: 0 18px 36px rgba(8,20,30,0.12), 0 2px 6px rgba(11,129,255,0.06);
+      background: linear-gradient(180deg, #fffdfc, #ffffff);
+      border: 1px solid rgba(11,129,255,0.08);
+      z-index: 5;
+    }
 
     .anchor { scroll-margin-top:96px; padding-top:6px; }
 
@@ -101,9 +116,10 @@
 
   <main class="container--spaced">
     <h1>Compétences</h1>
-    <p class="lead">Compétences organisées par grandes familles. Cliquez sur une compétence depuis Projets pour y accéder directement.</p>
+    <p class="lead">Compétences organisées par petites tuiles. Si vous arrivez depuis un projet, la compétence ciblée sera mise en évidence.</p>
 
     <div class="categories">
+      <!-- RÉSEAUX -->
       <section id="reseaux" class="category anchor" aria-labelledby="r-title">
         <div class="category-head">
           <img src="reseaux.jpg" alt="Réseaux" class="cat-img">
@@ -114,28 +130,29 @@
         </div>
 
         <div class="subskills" role="list">
-          <div class="tile" role="listitem" tabindex="0">
+          <div id="routage" class="tile" role="listitem" tabindex="0">
             <h4>Routage</h4>
             <p>OSPF, BGP, planification d'adressage et dépannage des tables de routage.</p>
           </div>
 
-          <div class="tile" role="listitem" tabindex="0">
+          <div id="switching" class="tile" role="listitem" tabindex="0">
             <h4>Switching</h4>
             <p>VLAN, trunks, Spanning Tree et sécurité portuaire pour segmentation.</p>
           </div>
 
-          <div class="tile" role="listitem" tabindex="0">
+          <div id="security-segmentation" class="tile" role="listitem" tabindex="0">
             <h4>Sécurité & segmentation</h4>
             <p>ACL, filtrage inter-VLAN et principes de micro-segmentation.</p>
           </div>
 
-          <div class="tile" role="listitem" tabindex="0">
+          <div id="vpn-inter-sites" class="tile" role="listitem" tabindex="0">
             <h4>VPN & inter-sites</h4>
             <p>Tunnels IPsec, solutions opérateurs et interconnexion multisite.</p>
           </div>
         </div>
       </section>
 
+      <!-- PROGRAMMATION -->
       <section id="programmation" class="category anchor" aria-labelledby="p-title">
         <div class="category-head">
           <img src="programmation.jpg" alt="Programmation" class="cat-img">
@@ -146,33 +163,34 @@
         </div>
 
         <div class="subskills">
-          <div class="tile" tabindex="0">
+          <div id="python" class="tile" tabindex="0">
             <h4>Python</h4>
             <p>Automatisation, scripts d'administration, parsing et APIs.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="shell" class="tile" tabindex="0">
             <h4>Shell</h4>
             <p>Scripts Bash pour déploiement et tâches d'administration.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="jupyter" class="tile" tabindex="0">
             <h4>Jupyter</h4>
             <p>Notebooks pour prototypage, visualisation et démonstrations.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="cpp" class="tile" tabindex="0">
             <h4>C++</h4>
             <p>Programmation orientée performance et conception objet pour outils.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="java" class="tile" tabindex="0">
             <h4>Java</h4>
             <p>Applications serveur et Android, gestion d'APIs et traitement back-end.</p>
           </div>
         </div>
       </section>
 
+      <!-- DEVELOPPEMENT WEB -->
       <section id="web" class="category anchor" aria-labelledby="w-title">
         <div class="category-head">
           <img src="siteweb.jpg" alt="Web" class="cat-img">
@@ -183,28 +201,29 @@
         </div>
 
         <div class="subskills">
-          <div class="tile" tabindex="0">
+          <div id="html-css" class="tile" tabindex="0">
             <h4>HTML / CSS</h4>
             <p>Structure sémantique, responsive et optimisation des ressources.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="javascript" class="tile" tabindex="0">
             <h4>JavaScript</h4>
             <p>Interactions simples et widgets côté client.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="php" class="tile" tabindex="0">
             <h4>PHP</h4>
             <p>Développement serveur, scripts côté back-end et intégration base de données.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="deployment" class="tile" tabindex="0">
             <h4>Déploiement</h4>
             <p>Hébergement statique, optimisation et bonnes pratiques.</p>
           </div>
         </div>
       </section>
 
+      <!-- OUTILS & SYSTEMES -->
       <section id="tools" class="category anchor" aria-labelledby="tools-title">
         <div class="category-head">
           <img src="linux.png" alt="Linux" class="cat-img">
@@ -215,33 +234,34 @@
         </div>
 
         <div class="subskills">
-          <div class="tile" tabindex="0">
+          <div id="linux" class="tile" tabindex="0">
             <h4>Linux</h4>
             <p>Administration, services et scripting.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="wireshark" class="tile" tabindex="0">
             <h4>Wireshark</h4>
             <p>Capture et analyse de paquets pour diagnostic réseau.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="packet-tracer" class="tile" tabindex="0">
             <h4>Packet Tracer</h4>
             <p>Simulation de topologies et vérification de configurations.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="sql" class="tile" tabindex="0">
             <h4>Bases de données (SQL)</h4>
             <p>Modélisation, requêtes SQL, création et interrogation de bases de données.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="git" class="tile" tabindex="0">
             <h4>Git</h4>
             <p>Gestion de versions pour code et documents.</p>
           </div>
         </div>
       </section>
 
+      <!-- TELECOMMUNICATIONS -->
       <section id="telecom" class="category anchor" aria-labelledby="t-title">
         <div class="category-head">
           <img src="telephonie.jpg" alt="Télécommunications" class="cat-img">
@@ -252,28 +272,29 @@
         </div>
 
         <div class="subskills">
-          <div class="tile" tabindex="0">
+          <div id="supports-physiques" class="tile" tabindex="0">
             <h4>Supports physiques</h4>
             <p>Câbles coaxiaux, paires et caractéristiques de transmission.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="reseaux-acces" class="tile" tabindex="0">
             <h4>Réseaux d'accès</h4>
             <p>Principes 4G/5G et règles de qualité de service.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="mesures" class="tile" tabindex="0">
             <h4>Mesures</h4>
             <p>Tests de performance pour valider débits et latences.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="analysis-signal" class="tile" tabindex="0">
             <h4>Analyse du signal</h4>
             <p>Traitement et interprétation des signaux pour diagnostic et optimisation.</p>
           </div>
         </div>
       </section>
 
+      <!-- SOFT SKILLS -->
       <section id="soft" class="category soft anchor" aria-labelledby="s-title">
         <div class="category-head">
           <img src="softskills.png" alt="Soft skills" class="cat-img">
@@ -284,22 +305,22 @@
         </div>
 
         <div class="subskills">
-          <div class="tile" tabindex="0">
+          <div id="communication" class="tile" tabindex="0">
             <h4>Communication</h4>
             <p>Rédaction de comptes rendus et présentations claires.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="gestion-projet" class="tile" tabindex="0">
             <h4>Gestion de projet</h4>
             <p>Planification, suivi et coordination des livrables.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="autonomie" class="tile" tabindex="0">
             <h4>Autonomie</h4>
             <p>Résolution d'incidents et apprentissage rapide.</p>
           </div>
 
-          <div class="tile" tabindex="0">
+          <div id="travail-equipe" class="tile" tabindex="0">
             <h4>Travail d'équipe</h4>
             <p>Collaboration, répartition des tâches et communication en équipe.</p>
           </div>
@@ -309,33 +330,48 @@
   </main>
 
   <script>
+    // activation nav
     (function(){
       const links = document.querySelectorAll('.nav-links a');
       const cur = location.pathname.split('/').pop() || 'index.html';
       links.forEach(a=>{ if(a.getAttribute('href')===cur) a.classList.add('active'); });
     })();
 
+    // smooth-scroll + highlight target tile when hash points to a subskill id
     (function(){
-      if(location.hash){
-        const id = location.hash.slice(1);
+      function highlightById(id){
+        if(!id) return;
         const el = document.getElementById(id);
-        if(el) setTimeout(()=> el.scrollIntoView({behavior:'smooth', block:'start'}), 120);
+        if(!el) return;
+        // scroll so the tile is well visible (center-ish)
+        el.scrollIntoView({behavior:'smooth', block:'center'});
+        // add highlight class to animate
+        el.classList.add('highlight');
+        // remove after animation
+        setTimeout(()=> el.classList.remove('highlight'), 1200);
       }
 
+      // on load if hash present
+      if(location.hash){
+        const id = location.hash.slice(1);
+        // small delay so layout stabilizes before scrolling/animating
+        setTimeout(()=> highlightById(id), 140);
+      }
+
+      // also intercept internal Competences# anchors clicks for smooth highlight without reload
       document.addEventListener('click', function(e){
         const a = e.target.closest('a');
         if(!a) return;
         const href = a.getAttribute('href') || '';
-        if(href.startsWith('#') || href.match(/(?:^|\/)Competences\.html#(.+)$/i)){
+        if(href.startsWith('#')){
           e.preventDefault();
-          const anchor = href.startsWith('#') ? href.slice(1) : (href.split('#')[1] || '');
-          if(!anchor) return;
+          const anchor = href.slice(1);
           const target = document.getElementById(anchor);
           if(target){
-            target.scrollIntoView({behavior:'smooth', block:'start'});
-            history.replaceState(null, '', '#'+anchor);
-          } else {
-            location.href = href;
+            target.scrollIntoView({behavior:'smooth', block:'center'});
+            target.classList.add('highlight');
+            setTimeout(()=> target.classList.remove('highlight'), 1200);
+            history.replaceState(null,'','#'+anchor);
           }
         }
       });
