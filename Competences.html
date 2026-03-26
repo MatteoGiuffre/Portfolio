@@ -4,6 +4,90 @@
   <meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title>Compétences — Matteo Giuffre</title>
   <link rel="stylesheet" href="css.css">
+  <style>
+    /* Styles spécifiques à Competences (s'ajoutent à css.css) */
+    :root{
+      --muted:#6b7b85;
+      --card:#fbfdff;
+      --accent:#0b81ff;
+      --radius:12px;
+      --tile-gap:0.75rem;
+    }
+    .container--spaced{ max-width:1100px;margin:0 auto;padding:1.25rem; }
+    h1{ margin:0 0 .5rem 0; font-size:2rem; color:#0b2540; }
+    .lead{ color:var(--muted); margin-bottom:1rem; }
+
+    .categories{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap:1.25rem;
+    }
+
+    .category{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:0 12px 30px rgba(8,20,30,0.04);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+
+    .category-head{
+      display:flex;
+      gap:0.9rem;
+      align-items:center;
+      padding:1rem;
+      border-bottom:1px solid rgba(11,30,50,0.04);
+    }
+    .cat-img{
+      width:72px;height:72px;border-radius:8px;object-fit:cover;flex:0 0 72px;background:#fff;box-shadow:0 6px 18px rgba(8,20,30,0.04);
+    }
+    .cat-meta{ display:flex;flex-direction:column; gap:0.15rem; }
+    .cat-title{ margin:0;font-size:1.05rem;font-weight:700;color:#0b2540; }
+    .cat-desc{ margin:0;color:var(--muted); font-size:.92rem; }
+
+    .subskills{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap:var(--tile-gap);
+      padding:1rem;
+      align-items:start;
+    }
+
+    .tile{
+      background:white;
+      border-radius:10px;
+      padding:.7rem;
+      min-height:78px;
+      box-shadow:0 6px 14px rgba(8,20,30,0.03);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:.4rem;
+    }
+    .tile h4{ margin:0;font-size:.95rem;color:#092036; font-weight:700;}
+    .tile p{ margin:0;color:var(--muted);font-size:.85rem;line-height:1.18; }
+
+    /* nested small list inside one tile (carrés dans carré) */
+    .tile .inner-grid{
+      margin-top:.45rem;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:.35rem;
+    }
+    .inner-item{
+      background:#f6fbff;border-radius:8px;padding:.35rem .5rem;font-size:.83rem;color:#123;
+      box-shadow:inset 0 1px 0 rgba(0,0,0,0.02);
+    }
+
+    /* anchor spacing for smooth scroll */
+    .anchor { scroll-margin-top:96px; padding-top:6px; }
+
+    @media (max-width:820px){
+      .cat-img{ width:64px;height:64px; }
+      .subskills{ grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }
+    }
+  </style>
 </head>
 <body>
   <header class="navbar" role="navigation">
@@ -19,80 +103,252 @@
     </div>
   </header>
 
-  <main class="container container--spaced">
+  <main class="container--spaced">
     <h1>Compétences</h1>
-    <p class="lead">Compétences classées par famille. Les liens depuis les fiches projets renvoient vers la compétence correspondante.</p>
+    <p class="lead">Compétences organisées par grandes familles. Cliquez sur une compétence depuis Projets pour y accéder directement.</p>
 
-    <div class="skills-grid" role="list">
-      <section id="reseaux" class="skill-card" aria-labelledby="r-title">
-        <h3 id="r-title">Réseaux</h3>
-        <ul>
-          <li><strong>Routage</strong> — OSPF, BGP (configuration, debugging)</li>
-          <li><strong>Switching</strong> — VLAN, STP, trunks, port security</li>
-          <li><strong>Supervision</strong> — SNMP, Prometheus basics, logs & alerting</li>
-          <li><strong>Scripting réseaux</strong> — automatisation de configurations (Python)</li>
-        </ul>
+    <div class="categories">
+      <!-- RÉSEAUX -->
+      <section id="reseaux" class="category anchor" aria-labelledby="r-title">
+        <div class="category-head">
+          <img src="reseauxinformatiques.jpg" alt="Réseaux" class="cat-img">
+          <div class="cat-meta">
+            <div id="r-title" class="cat-title">Réseaux</div>
+            <div class="cat-desc">Conception, exploitation et sécurisation d'infrastructures réseau.</div>
+          </div>
+        </div>
+
+        <div class="subskills" role="list">
+          <div class="tile" role="listitem" tabindex="0">
+            <h4>Routage</h4>
+            <p>Configuration et dépannage OSPF et BGP, protocoles de routage dynamique, plan d'adressage.</p>
+            <div class="inner-grid">
+              <div class="inner-item">OSPF : area, LSAs, redistribution</div>
+              <div class="inner-item">BGP : sessions eBGP/iBGP, route policies</div>
+            </div>
+          </div>
+
+          <div class="tile" role="listitem" tabindex="0">
+            <h4>Switching</h4>
+            <p>VLAN, trunks, Spanning Tree (STP/RSTP), agrégation et sécurité des ports.</p>
+            <div class="inner-grid">
+              <div class="inner-item">VLAN tagging</div>
+              <div class="inner-item">STP tuning</div>
+            </div>
+          </div>
+
+          <div class="tile" role="listitem" tabindex="0">
+            <h4>Sécurité & segmentation</h4>
+            <p>Filtrage inter-VLAN, listes de contrôle d'accès et segmentation pour limiter les surfaces d'attaque.</p>
+          </div>
+
+          <div class="tile" role="listitem" tabindex="0">
+            <h4>VPN & inter-sites</h4>
+            <p>Mise en place de tunnels IPsec, GRE et solutions opérateurs pour interconnexion multisite.</p>
+          </div>
+
+          <div class="tile" role="listitem" tabindex="0">
+            <h4>Redondance & haute disponibilité</h4>
+            <p>STP, VRRP, protocoles de redondance et routage de secours pour résilience.</p>
+          </div>
+
+          <div class="tile" role="listitem" tabindex="0">
+            <h4>Supervision</h4>
+            <p>Collecte SNMP, tableaux de bord, alerting et journalisation (logs).</p>
+          </div>
+        </div>
       </section>
 
-      <section id="telecom" class="skill-card" aria-labelledby="t-title">
-        <h3 id="t-title">Télécoms</h3>
-        <ul>
-          <li>Concepts 4G / 5G — architecture, couches, QoS</li>
-          <li>Réseaux d'accès radio — planification basique</li>
-        </ul>
+      <!-- PROGRAMMATION -->
+      <section id="programmation" class="category anchor" aria-labelledby="p-title">
+        <div class="category-head">
+          <img src="programmation.jpg" alt="Programmation" class="cat-img">
+          <div class="cat-meta">
+            <div id="p-title" class="cat-title">Programmation & Scripting</div>
+            <div class="cat-desc">Automatisation et outils pour gérer réseaux et systèmes.</div>
+          </div>
+        </div>
+
+        <div class="subskills">
+          <div class="tile" tabindex="0">
+            <h4>Python</h4>
+            <p>Automatisation, scripts d'administration, parsing, utilisation d'API.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Shell</h4>
+            <p>Scripts Bash pour déploiement, sauvegarde et tâches d'administration.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Jupyter</h4>
+            <p>Notebooks pour démonstration, prototypage et visualisation (CodecPlayer).</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Outils embarqués</h4>
+            <p>Interaction avec microcontrôleurs (Pico) et Raspberry pour intégration.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="programmation" class="skill-card" aria-labelledby="p-title">
-        <h3 id="p-title">Programmation & Scripting</h3>
-        <ul>
-          <li><strong>Python</strong> — scripts d'automatisation, parsing, API calls</li>
-          <li><strong>Shell</strong> — automatisation d'administration</li>
-          <li><strong>C</strong> — compréhension bas niveau et petits outils</li>
-        </ul>
+      <!-- WEB -->
+      <section id="web" class="category anchor" aria-labelledby="w-title">
+        <div class="category-head">
+          <img src="siteweb.jpg" alt="Web" class="cat-img">
+          <div class="cat-meta">
+            <div id="w-title" class="cat-title">Web & Frontend</div>
+            <div class="cat-desc">Intégration, UI légère et échanges API.</div>
+          </div>
+        </div>
+
+        <div class="subskills">
+          <div class="tile" tabindex="0">
+            <h4>HTML / CSS</h4>
+            <p>Structure sémantique, responsive et optimisation des ressources.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>JavaScript</h4>
+            <p>Interactions simples, DOM et widgets (ipywidgets côté notebook).</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>APIs / JSON</h4>
+            <p>Conception d'APIs REST et échanges JSON entre web et app Android.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Déploiement</h4>
+            <p>Hébergement statique, optimisation et bonnes pratiques de déploiement.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="web" class="skill-card" aria-labelledby="w-title">
-        <h3 id="w-title">Web</h3>
-        <ul>
-          <li>HTML / CSS — intégration, responsive, sémantique</li>
-          <li>Basique JS — interactions simples, DOM</li>
-          <li>Déploiement statique — hébergement, optimisation images</li>
-        </ul>
+      <!-- OUTILS & SYSTEMES -->
+      <section id="tools" class="category anchor" aria-labelledby="tools-title">
+        <div class="category-head">
+          <img src="linux.png" alt="Linux" class="cat-img">
+          <div class="cat-meta">
+            <div id="tools-title" class="cat-title">Outils & Systèmes</div>
+            <div class="cat-desc">Environnements et analyses pour exploitation et dépannage.</div>
+          </div>
+        </div>
+
+        <div class="subskills">
+          <div class="tile" tabindex="0">
+            <h4>Linux</h4>
+            <p>Administration, services, scripts et gestion des permissions.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Wireshark</h4>
+            <p>Capture et décodage de paquets pour analyse fine du trafic.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Packet Tracer</h4>
+            <p>Simulations de topologies et vérification de configurations réseau.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Gestion de version</h4>
+            <p>Git : commits, branches et workflows simples pour code et documents.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="tools" class="skill-card" aria-labelledby="tools-title">
-        <h3 id="tools-title">Outils & environnements</h3>
-        <ul>
-          <li>Linux — administration, scripting</li>
-          <li>Wireshark — capture & analyse</li>
-          <li>Git — workflow basique</li>
-        </ul>
+      <!-- TELECOMS -->
+      <section id="telecom" class="category anchor" aria-labelledby="t-title">
+        <div class="category-head">
+          <img src="cablecoaxial.png" alt="Télécoms" class="cat-img">
+          <div class="cat-meta">
+            <div id="t-title" class="cat-title">Télécoms</div>
+            <div class="cat-desc">Supports physiques, accès radio et règles de qualité.</div>
+          </div>
+        </div>
+
+        <div class="subskills">
+          <div class="tile" tabindex="0">
+            <h4>Supports physiques</h4>
+            <p>Câbles coaxiaux, paires, caractéristiques et mesures de signal.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Réseaux d'accès</h4>
+            <p>Principes 4G/5G, QoS et aspects de couverture radio.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Mesures</h4>
+            <p>Tests de performance et validation des débits et latences.</p>
+          </div>
+        </div>
       </section>
 
-      <section id="soft" class="skill-card soft" aria-labelledby="s-title">
-        <h3 id="s-title">Soft skills</h3>
-        <ul>
-          <li>Travail en équipe — communication et documentation</li>
-          <li>Organisation — gestion de tâches et priorisation</li>
-          <li>Autonomie et apprentissage rapide</li>
-        </ul>
+      <!-- SOFT SKILLS -->
+      <section id="soft" class="category anchor" aria-labelledby="s-title">
+        <div class="category-head">
+          <img src="ereputation.png" alt="Soft skills" class="cat-img">
+          <div class="cat-meta">
+            <div id="s-title" class="cat-title">Soft skills</div>
+            <div class="cat-desc">Compétences transverses pour le travail en équipe et la livraison.</div>
+          </div>
+        </div>
+
+        <div class="subskills">
+          <div class="tile" tabindex="0">
+            <h4>Communication</h4>
+            <p>Rédaction de comptes rendus, présentations et vulgarisation.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Gestion de projet</h4>
+            <p>Planification, jalons et coordination d'équipe.</p>
+          </div>
+
+          <div class="tile" tabindex="0">
+            <h4>Autonomie</h4>
+            <p>Résolution d'incidents et apprentissage rapide sur de nouvelles technologies.</p>
+          </div>
+        </div>
       </section>
     </div>
   </main>
 
   <script>
-    // active nav
+    // conserve activation nav et smooth-scroll existants
     (function(){
       const links = document.querySelectorAll('.nav-links a');
       const cur = location.pathname.split('/').pop() || 'index.html';
       links.forEach(a=>{ if(a.getAttribute('href')===cur) a.classList.add('active'); });
     })();
-    // smooth anchor scroll if user comes from a project link
+
     (function(){
       if(location.hash){
-        const t = document.querySelector(location.hash);
-        if(t) setTimeout(()=>t.scrollIntoView({behavior:'smooth', block:'start'}),100);
+        const id = location.hash.slice(1);
+        const el = document.getElementById(id);
+        if(el) setTimeout(()=> el.scrollIntoView({behavior:'smooth', block:'start'}), 120);
       }
+
+      // Intercept clicks to anchors so navigation is smooth
+      document.addEventListener('click', function(e){
+        const a = e.target.closest('a');
+        if(!a) return;
+        const href = a.getAttribute('href') || '';
+        if(href.startsWith('#') || href.match(/(?:^|\/)Competences\.html#(.+)$/i)){
+          e.preventDefault();
+          const anchor = href.startsWith('#') ? href.slice(1) : (href.split('#')[1] || '');
+          if(!anchor) return;
+          const target = document.getElementById(anchor);
+          if(target){
+            target.scrollIntoView({behavior:'smooth', block:'start'});
+            history.replaceState(null, '', '#'+anchor);
+          } else {
+            location.href = href;
+          }
+        }
+      });
     })();
   </script>
 </body>
