@@ -5,40 +5,40 @@
   <title>Profil — Matteo Giuffre</title>
   <link rel="stylesheet" href="css.css">
   <style>
-    /* Page Profil : 3 grandes lignes (about / avatar / cards) */
+    /* Page Profil : avatar à gauche du bloc À propos, puis cards en dessous */
     .profile-wrap{ max-width:1100px; margin:0 auto; padding:1.6rem 1rem; }
 
-    /* Row spacing */
-    .row { width:100%; display:flex; justify-content:center; margin-bottom:1.6rem; }
-
-    /* ABOUT: center text block */
-    .about-block{
-      max-width:820px;
-      text-align:left; /* contenu textuel aligné à gauche for readability, container centered */
+    /* TOP: two-column layout (avatar | about) */
+    .top-row{
+      display:flex;
+      gap:2rem;
+      align-items:flex-start;
+      justify-content:center;
+      margin-bottom:1.6rem;
     }
-    .about-block h2{ font-size:1.6rem; margin:0 0 .6rem 0; }
-    .about-block p{ color:var(--muted); margin:0 0 .9rem 0; line-height:1.6; }
+    .avatar-col{ width:320px; display:flex; justify-content:center; }
+    .about-col{ flex:1; max-width:760px; }
 
-    /* Avatar row: centered circular avatar */
+    .about-col h2{ font-size:1.6rem; margin:0 0 .6rem 0; }
+    .about-col p{ color:var(--muted); margin:0 0 .9rem 0; line-height:1.6; }
+
+    /* Avatar circular */
     .avatar-wrap{
-      width:300px;
-      height:300px;
+      width:260px;
+      height:260px;
       border-radius:50%;
       overflow:hidden;
-      display:block;
       box-shadow: 0 32px 80px rgba(8,20,30,0.12);
-      border-radius:50%;
       background:transparent;
-      margin-bottom:0;
+      display:block;
     }
     .avatar-wrap img{
       width:100%;
       height:100%;
       object-fit:cover;
-      /* adjust this to better show the face: 50% X% (horizontal 50% vertical X%) */
+      /* Ajuste vertical du cadrage du visage (ex : 50% 32%) */
       object-position: 50% 32%;
       display:block;
-      -webkit-user-select:none; user-select:none;
     }
 
     /* Cards row: two large cards centered */
@@ -48,9 +48,9 @@
       gap:1.25rem;
       width:100%;
       max-width:920px;
+      margin:0 auto;
       align-items:start;
     }
-
     .info-card{
       background:#fff;
       border-radius:14px;
@@ -58,17 +58,22 @@
       box-shadow:0 12px 34px rgba(8,20,30,0.06);
       border:1px solid rgba(11,30,50,0.03);
     }
-    .info-card h3{ margin:0 0 .45rem 0; font-size:1.05rem; color:#0b2540;}
+    .info-card h3{ margin:0 0 .45rem 0; font-size:1.05rem; color:#0b2540; }
     .info-card p{ margin:0; color:var(--muted); }
     .info-card ul{ margin:.6rem 0 0 1.15rem; color:var(--muted); }
     .info-card li{ margin:.35rem 0; }
 
-    /* Responsive: stack everything vertically on small screens */
+    /* Responsive: stack vertically on small screens */
     @media (max-width:920px){
+      .top-row{ flex-direction:column; align-items:center; gap:1rem; }
+      .avatar-col{ width:auto; }
       .avatar-wrap{ width:220px; height:220px; }
-      .cards-row{ grid-template-columns: 1fr; max-width:92%; }
-      .about-block{ padding:0 .4rem; }
+      .about-col{ max-width:100%; padding:0 .4rem; }
+      .cards-row{ grid-template-columns:1fr; max-width:92%; }
     }
+
+    /* Accessibility focus */
+    .avatar-wrap:focus { outline: 4px solid rgba(11,116,230,0.14); outline-offset:6px; border-radius:50%; }
   </style>
 </head>
 <body>
@@ -86,9 +91,15 @@
   </header>
 
   <main class="profile-wrap">
-    <!-- ROW 1: À propos (centered block) -->
-    <div class="row">
-      <div class="about-block" aria-labelledby="about-title">
+    <!-- TOP: avatar (gauche) + about (droite) -->
+    <div class="top-row" role="region" aria-label="Photo et présentation">
+      <div class="avatar-col" aria-hidden="false">
+        <div class="avatar-wrap" tabindex="0" aria-label="Photo de Matteo Giuffre">
+          <img src="photo.jpg" alt="Photo Matteo Giuffre">
+        </div>
+      </div>
+
+      <div class="about-col" aria-labelledby="about-title">
         <h2 id="about-title">À propos</h2>
         <p>
           Je suis étudiant en Réseaux et Télécommunications et je réalise actuellement une alternance en entreprise.
@@ -104,34 +115,25 @@
       </div>
     </div>
 
-    <!-- ROW 2: Avatar centered -->
-    <div class="row" aria-hidden="false">
-      <div class="avatar-wrap" tabindex="0" aria-label="Photo de Matteo Giuffre">
-        <img src="photo.jpg" alt="Photo Matteo Giuffre">
+    <!-- BOTTOM: cards (Certifications & Langues) -->
+    <div class="cards-row" role="region" aria-label="Certifications et langues">
+      <div class="info-card" role="article" aria-labelledby="certs-title">
+        <h3 id="certs-title">Certifications</h3>
+        <p>Obtention des certifications Cisco :</p>
+        <ul>
+          <li><strong>CCNA 1</strong></li>
+          <li><strong>CCNA 2</strong></li>
+        </ul>
       </div>
-    </div>
 
-    <!-- ROW 3: Certifications & Langues (two large cards, centered) -->
-    <div class="row">
-      <div class="cards-row" role="region" aria-label="Certifications et langues">
-        <div class="info-card" role="article" aria-labelledby="certs-title">
-          <h3 id="certs-title">Certifications</h3>
-          <p>Obtention des certifications Cisco :</p>
-          <ul>
-            <li><strong>CCNA 1</strong></li>
-            <li><strong>CCNA 2</strong></li>
-          </ul>
-        </div>
-
-        <div class="info-card" role="article" aria-labelledby="langs-title">
-          <h3 id="langs-title">Langues</h3>
-          <p>Voici les langues que je parle et mon niveau :</p>
-          <ul>
-            <li><strong>Français</strong> — langue natale</li>
-            <li><strong>Anglais</strong> — niveau C2</li>
-            <li><strong>Italien</strong> — niveau C2</li>
-          </ul>
-        </div>
+      <div class="info-card" role="article" aria-labelledby="langs-title">
+        <h3 id="langs-title">Langues</h3>
+        <p>Voici les langues que je parle et mon niveau :</p>
+        <ul>
+          <li><strong>Français</strong> — langue natale</li>
+          <li><strong>Anglais</strong> — niveau C2</li>
+          <li><strong>Italien</strong> — niveau C2</li>
+        </ul>
       </div>
     </div>
   </main>
