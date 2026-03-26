@@ -11,7 +11,7 @@
       --accent:#0b81ff;
       --radius:12px;
       --tile-gap:1rem;
-      --soft-bg: #fff8e0; /* léger jaune */
+      --soft-bg: #fff8e0;
       --soft-border: #fff1b8;
     }
     .container--spaced{ max-width:1100px;margin:0 auto;padding:1.25rem; }
@@ -33,7 +33,6 @@
       flex-direction:column;
     }
 
-    /* style spécifique pour la section soft skills (fond jaune clair + bord) */
     .category.soft{
       background: linear-gradient(180deg, var(--soft-bg), var(--card));
       border: 1px solid var(--soft-border);
@@ -53,7 +52,6 @@
     .cat-title{ margin:0;font-size:1.05rem;font-weight:700;color:#0b2540; }
     .cat-desc{ margin:0;color:var(--muted); font-size:.92rem; }
 
-    /* Subskills: 2 columns on desktop, tiles uniform */
     .subskills{
       display:grid;
       grid-template-columns: repeat(2, 1fr);
@@ -66,14 +64,13 @@
       background:white;
       border-radius:10px;
       padding:1rem;
-      min-height:130px; /* tiles identiques */
+      min-height:130px;
       box-shadow:0 6px 14px rgba(8,20,30,0.03);
       display:flex;
       flex-direction:column;
       justify-content:flex-start;
       gap:.6rem;
     }
-    /* pour tiles dans .category.soft on garde le contraste mais pas trop différent */
     .category.soft .tile{ background: #fffdf5; }
 
     .tile h4{ margin:0;font-size:1rem;color:#092036; font-weight:700;}
@@ -107,7 +104,6 @@
     <p class="lead">Compétences organisées par grandes familles. Cliquez sur une compétence depuis Projets pour y accéder directement.</p>
 
     <div class="categories">
-      <!-- RÉSEAUX (image reseaux.jpg, sans Haute disponibilité ni Supervision) -->
       <section id="reseaux" class="category anchor" aria-labelledby="r-title">
         <div class="category-head">
           <img src="reseaux.jpg" alt="Réseaux" class="cat-img">
@@ -140,7 +136,6 @@
         </div>
       </section>
 
-      <!-- PROGRAMMATION (ajout C++ et Java, retiré Embarqué) -->
       <section id="programmation" class="category anchor" aria-labelledby="p-title">
         <div class="category-head">
           <img src="programmation.jpg" alt="Programmation" class="cat-img">
@@ -178,7 +173,6 @@
         </div>
       </section>
 
-      <!-- DEVELOPPEMENT WEB (titre modifié, API remplacé par PHP) -->
       <section id="web" class="category anchor" aria-labelledby="w-title">
         <div class="category-head">
           <img src="siteweb.jpg" alt="Web" class="cat-img">
@@ -211,7 +205,6 @@
         </div>
       </section>
 
-      <!-- OUTILS & SYSTEMES (ajout Bases de données (SQL)) -->
       <section id="tools" class="category anchor" aria-labelledby="tools-title">
         <div class="category-head">
           <img src="linux.png" alt="Linux" class="cat-img">
@@ -249,7 +242,6 @@
         </div>
       </section>
 
-      <!-- TÉLÉCOMMUNICATIONS (image telephonie.jpg, ajout Analyse du signal) -->
       <section id="telecom" class="category anchor" aria-labelledby="t-title">
         <div class="category-head">
           <img src="telephonie.jpg" alt="Télécommunications" class="cat-img">
@@ -282,7 +274,6 @@
         </div>
       </section>
 
-      <!-- SOFT SKILLS (image updated, highlighted in yellow) -->
       <section id="soft" class="category soft anchor" aria-labelledby="s-title">
         <div class="category-head">
           <img src="softskills.png" alt="Soft skills" class="cat-img">
@@ -318,14 +309,12 @@
   </main>
 
   <script>
-    // activation nav
     (function(){
       const links = document.querySelectorAll('.nav-links a');
       const cur = location.pathname.split('/').pop() || 'index.html';
       links.forEach(a=>{ if(a.getAttribute('href')===cur) a.classList.add('active'); });
     })();
 
-    // smooth-scroll + intercept anchors
     (function(){
       if(location.hash){
         const id = location.hash.slice(1);
