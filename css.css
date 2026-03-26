@@ -27,9 +27,7 @@ body{
   color:var(--text);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  background:
-    radial-gradient(circle at 8% 6%, rgba(11,116,230,0.02) 0, transparent 12%),
-    linear-gradient(180deg, var(--bg-start) 0%, var(--bg-end) 100%);
+  background-image: url('fond.jpg');
   background-attachment: fixed;
   line-height:1.45;
   font-size:16px;
