@@ -1,4 +1,4 @@
-/* css.css — version finale prête à coller (conserve le style existant + overrides demandés) */
+/* css.css — version du dépôt étendue avec les overrides et le hover-request */
 
 /* Palette & variables */
 :root{
@@ -15,7 +15,7 @@
   --max-width: 1100px;
   --focus: rgba(11,116,230,0.16);
   --transition: 180ms cubic-bezier(.2,.9,.2,1);
-  --text: #ffffff; /* par défaut le texte global est blanc sur ton fond */
+  --text: #ffffff;
 }
 
 /* Reset / global */
@@ -73,13 +73,14 @@ body{
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -8px;
-  width: 48px;
-  height: 3px;
+  bottom: -8px;         /* distance sous la nav */
+  width: 48px;          /* largeur du trait */
+  height: 3px;          /* épaisseur */
   border-radius: 3px;
-  background: #ffffff;
+  background: #ffffff;  /* couleur du trait (blanc) */
   box-shadow: 0 4px 10px rgba(11,129,255,0.06);
 }
+
 .nav-links a:hover::after{
   content: "";
   position: absolute;
@@ -91,6 +92,7 @@ body{
   border-radius: 2px;
   background: rgba(255,255,255,0.6);
 }
+
 
 /* CTA CV */
 .btn-cv{ background:transparent; border:1px solid rgba(255,255,255,0.08); color:#fff; padding:.45rem .7rem; border-radius:8px; font-weight:700; }
@@ -122,20 +124,13 @@ h1{ font-size:2rem; margin:0 0 .5rem 0; }
 .projet-card:hover, .tile:hover{ transform:translateY(-6px); box-shadow: var(--card-shadow-strong); }
 
 /* Project image & overlay */
-/* overlay background made light so black text is readable per your request */
 .projet-card img{ width:100%; height:160px; object-fit:cover; display:block; border-radius:inherit; }
-.projet-overlay{
-  position:absolute; left:0; right:0; bottom:0;
-  padding:.6rem .9rem;
-  background:linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.75) 100%);
-  color:#000; font-weight:700;
-}
+/* overlay default — will be overridden below to black text and hover -> white */
+.projet-overlay{ position:absolute; left:0; right:0; bottom:0; padding:.6rem .9rem; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(2,6,23,0.45) 100%); color:#fff; font-weight:700; }
 
 /* Modal */
 .modal-backdrop{ display:none; position:fixed; inset:0; background:rgba(2,6,23,0.55); z-index:2000; align-items:center; justify-content:center; padding:1rem; }
 .modal-card{ width:100%; max-width:920px; max-height:90vh; overflow:auto; padding:1.25rem; background:linear-gradient(180deg,#fff 0%, #fbfdff 100%); border-radius:14px; box-shadow:0 36px 80px rgba(2,6,23,0.5); }
-/* Ensure modal text is black for readability */
-.modal-card, .modal-card * { color: #000 !important; }
 
 /* Competences layout */
 .categories{ display:grid; grid-template-columns: repeat(auto-fit, minmax(320px,1fr)); gap:1.2rem; margin-top:6px; }
@@ -207,14 +202,16 @@ h1{ font-size:2rem; margin:0 0 .5rem 0; }
 /* Footer spacing */
 footer{ padding:2rem 1rem; color:var(--muted); font-size:.95rem; }
 
-/* ---------------------------------------------------------
-   COLOR OVERRIDES (blanc / noir) demandés
-   - Index hero (title + intro): blanc
-   - Profil about text + small skills line: blanc
-   - Competences page title + lead: blanc
-   - Experience lead: blanc
-   - Projets overlay & modals: noir
-   --------------------------------------------------------- */
+
+/* ===================================================================
+   OVERRIDES REQUESTED
+   - Index hero (title + intro) : blanc
+   - Profil about text : blanc
+   - Competences page title/lead : blanc
+   - Experience lead : blanc
+   - Projects overlay default: noir (but white on hover)
+   - Modal text default: noir, but links keep accent blue+underline
+   =================================================================== */
 
 /* Index hero title + intro -> blanc */
 #hero-title,
@@ -234,7 +231,7 @@ footer{ padding:2rem 1rem; color:var(--muted); font-size:.95rem; }
   color: #fff !important;
 }
 
-/* Compétences page: titre h1 et lead -> blanc (ciblé aux pages utilisant container--spaced) */
+/* Compétences page: titre h1 et lead -> blanc */
 .container--spaced > h1,
 .container--spaced > .lead {
   color: #fff !important;
@@ -247,9 +244,38 @@ footer{ padding:2rem 1rem; color:var(--muted); font-size:.95rem; }
   color: #fff !important;
 }
 
-/* Projects overlays and modal text should be black */
-.projet-overlay { color: #000 !important; }
-.modal-card, .modal-card * { color: #000 !important; }
+/* Projects: make overlay text black by default (as requested),
+   but the hover rule below will switch it to white when hovered */
+.projet-overlay {
+  background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.75) 100%);
+  color: #000 !important;
+}
+
+/* On hover of the whole project card: darken overlay + make text white */
+.projet-card .projet-overlay{
+  transition: background .18s ease, color .18s ease, transform .18s ease;
+}
+.projet-card:hover .projet-overlay{
+  background: linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(2,6,23,0.72) 100%);
+  color: #ffffff !important;
+}
+
+/* Modal: default text black for readability */
+.modal-card, .modal-card * {
+  color: #000 !important;
+}
+
+/* But keep links inside modal as blue accent + underlined (to match previous behavior) */
+.modal-card a{
+  color: var(--accent) !important;
+  text-decoration: underline;
+  font-weight: 600;
+}
+.modal-card a:hover{
+  opacity: 0.92;
+}
 
 /* Safety classes */
 .text-white, .has-white-text { color:#fff !important; }
+
+/* End of css.css */
