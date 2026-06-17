@@ -5,8 +5,7 @@
   <title>Profil — Matteo Giuffre</title>
   <link rel="stylesheet" href="css.css">
   <style>
-    /* Page Profil : avatar à gauche du bloc À propos, puis cards en dessous */
-    .profile-wrap{ max-width:1100px; margin:0 auto; padding:1.6rem 1rem; }
+    .profile-wrap{ max-width:1100px; margin:0 auto; padding:2rem 1rem; }
 
     /* TOP: two-column layout (avatar | about) */
     .top-row{
@@ -14,13 +13,14 @@
       gap:2rem;
       align-items:flex-start;
       justify-content:center;
-      margin-bottom:1.6rem;
+      margin-bottom:1.75rem;
     }
     .avatar-col{ width:320px; display:flex; justify-content:center; }
     .about-col{ flex:1; max-width:760px; }
 
-    .about-col h2{ font-size:1.6rem; margin:0 0 .6rem 0; }
+    .about-col h2{ font-size:1.7rem; margin:0 0 .7rem 0; color:#fff; }
     .about-col p{ color:var(--muted); margin:0 0 .9rem 0; line-height:1.6; }
+    .profile-actions{ display:flex; flex-wrap:wrap; gap:.75rem; margin-top:1rem; }
 
     /* Avatar circular */
     .avatar-wrap{
@@ -41,13 +41,12 @@
       display:block;
     }
 
-    /* Cards row: two large cards centered */
     .cards-row{
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap:1.25rem;
       width:100%;
-      max-width:920px;
+      max-width:760px;
       margin:0 auto;
       align-items:start;
     }
@@ -63,6 +62,48 @@
     .info-card ul{ margin:.6rem 0 0 1.15rem; color:var(--muted); }
     .info-card li{ margin:.35rem 0; }
 
+    .interests-section{
+      margin:2rem auto 0;
+      max-width:1000px;
+    }
+    .section-heading{
+      text-align:center;
+      color:#fff;
+      margin:0 0 .5rem 0;
+      font-size:1.55rem;
+    }
+    .section-lead{
+      max-width:720px;
+      margin:0 auto 1.25rem;
+      color:#fff;
+      text-align:center;
+      line-height:1.65;
+    }
+    .interests-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:1rem;
+    }
+    .interest-card{
+      background:#fff;
+      border-radius:10px;
+      overflow:hidden;
+      box-shadow:0 12px 34px rgba(8,20,30,0.08);
+      border:1px solid rgba(11,30,50,0.05);
+    }
+    .interest-card img{
+      width:100%;
+      aspect-ratio:4/3;
+      object-fit:cover;
+      display:block;
+    }
+    .interest-card h3{
+      margin:0;
+      padding:.85rem .9rem;
+      color:#0b2540;
+      font-size:1rem;
+    }
+
     /* Responsive: stack vertically on small screens */
     @media (max-width:920px){
       .top-row{ flex-direction:column; align-items:center; gap:1rem; }
@@ -70,6 +111,10 @@
       .avatar-wrap{ width:220px; height:220px; }
       .about-col{ max-width:100%; padding:0 .4rem; }
       .cards-row{ grid-template-columns:1fr; max-width:92%; }
+      .interests-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width:560px){
+      .interests-grid{ grid-template-columns:1fr; }
     }
 
     /* Accessibility focus */
@@ -105,17 +150,15 @@
         <p>Actuellement en alternance au sein d’une entreprise située à Monaco, je réalise cette expérience dans le cadre de ma deuxième année de BUT2 et je développe chaque jour mes compétences professionnelles en les appliquant à des projets concrets.</p>
         <p>Je suis également étudiant en deuxième année de BUT, formation au cours de laquelle j’ai pu acquérir et renforcer de nombreuses compétences. Les différents projets réalisés m’ont permis de mettre en pratique mes connaissances, mais aussi de les approfondir et de gagner en autonomie.</p>
         <p>Auparavant, j’ai obtenu un baccalauréat américain au sein du CIV, une expérience enrichissante qui m’a apporté une ouverture internationale ainsi qu’une bonne maîtrise de l’anglais.</p>
-        <p>En dehors de mes études et de mon travail, j’apprécie particulièrement jouer au basket, regarder des films et des séries, jouer aux échecs ainsi que pratiquer le ski.</p>
 
-        <div style="margin-top:.6rem">
-          <span style="font-weight:700;margin-right:.6rem">Compétences clés:</span>
-          <span style="color:var(--muted)">Réseaux · Télécoms · Automatisation · Supervision</span>
+        <div class="profile-actions">
+          <a class="cta" href="Projets.html">Voir mes projets</a>
+          <a class="cta cta-secondary" href="Competences.html">Voir mes compétences</a>
         </div>
       </div>
     </div>
 
-    <!-- BOTTOM: cards (Certifications & Langues) -->
-    <div class="cards-row" role="region" aria-label="Certifications et langues">
+    <div class="cards-row" role="region" aria-label="Certifications">
       <div class="info-card" role="article" aria-labelledby="certs-title">
         <h3 id="certs-title">Certifications</h3>
         <p>Obtention des certifications Cisco :</p>
@@ -124,17 +167,32 @@
           <li><strong>CCNA 2</strong></li>
         </ul>
       </div>
-
-      <div class="info-card" role="article" aria-labelledby="langs-title">
-        <h3 id="langs-title">Langues</h3>
-        <p>Voici les langues que je parle et mon niveau :</p>
-        <ul>
-          <li><strong>Français</strong> — langue maternelle</li>
-          <li><strong>Italien</strong> — langue maternelle</li>
-          <li><strong>Anglais</strong> — niveau C2</li>
-        </ul>
-      </div>
     </div>
+
+    <section class="interests-section" aria-labelledby="interests-title">
+      <h2 id="interests-title" class="section-heading">Centres d'intérêt</h2>
+      <p class="section-lead">
+        En dehors de mes études et de mon alternance, ces activités m'aident à garder un équilibre et à développer des qualités utiles dans mes projets : esprit d'équipe, concentration, curiosité et persévérance.
+      </p>
+      <div class="interests-grid">
+        <article class="interest-card">
+          <img src="basketball.png" alt="Basketball">
+          <h3>Basketball</h3>
+        </article>
+        <article class="interest-card">
+          <img src="filmsetseries.png" alt="Films et séries">
+          <h3>Films et séries</h3>
+        </article>
+        <article class="interest-card">
+          <img src="echecs.png" alt="Échecs">
+          <h3>Échecs</h3>
+        </article>
+        <article class="interest-card">
+          <img src="ski.jpeg" alt="Ski">
+          <h3>Ski</h3>
+        </article>
+      </div>
+    </section>
   </main>
 
   <script>

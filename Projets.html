@@ -9,23 +9,24 @@
     :root{ --muted:#6b7b85; --accent:#0b81ff; }
     .container { max-width:1100px; margin:0 auto; padding:1rem; }
     .projets-section { padding:2rem 0; }
-    .projets-title { font-size:2rem; margin:0 0 0.75rem 0; }
-    .section-intro { max-width:760px; margin:0 0 1.5rem 0; color:#fff; line-height:1.65; }
+    .projets-title { font-size:2rem; margin:0 0 0.75rem 0; text-align:center; }
+    .section-intro { max-width:760px; margin:0 auto 1.5rem; color:#fff; line-height:1.65; text-align:center; }
     .projets-category{ margin-top:2rem; }
-    .category-title{ margin:0 0 1rem 0; color:#fff; font-size:1.35rem; }
+    .category-title{ margin:0 0 1rem 0; color:#fff; font-size:1.35rem; text-align:center; }
 
     .projets-grid{
       display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-      gap:4rem;
+      grid-template-columns:repeat(2, minmax(260px, 1fr));
+      gap:2rem;
       justify-items:center;
       align-items:start;
       padding:0 0.75rem;
     }
 
     .projet-card{
-      width:300px;
-      height:180px;
+      width:100%;
+      max-width:420px;
+      height:220px;
       border-radius:10px;
       overflow:hidden;
       position:relative;
@@ -54,7 +55,7 @@
       padding:.6rem .8rem;
       background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.45) 100%);
       color:#fff;
-      transform:translateY(100%);
+      transform:translateY(0);
       transition:transform .18s ease;
       font-weight:600;
       font-size:1rem;
@@ -62,6 +63,7 @@
     }
     .projet-card:hover .projet-overlay,
     .projet-card:focus .projet-overlay { transform:translateY(0); }
+    .projets-grid > .projet-card:only-child{ grid-column:1 / -1; }
 
     .modal-backdrop{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(2,6,23,0.6); z-index:2000; padding:1rem; }
     .modal-card{ background:#fff; border-radius:12px; width:100%; max-width:900px; max-height:90vh; overflow:auto; padding:1.25rem; box-shadow:0 24px 60px rgba(2,6,23,0.45); position:relative; }
@@ -80,8 +82,8 @@
     .modal-nav-btn.hidden{ display:none !important; }
 
     @media (max-width:760px){
-      .projets-grid{ gap:1rem; }
-      .projet-card{ width:92%; height:160px; }
+      .projets-grid{ gap:1rem; grid-template-columns:1fr; }
+      .projet-card{ width:100%; height:180px; }
       .modal-nav-btn{ display:none; }
     }
 
@@ -121,20 +123,6 @@
           <div class="projet-overlay">Sensibilisation à l'hygiène informatique et à la cybersécurité</div>
         </div>
 
-        <div class="projet-card" data-projet="SAE14" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
-          <img src="ereputation.png" alt="E-réputation">
-          <div class="projet-overlay">Analyse et sensibilisation à l'e-réputation</div>
-        </div>
-
-        <div class="projet-card" data-projet="APPCOM" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
-          <img src="applicationcommunicante.png" alt="Application de suivi des failles réseau">
-          <div class="projet-overlay">Application de suivi des failles réseau</div>
-        </div>
-
-        <div class="projet-card" data-projet="SAE33" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
-          <img src="SAE_33_topo.jpg" alt="Réseau informatique sécurisé multisite">
-          <div class="projet-overlay">Conception d'un réseau multisite sécurisé</div>
-        </div>
       </div>
     </section>
 
@@ -156,9 +144,9 @@
           <div class="projet-overlay">Conception d'une infrastructure réseau d'entreprise</div>
         </div>
 
-        <div class="projet-card" data-projet="SAE31" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
-          <img src="fluxmedia.png" alt="Système de transmission audio">
-          <div class="projet-overlay">Interface de lecture et traitement de flux audio</div>
+        <div class="projet-card" data-projet="SAE33" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
+          <img src="SAE_33_topo.jpg" alt="Réseau informatique sécurisé multisite">
+          <div class="projet-overlay">Conception d'un réseau multisite sécurisé</div>
         </div>
       </div>
     </section>
@@ -174,6 +162,16 @@
         <div class="projet-card" data-projet="THALES09" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
           <img src="thales.jpg" alt="Système de capture photo pour banc avionique">
           <div class="projet-overlay">Système de capture photo pour banc avionique</div>
+        </div>
+
+        <div class="projet-card" data-projet="SAE31" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
+          <img src="fluxmedia.png" alt="Système de transmission audio">
+          <div class="projet-overlay">Interface de lecture et traitement de flux audio</div>
+        </div>
+
+        <div class="projet-card" data-projet="APPCOM" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
+          <img src="applicationcommunicante.png" alt="Application de suivi des failles réseau">
+          <div class="projet-overlay">Application de suivi des failles réseau</div>
         </div>
       </div>
     </section>
@@ -223,16 +221,6 @@
             <p><strong>Travail réalisé :</strong> Mesures et interprétation technique.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#supports-physiques">Supports physiques</a>, <a href="Competences.html#mesures">Mesures</a></p>
             <p style="margin-top:0.5rem"><a href="SAE13.pdf" rel="noopener">Compte rendu SAE13</a></p>
-          </div>
-        </div>
-      `,
-      SAE14: `
-        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
-          <img src="ereputation.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
-          <div style="flex:1">
-            <p><strong>L'objectif du projet :</strong> Comprendre les enjeux de l’e‑réputation et sensibiliser.</p>
-            <p><strong>Travail réalisé :</strong> Recherche et production d’un support pédagogique.</p>
-            <p><strong>Compétences :</strong> <a href="Competences.html#travail-equipe">Travail d'équipe</a>, <a href="Competences.html#communication">Communication</a></p>
           </div>
         </div>
       `,
@@ -325,11 +313,6 @@
         "Observation du fonctionnement du support physique.",
         "Réalisation de mesures sur la liaison.",
         "Interprétation technique des résultats obtenus."
-      ],
-      SAE14: [
-        "Recherche sur l'identité numérique et l'image en ligne.",
-        "Sélection d'exemples concrets pour illustrer les risques.",
-        "Production d'un support pédagogique de sensibilisation."
       ],
       SAE21: [
         "Mise en place des VLAN et du routage inter-VLAN.",
