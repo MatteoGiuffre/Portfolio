@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8"/>
@@ -10,7 +10,9 @@
     .container { max-width:1100px; margin:0 auto; padding:1rem; }
     .projets-section { padding:2rem 0; }
     .projets-title { font-size:2rem; margin:0 0 0.75rem 0; }
-    .controls { margin-bottom:1rem; color:var(--muted); }
+    .section-intro { max-width:760px; margin:0 0 1.5rem 0; color:#fff; line-height:1.65; }
+    .projets-category{ margin-top:2rem; }
+    .category-title{ margin:0 0 1rem 0; color:#fff; font-size:1.35rem; }
 
     .projets-grid{
       display:grid;
@@ -84,6 +86,8 @@
     }
 
     .modal-card a { color:var(--accent); text-decoration:underline; }
+    .work-list{ margin:.45rem 0 0 1.15rem; padding:0; }
+    .work-list li{ margin:.25rem 0; }
   </style>
 </head>
 <body>
@@ -103,77 +107,76 @@
   <main class="projets-section container">
     <h1 class="projets-title">Mes Projets</h1>
 
-    <div class="controls">
-      Afficher :
-      <select id="filter-semester">
-        <option value="all">Tous</option>
-        <option value="S1">S1</option>
-        <option value="S2">S2</option>
-        <option value="S3">S3</option>
-      </select>
-    </div>
+    <p class="section-intro">
+      Ici, vous retrouverez les différents projets que j'ai réalisés au cours de mon BUT Réseaux et Télécommunications.
+      Ils présentent mes travaux en réseau, cybersécurité, développement et télécommunications.
+      Chaque catégorie est organisée du semestre le plus ancien au plus récent.
+    </p>
 
-    <div id="projets-grid" class="projets-grid" aria-live="polite">
-      <!-- SAE11 -->
-      <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
-        <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
-        <div class="projet-overlay">Hygiène info et à la cybersécurité</div>
-      </div>
+    <section class="projets-category" aria-labelledby="cat-cyber">
+      <h2 id="cat-cyber" class="category-title">Cybersécurité</h2>
+      <div class="projets-grid" aria-live="polite">
+        <div class="projet-card" data-projet="SAE11" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
+          <img src="cyberhygiene.jpg" alt="Hygiène informatique et cybersécurité">
+          <div class="projet-overlay">Sensibilisation à l'hygiène informatique et à la cybersécurité</div>
+        </div>
 
-      <!-- SAE12 -->
-      <div class="projet-card" data-projet="SAE12" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
-        <img src="reseauxinformatiques.jpg" alt="S'initier aux réseaux informatiques">
-        <div class="projet-overlay">S'initier aux réseaux informatiques</div>
-      </div>
+        <div class="projet-card" data-projet="SAE14" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
+          <img src="ereputation.png" alt="E-réputation">
+          <div class="projet-overlay">Analyse et sensibilisation à l'e-réputation</div>
+        </div>
 
-      <!-- SAE13 -->
-      <div class="projet-card" data-projet="SAE13" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
-        <img src="cablecoaxial.png" alt="Découverte d’un dispositif de transmission">
-        <div class="projet-overlay">Découverte d’un dispositif de transmission</div>
-      </div>
+        <div class="projet-card" data-projet="APPCOM" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
+          <img src="applicationcommunicante.png" alt="Application de suivi des failles réseau">
+          <div class="projet-overlay">Application de suivi des failles réseau</div>
+        </div>
 
-      <!-- SAE14 -->
-      <div class="projet-card" data-projet="SAE14" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
-        <img src="ereputation.png" alt="E‑Réputation">
-        <div class="projet-overlay">E‑Réputation</div>
+        <div class="projet-card" data-projet="SAE33" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
+          <img src="SAE_33_topo.jpg" alt="Réseau informatique sécurisé multisite">
+          <div class="projet-overlay">Conception d'un réseau multisite sécurisé</div>
+        </div>
       </div>
+    </section>
 
-      <!-- SAE21 -->
-      <div class="projet-card" data-projet="SAE21" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
-        <img src="reseauentreprise.png" alt="Réseau d'entreprise">
-        <div class="projet-overlay">Réseau d'entreprise</div>
-      </div>
+    <section class="projets-category" aria-labelledby="cat-reseaux">
+      <h2 id="cat-reseaux" class="category-title">Réseaux et télécommunications</h2>
+      <div class="projets-grid" aria-live="polite">
+        <div class="projet-card" data-projet="SAE12" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
+          <img src="reseauxinformatiques.jpg" alt="S'initier aux réseaux informatiques">
+          <div class="projet-overlay">Analyse d'un réseau domestique et de ses performances</div>
+        </div>
 
-      <!-- SAE_Siteweb -->
-      <div class="projet-card" data-projet="SAE_Siteweb" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
-        <img src="siteweb.jpg" alt="Site Web">
-        <div class="projet-overlay">Site Web</div>
-      </div>
+        <div class="projet-card" data-projet="SAE13" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
+          <img src="cablecoaxial.png" alt="Découverte d'un dispositif de transmission">
+          <div class="projet-overlay">Étude d'une liaison de transmission par câble coaxial</div>
+        </div>
 
-      <!-- THALES09 -->
-      <div class="projet-card" data-projet="THALES09" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
-        <img src="thales.jpg" alt="Projet Système Prise Photos Banc Avionique">
-        <div class="projet-overlay">Projet Système Prise Photos Banc Avionique</div>
-      </div>
+        <div class="projet-card" data-projet="SAE21" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
+          <img src="reseauentreprise.png" alt="Réseau d'entreprise">
+          <div class="projet-overlay">Conception d'une infrastructure réseau d'entreprise</div>
+        </div>
 
-      <!-- SAE31 -->
-      <div class="projet-card" data-projet="SAE31" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
-        <img src="fluxmedia.png" alt="Système de Transmission Audio">
-        <div class="projet-overlay">Système de Transmission Audio</div>
+        <div class="projet-card" data-projet="SAE31" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
+          <img src="fluxmedia.png" alt="Système de transmission audio">
+          <div class="projet-overlay">Interface de lecture et traitement de flux audio</div>
+        </div>
       </div>
+    </section>
 
-      <!-- APPCOM -->
-      <div class="projet-card" data-projet="APPCOM" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
-        <img src="applicationcommunicante.png" alt="Applications Communicantes">
-        <div class="projet-overlay">Applications Communicantes</div>
-      </div>
+    <section class="projets-category" aria-labelledby="cat-dev">
+      <h2 id="cat-dev" class="category-title">Développement et systèmes</h2>
+      <div class="projets-grid" aria-live="polite">
+        <div class="projet-card" data-projet="SAE_Siteweb" data-semester="S1" role="button" tabindex="0" aria-pressed="false">
+          <img src="siteweb.jpg" alt="Site web responsive">
+          <div class="projet-overlay">Création d'un site web responsive en HTML et CSS</div>
+        </div>
 
-      <!-- SAE33 -->
-      <div class="projet-card" data-projet="SAE33" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
-        <img src="SAE_33_topo.jpg" alt="Réseau Informatique Sécurisé Multisite">
-        <div class="projet-overlay">Réseau Informatique Sécurisé Multisite</div>
+        <div class="projet-card" data-projet="THALES09" data-semester="S2" role="button" tabindex="0" aria-pressed="false">
+          <img src="thales.jpg" alt="Système de capture photo pour banc avionique">
+          <div class="projet-overlay">Système de capture photo pour banc avionique</div>
+        </div>
       </div>
-    </div>
+    </section>
   </main>
 
   <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true" role="dialog" aria-modal="true">
@@ -194,7 +197,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="cyberhygiene.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Comprendre les concepts clés de la cybersécurité et sensibiliser un public non spécialiste.</p>
+            <p><strong>L'objectif du projet :</strong> Comprendre les concepts clés de la cybersécurité et sensibiliser un public non spécialiste.</p>
             <p><strong>Travail réalisé :</strong> Recherches, analyses, présentation et vidéo de sensibilisation.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#linux">Linux</a>, <a href="Competences.html#communication">Communication</a></p>
             <p style="margin-top:0.5rem"><a href="SAE11.pdf" rel="noopener">Compte rendu SAE11</a></p>
@@ -205,7 +208,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="reseauxinformatiques.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Comprendre et analyser un réseau domestique.</p>
+            <p><strong>L'objectif du projet :</strong> Comprendre et analyser un réseau domestique.</p>
             <p><strong>Travail réalisé :</strong> Tests, configuration et mesures de débits et topologie.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#routage">Routage</a>, <a href="Competences.html#switching">Switching</a></p>
             <p style="margin-top:0.5rem"><a href="SAE12_1.pdf" rel="noopener">Rendu 1 SAE12_1</a> <a href="SAE12_2.pdf" rel="noopener">Rendu 2 SAE12_2</a></p>
@@ -216,7 +219,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="cablecoaxial.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Étudier une liaison physique par câble coaxial.</p>
+            <p><strong>L'objectif du projet :</strong> Étudier une liaison physique par câble coaxial.</p>
             <p><strong>Travail réalisé :</strong> Mesures et interprétation technique.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#supports-physiques">Supports physiques</a>, <a href="Competences.html#mesures">Mesures</a></p>
             <p style="margin-top:0.5rem"><a href="SAE13.pdf" rel="noopener">Compte rendu SAE13</a></p>
@@ -227,7 +230,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="ereputation.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Comprendre les enjeux de l’e‑réputation et sensibiliser.</p>
+            <p><strong>L'objectif du projet :</strong> Comprendre les enjeux de l’e‑réputation et sensibiliser.</p>
             <p><strong>Travail réalisé :</strong> Recherche et production d’un support pédagogique.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#travail-equipe">Travail d'équipe</a>, <a href="Competences.html#communication">Communication</a></p>
           </div>
@@ -237,7 +240,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="reseauentreprise.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Concevoir un réseau pour une petite structure.</p>
+            <p><strong>L'objectif du projet :</strong> Concevoir un réseau pour une petite structure.</p>
             <p><strong>Travail réalisé :</strong> VLAN, routage, DHCP, DNS, DMZ et sécurité.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#switching">Switching</a>, <a href="Competences.html#routage">Routage</a></p>
           </div>
@@ -247,7 +250,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="siteweb.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Apprendre HTML et CSS et créer un site responsive.</p>
+            <p><strong>L'objectif du projet :</strong> Apprendre HTML et CSS et créer un site responsive.</p>
             <p><strong>Travail réalisé :</strong> Conception, intégration et optimisation.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#html-css">HTML / CSS</a>, <a href="Competences.html#php">PHP</a></p>
             <p style="margin-top:0.5rem"><a href="https://isis.unice.fr/~gm401473/acces/I_Web/R109/KawaBike/main/main.html" rel="noopener">Voir le site</a></p>
@@ -258,7 +261,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="thales.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Mettre en place un système de capture photo en mode automatique et manuel pour documenter le banc avionique et améliorer la traçabilité.</p>
+            <p><strong>L'objectif du projet :</strong> Mettre en place un système de capture photo en mode automatique et manuel pour documenter le banc avionique et améliorer la traçabilité.</p>
             <p><strong>Travail réalisé :</strong> Intégration Raspberry et Pico pour pilotage, gestion des captures et métadonnées, stockage local et interface web.</p>
             <p><strong>Compétences :</strong> <a href="Competences.html#python">Python</a>, <a href="Competences.html#linux">Linux</a></p>
             <p style="margin-top:0.6rem"><a href="Thales09_SAE15_rapport.pdf" rel="noopener">Compte rendu Thales09_SAE15_rapport.pdf</a></p>
@@ -269,7 +272,7 @@
         <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
           <img src="fluxmedia.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Développer une interface dans un notebook Jupyter pour lire des fichiers audio en formats FLAC, WAV et MP3, afficher la représentation spectrale, la pochette et les métadonnées, et proposer des outils de conversion et d'amélioration de la qualité.</p>
+            <p><strong>L'objectif du projet :</strong> Développer une interface dans un notebook Jupyter pour lire des fichiers audio en formats FLAC, WAV et MP3, afficher la représentation spectrale, la pochette et les métadonnées, et proposer des outils de conversion et d'amélioration de la qualité.</p>
 
             <p><strong>Travail réalisé :</strong> Création d'un notebook utilisant ipywidgets et des pipelines GStreamer pour sélectionner et lire des fichiers, afficher des visualisations audio et fournir des fonctions de conversion et d'amélioration du flux.</p>
 
@@ -283,7 +286,7 @@
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="applicationcommunicante.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Réaliser un site web de gestion des failles détectées sur le réseau local, stocker ces failles en base de données et proposer des clients capables de les consulter.</p>
+            <p><strong>L'objectif du projet :</strong> Réaliser un site web de gestion des failles détectées sur le réseau local, stocker ces failles en base de données et proposer des clients capables de les consulter.</p>
 
             <p><strong>Travail réalisé :</strong> Développement du site, outil Java pour détecter et insérer les failles en base, et application Android en Java pour visualiser les failles via API JSON.</p>
 
@@ -295,7 +298,7 @@
         <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
           <img src="SAE_33_topo.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
           <div style="flex:1">
-            <p><strong>Objectifs :</strong> Concevoir et justifier une infrastructure réseau multisite sécurisée répondant aux besoins d'une entreprise et identifier les vulnérabilités des équipements et du système d'information.</p>
+            <p><strong>L'objectif du projet :</strong> Concevoir et justifier une infrastructure réseau multisite sécurisée répondant aux besoins d'une entreprise et identifier les vulnérabilités des équipements et du système d'information.</p>
 
             <p><strong>Travail réalisé :</strong> Conception d'une architecture multisite intégrant routage, filtrage inter-VLAN, redondance, tunnels VPN, services avancés et Wi‑Fi. Configuration des équipements, tests de performance et évaluation sécurité.</p>
 
@@ -306,6 +309,71 @@
         </div>
       `
     };
+
+    const projectWorkDone = {
+      SAE11: [
+        "Recherche sur les bonnes pratiques d'hygiène informatique.",
+        "Analyse des risques les plus courants pour un utilisateur.",
+        "Création d'une présentation et d'une vidéo de sensibilisation."
+      ],
+      SAE12: [
+        "Identification de la topologie réseau.",
+        "Réalisation de tests de connectivité et de configuration.",
+        "Mesure et interprétation des débits obtenus."
+      ],
+      SAE13: [
+        "Observation du fonctionnement du support physique.",
+        "Réalisation de mesures sur la liaison.",
+        "Interprétation technique des résultats obtenus."
+      ],
+      SAE14: [
+        "Recherche sur l'identité numérique et l'image en ligne.",
+        "Sélection d'exemples concrets pour illustrer les risques.",
+        "Production d'un support pédagogique de sensibilisation."
+      ],
+      SAE21: [
+        "Mise en place des VLAN et du routage inter-VLAN.",
+        "Configuration des services DHCP, DNS et DMZ.",
+        "Application de règles de sécurité et tests de fonctionnement."
+      ],
+      SAE_Siteweb: [
+        "Conception de la structure des pages.",
+        "Intégration HTML/CSS avec une mise en page responsive.",
+        "Optimisation de l'affichage et de la navigation."
+      ],
+      THALES09: [
+        "Intégration d'un Raspberry Pi et d'un Pico pour le pilotage.",
+        "Gestion des captures, des métadonnées et du stockage local.",
+        "Création d'une interface web pour faciliter l'utilisation."
+      ],
+      SAE31: [
+        "Création d'un notebook avec ipywidgets.",
+        "Utilisation de pipelines GStreamer pour lire les fichiers audio.",
+        "Ajout de visualisations, conversions et outils d'amélioration du flux."
+      ],
+      APPCOM: [
+        "Développement du site web de gestion des failles.",
+        "Création d'un outil Java pour détecter et insérer les failles en base.",
+        "Développement d'une application Android consommant une API JSON."
+      ],
+      SAE33: [
+        "Conception d'une architecture multisite avec routage, redondance et VPN.",
+        "Configuration du filtrage inter-VLAN, des services avancés et du Wi-Fi.",
+        "Tests de performance et évaluation de la sécurité de l'infrastructure."
+      ]
+    };
+
+    function buildProjectContent(id){
+      let content = projetsContent[id] || '<p>Projet non trouvé.</p>';
+
+      const items = projectWorkDone[id];
+      if(items){
+        const list = `<p><strong>Travail réalisé :</strong></p><ul class="work-list">${items.map(item => `<li>${item}</li>`).join('')}</ul>`;
+        content = content.replace(/<p><strong>Travail réalisé :<\/strong>[\s\S]*?<\/p>/, list);
+      }
+
+      return content;
+    }
 
     // DOM refs & state
     const modalBackdrop = document.getElementById('modalBackdrop');
@@ -335,7 +403,7 @@
     function renderModalByIndex(idx){
       const card = visibleCards[idx];
       const id = card ? card.getAttribute('data-projet') : null;
-      modalContent.innerHTML = id ? (projetsContent[id] || '<p>Projet non trouvé.</p>') : '<p>Projet non trouvé.</p>';
+      modalContent.innerHTML = id ? buildProjectContent(id) : '<p>Projet non trouvé.</p>';
       const titleText = card ? (card.querySelector('.projet-overlay')?.textContent || id) : '';
       const modalTitle = document.getElementById('modalTitle');
       modalTitle.textContent = titleText || '';
@@ -379,18 +447,8 @@
       else if(e.key === 'ArrowLeft'){ showPrev(); }
     }
 
-    document.getElementById('filter-semester').addEventListener('change', function(){
-      const val = this.value;
-      document.querySelectorAll('.projet-card').forEach(card => {
-        card.style.display = (val === 'all' || card.dataset.semester === val) ? '' : 'none';
-      });
-      if(modalBackdrop.style.display === 'flex'){
-        const currentCard = visibleCards[currentIndex];
-        visibleCards = computeVisibleCards();
-        if(currentCard){ const newIndex = visibleCards.indexOf(currentCard); currentIndex = (newIndex !== -1) ? newIndex : 0; } else { currentIndex = 0; }
-        renderModalByIndex(currentIndex);
-      }
-    });
   </script>
 </body>
 </html>
+
+

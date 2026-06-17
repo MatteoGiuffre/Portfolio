@@ -17,6 +17,7 @@
     .container--spaced{ max-width:1100px;margin:0 auto;padding:1.25rem; }
     h1{ margin:0 0 .5rem 0; font-size:2rem; color:#0b2540; }
     .lead{ color:var(--muted); margin-bottom:1rem; }
+    .page-intro{ max-width:780px; color:#fff; line-height:1.65; margin:0 0 1.5rem 0; }
 
     .categories{
       display:grid;
@@ -64,7 +65,8 @@
       background:white;
       border-radius:10px;
       padding:1rem;
-      min-height:130px;
+      min-height:150px;
+      height:100%;
       box-shadow:0 6px 14px rgba(8,20,30,0.03);
       display:flex;
       flex-direction:column;
@@ -116,6 +118,11 @@
 
   <main class="container--spaced">
     <h1>Compétences</h1>
+    <p class="page-intro">
+      Cette page regroupe les compétences que j'ai développées pendant mon BUT, mes projets et mon alternance.
+      Elles couvrent les domaines techniques liés aux réseaux, aux systèmes, au développement et à la cybersécurité.
+      J'y présente aussi mes compétences transverses et linguistiques.
+    </p>
     <div class="categories">
       <!-- RÉSEAUX -->
       <section id="reseaux" class="category anchor" aria-labelledby="r-title">
@@ -146,6 +153,39 @@
           <div id="vpn-inter-sites" class="tile" role="listitem" tabindex="0">
             <h4>VPN & inter-sites</h4>
             <p>Tunnels IPsec, solutions opérateurs et interconnexion multisite.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CYBERSECURITE -->
+      <section id="cybersecurite" class="category anchor" aria-labelledby="cyber-title">
+        <div class="category-head">
+          <img src="cyberhygiene.jpg" alt="Cybersécurité" class="cat-img">
+          <div class="cat-meta">
+            <div id="cyber-title" class="cat-title">Cybersécurité</div>
+            <div class="cat-desc">Analyse, protection et contrôle de la sécurité des systèmes et réseaux.</div>
+          </div>
+        </div>
+
+        <div class="subskills">
+          <div id="pentest" class="tile" tabindex="0">
+            <h4>Pentest</h4>
+            <p>Identification de vulnérabilités, tests d'intrusion encadrés et analyse des risques.</p>
+          </div>
+
+          <div id="cryptographie" class="tile" tabindex="0">
+            <h4>Cryptographie</h4>
+            <p>Principes de chiffrement, authentification et protection des échanges.</p>
+          </div>
+
+          <div id="audit-securite" class="tile" tabindex="0">
+            <h4>Audit de sécurité</h4>
+            <p>Évaluation de configurations, repérage des faiblesses et propositions d'amélioration.</p>
+          </div>
+
+          <div id="pare-feu" class="tile" tabindex="0">
+            <h4>Pare-feu</h4>
+            <p>Filtrage réseau, règles d'accès, segmentation et contrôle des flux.</p>
           </div>
         </div>
       </section>
@@ -288,6 +328,34 @@
           <div id="analysis-signal" class="tile" tabindex="0">
             <h4>Analyse du signal</h4>
             <p>Traitement et interprétation des signaux pour diagnostic et optimisation.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- LANGUES -->
+      <section id="langues" class="category anchor" aria-labelledby="lang-title">
+        <div class="category-head">
+          <img src="softskills.png" alt="Langues" class="cat-img">
+          <div class="cat-meta">
+            <div id="lang-title" class="cat-title">Langues</div>
+            <div class="cat-desc">Langues utilisées dans mes études, mon alternance et mes échanges professionnels.</div>
+          </div>
+        </div>
+
+        <div class="subskills">
+          <div id="francais" class="tile" tabindex="0">
+            <h4>Français</h4>
+            <p>Natif.</p>
+          </div>
+
+          <div id="italien" class="tile" tabindex="0">
+            <h4>Italien</h4>
+            <p>Natif.</p>
+          </div>
+
+          <div id="anglais" class="tile" tabindex="0">
+            <h4>Anglais</h4>
+            <p>Niveau C2.</p>
           </div>
         </div>
       </section>
