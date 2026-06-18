@@ -123,6 +123,21 @@
           <div class="projet-overlay">Sensibilisation à l'hygiène informatique et à la cybersécurité</div>
         </div>
 
+        <div class="projet-card" data-projet="APPCOM" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
+          <img src="applicationcommunicante.png" alt="Application de suivi des failles réseau">
+          <div class="projet-overlay">Application de suivi des failles réseau</div>
+        </div>
+
+        <div class="projet-card" data-projet="OSINT" data-semester="S4" role="button" tabindex="0" aria-pressed="false">
+          <img src="OSINT.jpeg" alt="Projet OSINT">
+          <div class="projet-overlay">Investigation OSINT sur une personne inconnue</div>
+        </div>
+
+        <div class="projet-card" data-projet="PENTEST" data-semester="S4" role="button" tabindex="0" aria-pressed="false">
+          <img src="kali.png" alt="Projet pentest avec Kali Linux">
+          <div class="projet-overlay">Audit de sécurité et pentest d'un système cible</div>
+        </div>
+
       </div>
     </section>
 
@@ -169,9 +184,9 @@
           <div class="projet-overlay">Interface de lecture et traitement de flux audio</div>
         </div>
 
-        <div class="projet-card" data-projet="APPCOM" data-semester="S3" role="button" tabindex="0" aria-pressed="false">
-          <img src="applicationcommunicante.png" alt="Application de suivi des failles réseau">
-          <div class="projet-overlay">Application de suivi des failles réseau</div>
+        <div class="projet-card" data-projet="PORTFOLIO" data-semester="S4" role="button" tabindex="0" aria-pressed="false">
+          <img src="portfolio.png" alt="Portfolio web personnel">
+          <div class="projet-overlay">Création et amélioration d'un portfolio web personnel</div>
         </div>
       </div>
     </section>
@@ -234,6 +249,27 @@
           </div>
         </div>
       `,
+      OSINT: `
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="OSINT.jpeg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p><strong>L'objectif du projet :</strong> Réaliser une investigation OSINT sur une personne inconnue à partir d'informations publiques, en respectant une démarche méthodique, éthique et vérifiable.</p>
+            <p><strong>Travail réalisé :</strong> Recherche, recoupement et synthèse d'informations publiques afin d'établir un profil cohérent sans utiliser de moyens intrusifs.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#osint">OSINT</a>, <a href="Competences.html#analyse-information">Analyse d'information</a>, <a href="Competences.html#communication">Communication</a></p>
+          </div>
+        </div>
+      `,
+      PENTEST: `
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="kali.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p><strong>L'objectif du projet :</strong> Réaliser un test d'intrusion encadré afin d'identifier des vulnérabilités, évaluer leur impact et proposer des pistes de correction adaptées.</p>
+            <p><strong>Travail réalisé :</strong> Préparation de l'environnement, reconnaissance, analyse des services exposés, exploitation contrôlée de failles et rédaction d'un rapport de synthèse.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#pentest">Pentest</a>, <a href="Competences.html#kali-linux">Kali Linux</a>, <a href="Competences.html#audit-securite">Audit de sécurité</a></p>
+            <p style="margin-top:0.6rem"><a href="Rapport_Pentest_SAE34_Matteo Giuffre.pdf" rel="noopener">Rapport_Pentest_SAE34_Matteo Giuffre</a></p>
+          </div>
+        </div>
+      `,
       SAE_Siteweb: `
         <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
           <img src="siteweb.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
@@ -282,6 +318,16 @@
           </div>
         </div>
       `,
+      PORTFOLIO: `
+        <div style="display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap">
+          <img src="portfolio.png" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <p><strong>L'objectif du projet :</strong> Concevoir un portfolio web personnel clair, cohérent et responsive pour présenter mon profil, mes compétences, mes projets et mon alternance.</p>
+            <p><strong>Travail réalisé :</strong> Structuration des pages, amélioration du design, rédaction des contenus, intégration d'images et mise en place de fiches projets interactives.</p>
+            <p><strong>Compétences :</strong> <a href="Competences.html#html-css">HTML / CSS</a>, <a href="Competences.html#javascript">JavaScript</a>, <a href="Competences.html#ux-ui">UX / UI</a></p>
+          </div>
+        </div>
+      `,
       SAE33: `
         <div style="display:flex;gap:1rem;align-items:center;flex-wrap:wrap">
           <img src="SAE_33_topo.jpg" alt="" style="width:260px;height:160px;object-fit:cover;border-radius:8px">
@@ -319,6 +365,18 @@
         "Configuration des services DHCP, DNS et DMZ.",
         "Application de règles de sécurité et tests de fonctionnement."
       ],
+      OSINT: [
+        "Définition d'une méthode de recherche et de vérification des sources.",
+        "Collecte d'informations publiques sur différents supports en ligne.",
+        "Recoupement des données pour éviter les conclusions non justifiées.",
+        "Rédaction d'une synthèse claire, sourcée et respectueuse du cadre éthique."
+      ],
+      PENTEST: [
+        "Préparation de l'environnement de test avec Kali Linux.",
+        "Reconnaissance de la cible et identification des services exposés.",
+        "Analyse puis exploitation contrôlée de vulnérabilités.",
+        "Rédaction d'un rapport avec constats, preuves et recommandations."
+      ],
       SAE_Siteweb: [
         "Conception de la structure des pages.",
         "Intégration HTML/CSS avec une mise en page responsive.",
@@ -338,6 +396,12 @@
         "Développement du site web de gestion des failles.",
         "Création d'un outil Java pour détecter et insérer les failles en base.",
         "Développement d'une application Android consommant une API JSON."
+      ],
+      PORTFOLIO: [
+        "Organisation des pages du site autour du profil, des compétences, des projets et de l'alternance.",
+        "Création d'une identité visuelle cohérente et responsive.",
+        "Intégration de cartes projets interactives et de contenus personnalisés.",
+        "Amélioration progressive du site à partir des critères d'évaluation."
       ],
       SAE33: [
         "Conception d'une architecture multisite avec routage, redondance et VPN.",

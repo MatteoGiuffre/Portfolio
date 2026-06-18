@@ -79,7 +79,7 @@
       gap:.5rem;
       padding:.75rem .75rem 0;
     }
-    .mission-media--split{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    .mission-media--stack{ grid-template-columns:1fr; }
     .mission-media img{
       width:100%;
       aspect-ratio:16/10;
@@ -90,6 +90,14 @@
       display:block;
     }
     .mission-media--stock img{ object-fit:contain; padding:.35rem; }
+    .mission-caption{
+      display:block;
+      color:#5f7280;
+      font-size:.82rem;
+      font-weight:700;
+      margin:.2rem 0 .4rem;
+      text-align:center;
+    }
     .mission-body{ padding:1.15rem; }
     .mission-card ul{ margin:.65rem 0 0 1.1rem; padding:0; color:var(--muted); }
     .mission-card li{ margin:.35rem 0; }
@@ -106,9 +114,6 @@
       .exp-panel{ grid-template-columns:1fr; text-align:center; }
       .company-logo{ margin:0 auto; }
       .missions-grid{ grid-template-columns:1fr; }
-    }
-    @media (max-width:520px){
-      .mission-media--split{ grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -153,9 +158,11 @@
       <h2 id="missions-title" class="section-title">Missions principales</h2>
       <div class="missions-grid">
         <article class="mission-card">
-          <div class="mission-media mission-media--split">
+          <div class="mission-media mission-media--stack">
             <img src="teamviewer.jpeg" alt="Support à distance avec TeamViewer">
+            <span class="mission-caption">Support à distance</span>
             <img src="rack.jpeg" alt="Rack informatique utilisé pour le support technique">
+            <span class="mission-caption">Intervention et suivi du matériel</span>
           </div>
           <div class="mission-body">
             <h3>Support technique client</h3>
@@ -169,9 +176,11 @@
         </article>
 
         <article class="mission-card">
-          <div class="mission-media mission-media--split mission-media--stock">
+          <div class="mission-media mission-media--stack mission-media--stock">
             <img src="application.jpeg" alt="Application Power Apps de gestion du stock IT">
+            <span class="mission-caption">Application Power Apps</span>
             <img src="api.jpeg" alt="Flux Power Automate pour l'API de stock">
+            <span class="mission-caption">Flux Power Automate et API</span>
           </div>
           <div class="mission-body">
             <h3>Management du stock IT</h3>
