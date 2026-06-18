@@ -5,6 +5,124 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Accueil — Matteo Giuffre</title>
   <link rel="stylesheet" href="css.css">
+  <style>
+    .home-main{ padding-top:1.4rem; }
+    .hero{
+      min-height:auto;
+      padding:1.5rem 0 1.25rem;
+    }
+    .hero h1{
+      font-size:clamp(2rem, 4vw, 3.3rem);
+      line-height:1.05;
+      max-width:12ch;
+      margin-bottom:1rem;
+    }
+    .hero .intro{
+      font-size:1.05rem;
+      line-height:1.7;
+      max-width:62ch;
+    }
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.75rem;
+      margin-top:.35rem;
+    }
+    .hero-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.55rem;
+      margin-top:1rem;
+    }
+    .hero-tag{
+      display:inline-flex;
+      align-items:center;
+      min-height:34px;
+      padding:.35rem .65rem;
+      color:#fff;
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:999px;
+      font-weight:700;
+      font-size:.9rem;
+    }
+    .home-panels{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0, 1fr));
+      gap:1rem;
+      margin-top:1.5rem;
+    }
+    .home-panel{
+      background:linear-gradient(180deg,#fff,#fbfdff);
+      border-radius:10px;
+      padding:1.05rem;
+      color:#0b2540;
+      text-decoration:none;
+      box-shadow:0 14px 34px rgba(8,20,30,0.08);
+      border:1px solid rgba(11,30,50,0.05);
+      min-height:160px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:transform var(--transition), box-shadow var(--transition);
+    }
+    .home-panel:hover{
+      transform:translateY(-5px);
+      box-shadow:0 20px 54px rgba(8,20,30,0.12);
+    }
+    .home-panel span{
+      color:var(--accent);
+      font-weight:800;
+      font-size:.88rem;
+    }
+    .home-panel h2{
+      margin:.25rem 0 .45rem;
+      font-size:1.08rem;
+      color:#0b2540;
+    }
+    .home-panel p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.45;
+      font-size:.94rem;
+    }
+    .home-snapshot{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:1rem;
+      margin:1rem 0 .75rem;
+    }
+    .snapshot-item{
+      background:rgba(255,255,255,0.12);
+      border:1px solid rgba(255,255,255,0.18);
+      border-radius:10px;
+      padding:1rem;
+      color:#fff;
+      min-height:96px;
+    }
+    .snapshot-item strong{
+      display:block;
+      font-size:1.35rem;
+      line-height:1.1;
+      margin-bottom:.35rem;
+    }
+    .snapshot-item span{
+      color:rgba(255,255,255,0.86);
+      line-height:1.4;
+    }
+
+    @media (max-width:920px){
+      .home-panels{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+      .home-snapshot{ grid-template-columns:1fr; }
+      .hero h1{ max-width:100%; text-align:center; }
+      .hero .intro{ text-align:center; }
+      .hero-actions,
+      .hero-tags{ justify-content:center; }
+    }
+    @media (max-width:560px){
+      .home-panels{ grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 <body class="home-page">
   <!-- NAV (identique sur toutes les pages) -->
@@ -21,7 +139,7 @@
     </div>
   </header>
 
-  <main class="container container--spaced">
+  <main class="container container--spaced home-main">
     <section class="hero" aria-labelledby="hero-title">
       <div>
         <h1 id="hero-title">Bonjour — je suis Matteo Giuffre</h1>
@@ -29,7 +147,17 @@
           Bienvenue sur mon portfolio. Vous trouverez ici une sélection de mes projets, mes compétences et mon parcours.
           Je suis actuellement en BUT Réseaux et Télécommunications et en alternance chez Moravia Yachting.
         </p>
-        <a class="cta" href="Projets.html">Voir mes projets</a>
+        <div class="hero-actions">
+          <a class="cta" href="Projets.html">Voir mes projets</a>
+          <a class="cta cta-secondary" href="Experience.html">Découvrir mon alternance</a>
+        </div>
+
+        <div class="hero-tags" aria-label="Domaines principaux">
+          <span class="hero-tag">Réseaux</span>
+          <span class="hero-tag">Cybersécurité</span>
+          <span class="hero-tag">Développement</span>
+          <span class="hero-tag">Alternance IT</span>
+        </div>
 
         <div id="typewriter" class="small" aria-live="polite" style="margin-top:.8rem"></div>
       </div>
@@ -39,6 +167,52 @@
           <img src="photo.jpg" alt="Photo Matteo">
         </div>
       </div>
+    </section>
+
+    <section class="home-snapshot" aria-label="Résumé du portfolio">
+      <div class="snapshot-item">
+        <strong>BUT R&T</strong>
+        <span>Un parcours orienté réseaux, télécommunications, systèmes et cybersécurité.</span>
+      </div>
+      <div class="snapshot-item">
+        <strong>Alternance</strong>
+        <span>Une expérience concrète chez Moravia Yachting autour du support, de l'automatisation et de la documentation.</span>
+      </div>
+      <div class="snapshot-item">
+        <strong>Projets</strong>
+        <span>Des réalisations classées par domaine, avec objectifs, preuves et compétences associées.</span>
+      </div>
+    </section>
+
+    <section class="home-panels" aria-label="Navigation rapide">
+      <a class="home-panel" href="Profil.html">
+        <div>
+          <span>01</span>
+          <h2>Profil</h2>
+          <p>Mon parcours, mes certifications et les éléments qui présentent mon identité professionnelle.</p>
+        </div>
+      </a>
+      <a class="home-panel" href="Projets.html">
+        <div>
+          <span>02</span>
+          <h2>Projets</h2>
+          <p>Des projets structurés par catégorie, du réseau à la cybersécurité en passant par le développement.</p>
+        </div>
+      </a>
+      <a class="home-panel" href="Competences.html">
+        <div>
+          <span>03</span>
+          <h2>Compétences</h2>
+          <p>Les compétences techniques et transverses développées en cours, en projet et en entreprise.</p>
+        </div>
+      </a>
+      <a class="home-panel" href="Experience.html">
+        <div>
+          <span>04</span>
+          <h2>Alternance</h2>
+          <p>Mes missions chez Moravia Yachting, illustrées par des preuves et des réalisations concrètes.</p>
+        </div>
+      </a>
     </section>
   </main>
 
